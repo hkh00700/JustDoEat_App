@@ -16,11 +16,18 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
+    int num = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainlayout);
+
+        // 홈 액티비티에서 무슨버튼이 눌렸는지 가져오기
+        Intent intent = getIntent();
+        if(intent != null){
+            num = intent.getIntExtra("num", 0);
+        }
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         getSupportFragmentManager().beginTransaction().add(R.id.container, new Main()).commit();
@@ -48,6 +55,19 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        // 눌린 버튼에 대한 동적으로 이동
+        if(num == 1){
+            bottomNavigationView.setSelectedItemId(R.id.tab1);
+        }else if(num == 2){
+            bottomNavigationView.setSelectedItemId(R.id.tab4);
+        }else if(num == 3){
+            bottomNavigationView.setSelectedItemId(R.id.tab3);
+        }else if(num == 4){
+            bottomNavigationView.setSelectedItemId(R.id.tab2);
+        }else if(num == 5){
+            bottomNavigationView.setSelectedItemId(R.id.tab5);
+        }
 
     }
 }
