@@ -18,11 +18,10 @@ public class Main extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup View = (ViewGroup) inflater.inflate(R.layout.main, container,false);
 
-        Button btnLogin, btnJoin;
+        Button btnLogin;
 
 
         btnLogin = View.findViewById(R.id.btnLogin);
-        btnJoin = View.findViewById(R.id.btnJoin);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,16 +31,7 @@ public class Main extends Fragment {
             }
         });
 
-        btnJoin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), JoinActivity.class);
-                startActivity(intent);
-            }
-        });
-
         return View;
     }
-
-
 }
+
