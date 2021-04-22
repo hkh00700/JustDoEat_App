@@ -18,12 +18,12 @@ public class Main extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup View = (ViewGroup) inflater.inflate(R.layout.main, container,false);
 
-        Button btnLogin;
+        Button btnbtnLojo;
 
 
-        btnLogin = View.findViewById(R.id.btnLogin);
+        btnbtnLojo = View.findViewById(R.id.btnLojo);
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnbtnLojo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), LoginActivity.class);

@@ -4,19 +4,26 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.empty_can.ATask.LoginSelect;
+
+import java.util.concurrent.ExecutionException;
+
+import static com.example.empty_can.Common.CommonMethod.loginDTO;
+
 public class LoginActivity extends AppCompatActivity {
-    private static final String TAG = "main:MainActivity";
-    EditText m_id, m_pw;
+    private static final String TAG = "main:LoginActivity";
+
+    EditText u_id, u_pw;
     Button btnLogin, btnJoin;
 
 
@@ -25,15 +32,51 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        m_id = findViewById(R.id.m_id);
-        m_pw = findViewById(R.id.m_pw);
+        u_id = findViewById(R.id.u_id);
+        u_pw = findViewById(R.id.u_pw);
 
         btnJoin = findViewById(R.id.btnJoin);
         btnLogin = findViewById(R.id.btnLogin);
 
-
-
         checkDangerousPermissions();
+
+        // 로그인 버튼
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(u_id.getText().toString().length() != 0 && u_pw.getText().toString().length() != 0){
+                    String id = u_id.getText().toString();
+                    String pw = u_pw.getText().toString();
+
+                    LoginSelect loginSelect = new LoginSelect(id, pw);
+
+                    try {
+                        loginSelect.execute().get();
+                    } catch (ExecutionException e) {
+                        e.getMessage();
+                    } catch (InterruptedException e) {
+                        e.getMessage();
+                    }
+
+                } else {
+                    Toast.makeText(LoginActivity.this, "아이디와 암호를 모두 입력하세요", Toast.LENGTH_SHORT).show();
+                    Log.d("main:login", "아이디와 암호를 모두 입력하세요 !!!");
+                    return;
+                }
+
+                if(loginDTO != null){
+                    Toast.makeText(LoginActivity.this, "로그인 되었습니다 !!!", Toast.LENGTH_SHORT).show();
+                    Log.d("main:login", loginDTO.getId() + "님 로그인 되었습니다 !!!");
+
+                }else {
+                    Toast.makeText(LoginActivity.this, "아이디나 비밀번호가 일치안함 !!!", Toast.LENGTH_SHORT).show();
+                    Log.d("main:login", "아이디나 비밀번호가 일치안함 !!!");
+                    u_id.setText(""); u_pw.setText("");
+                    u_id.requestFocus();
+                }
+
+            }
+        });
 
         //회원가입 버튼
         btnJoin.setOnClickListener(new View.OnClickListener() {
