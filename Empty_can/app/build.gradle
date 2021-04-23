@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.empty_can"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -45,4 +45,10 @@ dependencies {
     implementation('org.apache.httpcomponents:httpmime:4.3') {
         exclude module: "httpclient"
     }
+
+    implementation "com.kakao.sdk:v2-user:2.2.0" // 카카오 로그인
+    implementation "com.kakao.sdk:v2-talk:2.2.0" // 친구, 메시지(카카오톡)
+    implementation "com.kakao.sdk:v2-story:2.2.0" // 카카오스토리
+    implementation "com.kakao.sdk:v2-link:2.2.0" // 메시지(카카오링크)
+    implementation "com.kakao.sdk:v2-navi:2.2.0" // 카카오내비
 }
