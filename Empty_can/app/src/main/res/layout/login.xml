@@ -78,4 +78,19 @@
         android:layout_marginTop="25dp"
         app:srcCompat="@drawable/kakao_login" />
 
+    <ImageView
+        android:id="@+id/btnnaver"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@+id/btnkakao"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="110dp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="112dp"
+        app:srcCompat="@drawable/naver_login" />
+
 </RelativeLayout>

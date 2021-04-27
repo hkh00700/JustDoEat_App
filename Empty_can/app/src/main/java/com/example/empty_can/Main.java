@@ -28,7 +28,7 @@ public class Main extends Fragment {
         textView = view.findViewById(R.id.textView);
 
         if(loginDTO != null){
-            textView.setText(loginDTO.getNikname());
+            textView.setText(loginDTO.getNikname() + "님 로그인되었습니다.");
         }
 
 

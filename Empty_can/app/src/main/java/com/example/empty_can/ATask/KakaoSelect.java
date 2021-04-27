@@ -15,7 +15,6 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -23,15 +22,14 @@ import java.io.InputStreamReader;
 import static com.example.empty_can.Common.CommonMethod.ipConfig;
 import static com.example.empty_can.Common.CommonMethod.loginDTO;
 
-public class LoginSelect extends AsyncTask<Void, Void, Void> {
-    private static final String TAG = "main:LoginSelect";
-    String id, pw;
+public class KakaoSelect extends AsyncTask<Void, Void, Void> {
+    private static final String TAG = "main:KakaoSelect";
+    String m_email;
 
-    public LoginSelect(String id, String pw) {
-        this.id = id;
-        this.pw = pw;
+    public KakaoSelect(String m_email) {
+        this.m_email = m_email;
 
-        Log.d(TAG, "LoginSelect: " + id + ", " + pw);
+        Log.d(TAG, "LoginSelect: " + m_email);
     }
 
     HttpClient httpClient;
@@ -49,10 +47,9 @@ public class LoginSelect extends AsyncTask<Void, Void, Void> {
         builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
 
         // 문자열 및 데이터 추가
-        builder.addTextBody("id", id, ContentType.create("Multipart/related", "UTF-8"));
-        builder.addTextBody("pw", pw, ContentType.create("Multipart/related", "UTF-8"));
+        builder.addTextBody("m_email", m_email, ContentType.create("Multipart/related", "UTF-8"));
 
-        String postURL = ipConfig + "/justdo_eat/memberLogin";
+        String postURL = ipConfig + "/justdo_eat/kakaoMemberLogin";
 
         // 전송
         InputStream inputStream = null;

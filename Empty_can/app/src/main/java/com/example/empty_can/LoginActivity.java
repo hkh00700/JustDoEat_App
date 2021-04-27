@@ -18,6 +18,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.empty_can.ATask.JoinInsert;
+import com.example.empty_can.ATask.KakaoSelect;
 import com.example.empty_can.ATask.LoginSelect;
 import com.example.empty_can.ATask.kakaoJoinInsert;
 import com.example.empty_can.DTO.MemberDTO;
@@ -125,6 +126,7 @@ public class LoginActivity extends AppCompatActivity {
                             Log.e("Debug", "로그인 실패!");
                         } else if (oAuthToken != null) {
                             Log.e("Debug", "로그인 성공!");
+
                             // 로그인 성공 시 사용자 정보 받기
                             UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
                                 @Override
@@ -137,27 +139,44 @@ public class LoginActivity extends AppCompatActivity {
                                         String m_email = user.getKakaoAccount().getEmail();
                                         String m_gender = user.getKakaoAccount().getGender().toString();
 
-                                        kakaoJoinInsert kakaojoinInsert = new kakaoJoinInsert(m_nikname, m_email, m_gender);
-
+                                        KakaoSelect kakaoSelect = new KakaoSelect(m_email);
                                         try {
-                                            state = kakaojoinInsert.execute().get().trim();
-                                            Log.d("main:joinact0 : ", state);
+                                            kakaoSelect.execute().get();
                                         } catch (ExecutionException e) {
                                             e.printStackTrace();
                                         } catch (InterruptedException e) {
                                             e.printStackTrace();
                                         }
 
-                                        if(state.equals("1")){
-                                            Toast.makeText(LoginActivity.this, "삽입성공 !!!", Toast.LENGTH_SHORT).show();
-                                            Log.d(TAG, "회원가입을 축하합니다!!!");
+                                        if(loginDTO == null){
+                                            kakaoJoinInsert kakaojoinInsert = new kakaoJoinInsert(m_nikname, m_email, m_gender);
+
+                                            try {
+                                                state = kakaojoinInsert.execute().get().trim();
+                                                Log.d("main:joinact0 : ", state);
+
+                                            /*if(state.equals("1")){
+                                                Toast.makeText(LoginActivity.this, "삽입성공 !!!", Toast.LENGTH_SHORT).show();
+                                                Log.d(TAG, "회원가입을 축하합니다!!!");
+                                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                startActivity(intent);
+                                            }else{
+                                                Toast.makeText(LoginActivity.this, "삽입실패 !!!", Toast.LENGTH_SHORT).show();
+                                                Log.d(TAG, "다시 회원가입을 해주세요!!!" + state);
+                                                finish();
+                                            }*/
+
+                                            } catch (ExecutionException e) {
+                                                e.printStackTrace();
+                                            } catch (InterruptedException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }else {
+                                            Log.d("main:joinact1 : ", loginDTO.getEmail());
                                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                             startActivity(intent);
-                                        }else{
-                                            Toast.makeText(LoginActivity.this, "삽입실패 !!!", Toast.LENGTH_SHORT).show();
-                                            Log.d(TAG, "다시 회원가입을 해주세요!!!" + state);
-                                            finish();
                                         }
+
 
                                     }
                                     return null;
