@@ -20,7 +20,6 @@
 
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".JoinActivity"></activity>
-        <activity android:name=".LoginActivity"></activity>
         <activity android:name=".WritingActivity"></activity>
         <activity android:name=".GameSetActivity"></activity>
         <activity android:name=".MymodifyActivity"></activity>
@@ -32,7 +31,7 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".HomeActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

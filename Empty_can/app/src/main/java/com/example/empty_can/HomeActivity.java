@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import static com.example.empty_can.Common.CommonMethod.loginDTO;
+
 public class HomeActivity extends AppCompatActivity {
 
 
@@ -17,6 +19,11 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
+
+        if(loginDTO == null){
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+        }
 
         btnMain = findViewById(R.id.btnMain);
         btnMyPage = findViewById(R.id.btnMyPage);

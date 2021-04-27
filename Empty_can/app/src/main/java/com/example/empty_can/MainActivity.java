@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainlayout);
 
+        // 로그인 되었을 때 정보창에
+
         // 홈 액티비티에서 무슨버튼이 눌렸는지 가져오기
         Intent intent = getIntent();
         if(intent != null){

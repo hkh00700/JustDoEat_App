@@ -30,6 +30,13 @@ public class MemberDTO {
         this.nikname = nikname;
     }
 
+    //카카오에서 멤버정보를 추가할 때
+    public MemberDTO(String email, String gender, String nikname) {
+        this.email = email;
+        this.gender = gender;
+        this.nikname = nikname;
+    }
+
     public String getId() {
         return id;
     }

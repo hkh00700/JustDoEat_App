@@ -19,20 +19,15 @@ import java.nio.charset.Charset;
 
 import static com.example.empty_can.Common.CommonMethod.ipConfig;
 
+public class kakaoJoinInsert extends AsyncTask<Void, Void, String> {
+    private static final String TAG = "main:kakaoJoinInsert";
 
-public class JoinInsert extends AsyncTask<Void, Void, String> {
-    private static final String TAG = "main:JoinInsert";
+    String m_nikname, m_email, m_gender;
 
-    String m_id, m_pw, m_name, m_phone, m_gender, m_email, m_nikname;
-
-    public JoinInsert(String m_id, String m_pw, String m_name, String m_phone, String m_gender, String m_email, String m_nikname) {
-        this.m_id = m_id;
-        this.m_pw = m_pw;
-        this.m_name = m_name;
-        this.m_phone = m_phone;
-        this.m_gender = m_gender;
-        this.m_email = m_email;
+    public kakaoJoinInsert(String m_nikname, String m_email, String m_gender) {
         this.m_nikname = m_nikname;
+        this.m_email = m_email;
+        this.m_gender = m_gender;
     }
 
     String state = "";
@@ -50,16 +45,12 @@ public class JoinInsert extends AsyncTask<Void, Void, String> {
             builder.setCharset(Charset.forName("UTF-8"));
 
             // 문자열 및 데이터 추가
-            builder.addTextBody("m_id", m_id, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("m_pw", m_pw, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("m_name", m_name, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("m_phone", m_phone, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("m_gender", m_gender, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("m_email", m_email, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("m_nikname", m_nikname, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("m_email", m_email, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("m_gender", m_gender, ContentType.create("Multipart/related", "UTF-8"));
 
             String postURL = ipConfig + "/justdo_eat/memberJoin";
-
+            Log.d(TAG, "kakaoJoinInsert: " + m_email + m_gender + m_nikname);
             // 전송
             InputStream inputStream = null;
             httpClient = AndroidHttpClient.newInstance("Android");

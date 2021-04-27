@@ -15,6 +15,7 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -23,7 +24,7 @@ import static com.example.empty_can.Common.CommonMethod.ipConfig;
 import static com.example.empty_can.Common.CommonMethod.loginDTO;
 
 public class LoginSelect extends AsyncTask<Void, Void, Void> {
-
+    private static final String TAG = "main:LoginSelect";
     String id, pw;
 
     public LoginSelect(String id, String pw) {
@@ -38,7 +39,8 @@ public class LoginSelect extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {
-
+        
+                
         try {
         // MultipartEntityBuild 생성
         MultipartEntityBuilder builder = MultipartEntityBuilder.create();
@@ -61,7 +63,19 @@ public class LoginSelect extends AsyncTask<Void, Void, Void> {
 
         loginDTO = readMessage(inputStream);
 
+        // 응답
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+        StringBuilder stringBuilder = new StringBuilder();
+        String line = null;
+        while ((line = bufferedReader.readLine()) != null){
+            stringBuilder.append(line + "\n");
+        }
+            Log.d(TAG, "doInBackground: " + stringBuilder.toString());
+        loginDTO.setId(stringBuilder.toString());
+
         inputStream.close();
+
+
 
     } catch (Exception e) {
         Log.d("main:loginselect", e.getMessage());

@@ -3,6 +3,7 @@ package com.example.empty_can;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.empty_can.ATask.JoinInsert;
 import com.example.empty_can.ATask.LoginSelect;
+import com.example.empty_can.ATask.kakaoJoinInsert;
+import com.example.empty_can.DTO.MemberDTO;
 import com.kakao.sdk.auth.LoginClient;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.common.KakaoSdk;
@@ -24,6 +28,7 @@ import com.kakao.sdk.common.util.Utility;
 import com.kakao.sdk.user.UserApiClient;
 import com.kakao.sdk.user.model.User;
 
+import java.lang.reflect.Member;
 import java.util.concurrent.ExecutionException;
 
 import kotlin.Unit;
@@ -34,9 +39,10 @@ import static com.example.empty_can.Common.CommonMethod.loginDTO;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "main:LoginActivity";
 
+    String state;
     EditText u_id, u_pw;
     Button btnLogin, btnJoin;
-    TextView textView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +61,6 @@ public class LoginActivity extends AppCompatActivity {
 
         // SDK 초기화
         KakaoSdk.init(this, "4007c2646272cd2d41f9fb1099abeda5");
-
-        textView = findViewById(R.id.textView);
-
 
         // 로그인 버튼
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +88,10 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(loginDTO != null){
                     Toast.makeText(LoginActivity.this, "로그인 되었습니다 !!!", Toast.LENGTH_SHORT).show();
-                    Log.d("main:login", loginDTO.getId() + "님 로그인 되었습니다 !!!");
+                    Log.d("main:login", loginDTO.getId() + "님 로그인 되었습니다 !!!" + loginDTO.getName() + loginDTO.getNikname());
+
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
 
                 }else {
                     Toast.makeText(LoginActivity.this, "아이디나 비밀번호가 일치안함 !!!", Toast.LENGTH_SHORT).show();
@@ -127,10 +133,31 @@ public class LoginActivity extends AppCompatActivity {
                                         Log.e("Deubg", "사용자 정보 받기 실패!");
                                     } else if (user != null) {
                                         Log.e("Debug", "사용자 정보 받기 성공!");
-                                        String nickName = user.getKakaoAccount().getProfile().getNickname();
-                                        String email = user.getKakaoAccount().getEmail();
-                                        String gender = user.getKakaoAccount().getGender().toString();
-                                        textView.setText(nickName + " 님 로그인되었습니다." + "\n email :" + email + "\n 성별 :" + gender);
+                                        String m_nikname = user.getKakaoAccount().getProfile().getNickname();
+                                        String m_email = user.getKakaoAccount().getEmail();
+                                        String m_gender = user.getKakaoAccount().getGender().toString();
+
+                                        kakaoJoinInsert kakaojoinInsert = new kakaoJoinInsert(m_nikname, m_email, m_gender);
+
+                                        try {
+                                            state = kakaojoinInsert.execute().get().trim();
+                                            Log.d("main:joinact0 : ", state);
+                                        } catch (ExecutionException e) {
+                                            e.printStackTrace();
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        if(state.equals("1")){
+                                            Toast.makeText(LoginActivity.this, "삽입성공 !!!", Toast.LENGTH_SHORT).show();
+                                            Log.d(TAG, "회원가입을 축하합니다!!!");
+                                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                            startActivity(intent);
+                                        }else{
+                                            Toast.makeText(LoginActivity.this, "삽입실패 !!!", Toast.LENGTH_SHORT).show();
+                                            Log.d(TAG, "다시 회원가입을 해주세요!!!" + state);
+                                            finish();
+                                        }
 
                                     }
                                     return null;
@@ -142,14 +169,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         });
-
-
-
-
-
     }
-
-
 
     private void checkDangerousPermissions() {
         String[] permissions = {
