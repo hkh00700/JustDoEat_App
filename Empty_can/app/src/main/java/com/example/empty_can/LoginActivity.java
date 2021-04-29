@@ -1,35 +1,40 @@
 package com.example.empty_can;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Paint;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.example.empty_can.ATask.JoinInsert;
 import com.example.empty_can.ATask.KakaoSelect;
 import com.example.empty_can.ATask.LoginSelect;
+import com.example.empty_can.ATask.NaverJoinInsert;
 import com.example.empty_can.ATask.kakaoJoinInsert;
-import com.example.empty_can.DTO.MemberDTO;
 import com.kakao.sdk.auth.LoginClient;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.common.KakaoSdk;
 import com.kakao.sdk.common.util.Utility;
 import com.kakao.sdk.user.UserApiClient;
 import com.kakao.sdk.user.model.User;
+import com.nhn.android.naverlogin.OAuthLogin;
+import com.nhn.android.naverlogin.OAuthLoginHandler;
+import com.nhn.android.naverlogin.ui.view.OAuthLoginButton;
 
-import java.lang.reflect.Member;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.concurrent.ExecutionException;
 
 import kotlin.Unit;
@@ -42,19 +47,45 @@ public class LoginActivity extends AppCompatActivity {
 
     String state;
     EditText u_id, u_pw;
-    Button btnLogin, btnJoin;
+    Button btnLogin, btnJoin, buttonOAuthLogout;
 
+    /*OAuthLogin naverLogin;
+    Context nContext;*/
+    private static String OAUTH_CLIENT_ID = "114sQ5mbj3x9mYKxZzTG";
+    private static String OAUTH_CLIENT_SECRET = "Qr9JX2hDbR";
+    private static String OAUTH_CLIENT_NAME = "Empty_can";
+
+    private static OAuthLogin naverLogin;
+    private static Context nContext;
+
+    private OAuthLoginButton btnnaver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        nContext = this;
+        initData();
+        initView();
+        this.setTitle("OAuthLoginSample Ver." + OAuthLogin.getVersion());
+
+        /* nContext = getApplicationContext();*/
+
         u_id = findViewById(R.id.u_id);
         u_pw = findViewById(R.id.u_pw);
 
         btnJoin = findViewById(R.id.btnJoin);
         btnLogin = findViewById(R.id.btnLogin);
+
+        buttonOAuthLogout = findViewById(R.id.buttonOAuthLogout);
+
+        buttonOAuthLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DeleteTokenTask().execute();
+            }
+        });
 
         checkDangerousPermissions();
 
@@ -113,6 +144,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
         // 카카오로그인 버튼 클릭 이벤트
         ImageView btnkakao = findViewById(R.id.btnkakao);
         btnkakao.setOnClickListener(new View.OnClickListener() {
@@ -140,6 +172,7 @@ public class LoginActivity extends AppCompatActivity {
                                         String m_gender = user.getKakaoAccount().getGender().toString();
 
                                         KakaoSelect kakaoSelect = new KakaoSelect(m_email);
+
                                         try {
                                             kakaoSelect.execute().get();
                                         } catch (ExecutionException e) {
@@ -155,17 +188,12 @@ public class LoginActivity extends AppCompatActivity {
                                                 state = kakaojoinInsert.execute().get().trim();
                                                 Log.d("main:joinact0 : ", state);
 
-                                            /*if(state.equals("1")){
-                                                Toast.makeText(LoginActivity.this, "삽입성공 !!!", Toast.LENGTH_SHORT).show();
-                                                Log.d(TAG, "회원가입을 축하합니다!!!");
+                                                KakaoSelect kakaoSelect1 = new KakaoSelect(m_email);
+                                                kakaoSelect1.execute().get();
+
+                                                Log.d("main:joinact0 : ", loginDTO.getEmail());
                                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                                 startActivity(intent);
-                                            }else{
-                                                Toast.makeText(LoginActivity.this, "삽입실패 !!!", Toast.LENGTH_SHORT).show();
-                                                Log.d(TAG, "다시 회원가입을 해주세요!!!" + state);
-                                                finish();
-                                            }*/
-
                                             } catch (ExecutionException e) {
                                                 e.printStackTrace();
                                             } catch (InterruptedException e) {
@@ -189,6 +217,158 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
+        //네이버로그인
+        private void initData() {
+            naverLogin = OAuthLogin.getInstance();
+
+            naverLogin.showDevelopersLog(true);
+            naverLogin.init(nContext, OAUTH_CLIENT_ID, OAUTH_CLIENT_SECRET, OAUTH_CLIENT_NAME);
+        }
+        private void initView() {
+            btnnaver = (OAuthLoginButton) findViewById(R.id.btnnaver);
+            btnnaver.setOAuthLoginHandler(mOAuthLoginHandler);
+        }
+
+        @Override
+        protected void onResume() {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+            super.onResume();
+
+        }
+
+        static private OAuthLoginHandler mOAuthLoginHandler = new OAuthLoginHandler() {
+            @Override
+            public void run(boolean success) {
+                if (success) {
+                    Log.d(TAG, "run: 로그인됐다!");
+
+                    new RequestApiTask(nContext, naverLogin).execute();
+
+                } else {
+                    String errorCode = naverLogin.getLastErrorCode(nContext).getCode();
+                    String errorDesc = naverLogin.getLastErrorDesc(nContext);
+                    Toast.makeText(nContext, "errorCode:" + errorCode + ", errorDesc:" + errorDesc, Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+
+        private static class RequestApiTask extends AsyncTask<Void, Void, String> {
+            String state;
+            private final Context nContext;
+            private final OAuthLogin naverLogin;
+
+            public RequestApiTask(Context nContext, OAuthLogin naverLogin) {
+                this.nContext = nContext;
+                this.naverLogin = naverLogin;
+            }
+
+            @Override
+            protected void onPreExecute() {}
+
+            @Override
+            protected String doInBackground(Void... params) {
+                String url = "https://openapi.naver.com/v1/nid/me";
+                String at = naverLogin.getAccessToken(nContext);
+                return naverLogin.requestApi(nContext, at, url);
+            }
+
+            protected void onPostExecute(String content) {
+                try {
+                    JSONObject loginResult = new JSONObject(content);
+                    if (loginResult.getString("resultcode").equals("00")){
+                        JSONObject response = loginResult.getJSONObject("response");
+                        String m_email = response.getString("email");
+                        String m_nickname = response.getString("nickname");
+                        String m_mobile = response.getString("mobile");
+                        String m_name = response.getString("name");
+                        String m_gender = response.getString("gender");
+
+
+                        KakaoSelect kakaoSelect = new KakaoSelect(m_email);
+
+                        try {
+                            kakaoSelect.execute().get();
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+
+
+                        if(loginDTO == null){
+                            NaverJoinInsert naverJoinInsert = new NaverJoinInsert(m_name, m_mobile, m_nickname, m_email, m_gender);
+                            try {
+                                state = naverJoinInsert.execute().get().trim();
+                                Log.d("main:joinact0 : ", state);
+
+                                KakaoSelect kakaoSelect1 = new KakaoSelect(m_email);
+                                kakaoSelect1.execute().get();
+
+                                Log.d("main:joinact1 : ", loginDTO.getEmail());
+                                Intent intent = new Intent(nContext, MainActivity.class);
+                                nContext.startActivity(intent);
+
+                            } catch (ExecutionException e) {
+                                e.printStackTrace();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                            Toast.makeText(nContext, " email : "+ m_email + "nickname" + m_nickname + "mobile" + m_mobile + "name" + m_name + "gender" + m_gender , Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "onPostExecute: ★★★★★★ " + m_email);
+                        }else {
+                            Log.d("main:joinact1 : ", loginDTO.getEmail());
+                            Intent intent = new Intent(nContext, MainActivity.class);
+                            nContext.startActivity(intent);
+                        }
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
+        private class DeleteTokenTask extends AsyncTask<Void, Void, Void> {
+            @Override
+            protected Void doInBackground(Void... params) {
+                boolean isSuccessDeleteToken = naverLogin.logoutAndDeleteToken(nContext);
+
+                if (!isSuccessDeleteToken) {
+                    Log.d(TAG, "errorCode:" + naverLogin.getLastErrorCode(nContext));
+                    Log.d(TAG, "errorDesc:" + naverLogin.getLastErrorDesc(nContext));
+                }
+
+                return null;
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void checkDangerousPermissions() {
         String[] permissions = {

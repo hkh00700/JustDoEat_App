@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Empty_can</string>
+
+    <string name="naver_client_id">114sQ5mbj3x9mYKxZzTG</string>
+    <string name="naver_client_secret">Qr9JX2hDbR</string>
+    <string name="naver_client_name">Empty_can</string>
 </resources>

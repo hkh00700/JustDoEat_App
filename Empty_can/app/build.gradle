@@ -33,6 +33,8 @@ android {
 
 dependencies {
 
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
@@ -51,4 +53,20 @@ dependencies {
     implementation "com.kakao.sdk:v2-story:2.2.0" // 카카오스토리
     implementation "com.kakao.sdk:v2-link:2.2.0" // 메시지(카카오링크)
     implementation "com.kakao.sdk:v2-navi:2.2.0" // 카카오내비
+
+
+
+    //네이버 로그인
+    implementation files('D:\\JustDoEat_App\\Empty_can\\app\\lib\\naveridlogin_android_sdk_4.2.6.aar')   // import from jcenter
+
+    // naveridlogin dependencies
+    def android_x_version = "1.0.0"
+    implementation "androidx.appcompat:appcompat:$android_x_version"
+    implementation "androidx.legacy:legacy-support-core-utils:$android_x_version"
+    implementation "androidx.browser:browser:$android_x_version"
+    implementation "androidx.legacy:legacy-support-v4:$android_x_version"
+
+    testImplementation 'junit:junit:4.12'
+
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.1.0"
 }
