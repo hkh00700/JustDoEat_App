@@ -98,6 +98,8 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loginDTO = null;
+
                 if(u_id.getText().toString().length() != 0 && u_pw.getText().toString().length() != 0){
                     String id = u_id.getText().toString();
                     String pw = u_pw.getText().toString();
@@ -150,6 +152,8 @@ public class LoginActivity extends AppCompatActivity {
         btnkakao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loginDTO = null;
+
                 LoginClient.getInstance().loginWithKakaoAccount(getApplicationContext(), new Function2<OAuthToken, Throwable, Unit>() {
                     @Override
                     public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
@@ -266,7 +270,9 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            protected void onPreExecute() {}
+            protected void onPreExecute() {
+                loginDTO = null;
+            }
 
             @Override
             protected String doInBackground(Void... params) {
