@@ -35,6 +35,7 @@
         <activity android:name=".MymodifyActivity"></activity>
         <activity android:name=".EatenweekActivity"></activity>
         <activity android:name=".FoodmodifyActivity"></activity>
+        <activity android:name=".RouletteActivity"></activity>
 
         <!-- http 라이브러리 사용 -->
         <uses-library
