@@ -9,9 +9,8 @@ import com.example.empty_can.DTO.MemberDTO;
 
 
 public class CommonMethod {
-    //★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-    public static String  ipConfig = "http://192.168.0.67:8989";
-    //★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+
+    public static String  ipConfig = "http://192.168.0.45:8080";
 
     public static MemberDTO loginDTO = null;
 
