@@ -51,10 +51,11 @@ public class GameSetActivity extends AppCompatActivity {
 
 
         Log.d(TAG, "onCreate: " + food5);
-        Toast.makeText(GameSetActivity.this, "오늘 5가지 추천음식은 "
-                + food5 +"입니다~!! " +
-                "게임을 선택해보세요~^^",Toast.LENGTH_LONG).show();
+
         String[] foods = food5.split(",");
+        Toast.makeText(GameSetActivity.this, "오늘 5가지 추천음식은 "
+                + foods[0]+", " + foods[1] +", "+ foods[2] +", "+ foods[3]+", " + foods[4] +"입니다~!! " +
+                "게임을 선택해보세요~^^",Toast.LENGTH_LONG).show();
 
 
         Log.d(TAG, "onCreate: " + foods[0]);
@@ -101,9 +102,9 @@ public class GameSetActivity extends AppCompatActivity {
         btnLadder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(GameSetActivity.this,
 
-                Intent intent = new Intent(getApplicationContext(), ladderActivity.class);
-                startActivity(intent);
+                    "ⓘ 아직 만들지 않는 서비스입니다.(추후 업데이트 예정) ", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -120,9 +121,11 @@ public class GameSetActivity extends AppCompatActivity {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(GameSetActivity.this,
 
-                        "ⓘ 아직 만들지 않는 서비스입니다.(추후 업데이트 예정) ", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(), WorldcupActivity.class);
+                        intent.putExtra("foods", foods);
+                startActivity(intent);
+
             }
         });
 
