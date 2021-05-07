@@ -100,6 +100,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 loginDTO = null;
 
+
                 if(u_id.getText().toString().length() != 0 && u_pw.getText().toString().length() != 0){
                     String id = u_id.getText().toString();
                     String pw = u_pw.getText().toString();
@@ -141,8 +142,10 @@ public class LoginActivity extends AppCompatActivity {
         btnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+   /*             Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
+                startActivity(intent);*/
             }
         });
 
