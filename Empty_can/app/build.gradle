@@ -69,4 +69,17 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     androidTestImplementation "androidx.test.espresso:espresso-core:3.1.0"
+
+
+
+    /* 리사이클러 뷰 사용하기 */
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    // URL 이미지로더
+    // 사용법
+    //Glide.with(this).load("http://www.selphone.co.kr/homepage/img/team/3.jpg").into(imageView);
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+
 }

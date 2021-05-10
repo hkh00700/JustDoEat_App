@@ -65,6 +65,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        checkDangerousPermissions();
+
         nContext = this;
         initData();
         initView();
@@ -87,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        checkDangerousPermissions();
+
 
         Log.e("Debug", Utility.INSTANCE.getKeyHash(this));
 
@@ -361,29 +363,14 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private void checkDangerousPermissions() {
         String[] permissions = {
                 Manifest.permission.INTERNET,
                 Manifest.permission.ACCESS_NETWORK_STATE,
-                Manifest.permission.ACCESS_WIFI_STATE
+                Manifest.permission.ACCESS_WIFI_STATE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA
         };
 
         int permissionCheck = PackageManager.PERMISSION_GRANTED;

@@ -25,6 +25,7 @@ public class List extends Fragment {
             @Override
             public void onClick(android.view.View v) {
                 Intent intent = new Intent(getActivity(), WritingActivity.class);
+
                 startActivity(intent);
             }
         });
