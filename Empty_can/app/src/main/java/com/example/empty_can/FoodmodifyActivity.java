@@ -1,10 +1,12 @@
 package com.example.empty_can;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,20 +14,34 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
 
+import com.example.empty_can.ATask.AllergySearchlist;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class FoodmodifyActivity extends AppCompatActivity {
     private static final String TAG = "main:FoodmodifyActivity";
-    ListView listView;
+   /* ListView listView;
     AllergyAdapter adapter;
     ArrayList<ListViewItem> items;
-    ArrayList<String> list;
+    ArrayList<String> list;*/
+
+    TextView textView;
+
+    String test;
+
+    SearchFragment searchFragment;
+    AllergyListFragment allergyListFragment;
 
 
     @Override
@@ -33,7 +49,13 @@ public class FoodmodifyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.foodmodify);
 
-        items = new ArrayList<>();
+        checkDangerousPermissions();
+       FragmentManager manager = getSupportFragmentManager();
+       allergyListFragment = (AllergyListFragment) manager.findFragmentById(R.id.fragment);
+       searchFragment = new SearchFragment();
+
+
+     /*   items = new ArrayList<>();
         list = new ArrayList<>();
 
         adapter = new AllergyAdapter(FoodmodifyActivity.this, items, list);
@@ -50,9 +72,91 @@ public class FoodmodifyActivity extends AppCompatActivity {
         adapter.addItem(new ListViewItem("조개류", false));
         adapter.addItem(new ListViewItem("콩류", false));
         adapter.addItem(new ListViewItem("육류", false));
-
+*/
         // 확인버튼 누르면 체크박스에 체크되어 있는 항목 찾아서 보내주기
 
+
+    /*    test = "";
+        AllergySearchlist allergySearchlist = new AllergySearchlist();
+        try {
+            test = (String) allergySearchlist.execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        textView = findViewById(R.id.testText);
+        textView.setText(test);
+*/
+
+
+
+    }
+
+    public void ChangeFragment(int state){
+        if(state == 0){
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, searchFragment).addToBackStack(null).commit();
+        } else if (state == 1){
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, allergyListFragment).addToBackStack(null).commit();
+        }
+
+        //두번째 프래그먼트로 가는거, list 체크했을 때 없어지는거 그대로 있게 하기
+
+
+
+
+
+    }
+
+    public void Allergylist(ArrayList<String> searchlist){
+        AllergySearchlist allergySearchlist = new AllergySearchlist();
+
+    }
+
+
+
+    private void checkDangerousPermissions() {
+        String[] permissions = {
+                Manifest.permission.INTERNET,
+                Manifest.permission.ACCESS_NETWORK_STATE,
+                Manifest.permission.ACCESS_WIFI_STATE
+        };
+
+        int permissionCheck = PackageManager.PERMISSION_GRANTED;
+        for (int i = 0; i < permissions.length; i++) {
+            permissionCheck = ContextCompat.checkSelfPermission(this, permissions[i]);
+            if (permissionCheck == PackageManager.PERMISSION_DENIED) {
+                break;
+            }
+        }
+
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "권한 있음", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "권한 없음", Toast.LENGTH_LONG).show();
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[0])) {
+                Toast.makeText(this, "권한 설명 필요함.", Toast.LENGTH_LONG).show();
+            } else {
+                ActivityCompat.requestPermissions(this, permissions, 1);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == 1) {
+            for (int i = 0; i < permissions.length; i++) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, permissions[i] + " 권한이 승인됨.", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, permissions[i] + " 권한이 승인되지 않음.", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
     }
 }
+
 

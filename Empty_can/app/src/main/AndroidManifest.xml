@@ -4,30 +4,42 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- naver app을 통한 인증을 위해 필요한 permission -->
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- network 상태를 미리 체크하여 연결 안된 경우 다이얼로그를 보여주려면 아래 permission 추가 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- android test 돌릴 때 화면 lock 풀어야 로그인 touch 가능 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- naver app을 통한 인증을 위해 필요한 permission -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- network 상태를 미리 체크하여 연결 안된 경우 다이얼로그를 보여주려면 아래 permission 추가 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- android test 돌릴 때 화면 lock 풀어야 로그인 touch 가능 -->
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Empty_can"
+
+        android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".RandomActivity" />
-        <activity android:name=".JoinActivity" />
-        <activity android:name=".WritingActivity" />
-        <activity android:name=".GameSetActivity" />
-        <activity android:name=".MymodifyActivity" />
-        <activity android:name=".EatenweekActivity" />
-        <activity android:name=".FoodmodifyActivity" />
-        <activity android:name=".RouletteActivity" /> <!-- http 라이브러리 사용 -->
+
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".JoinActivity"></activity>
+        <activity android:name=".WritingActivity"></activity>
+        <activity android:name=".GameSetActivity"></activity>
+        <activity android:name=".MymodifyActivity"></activity>
+        <activity android:name=".EatenweekActivity"></activity>
+        <activity android:name=".FoodmodifyActivity"></activity>
+        <activity android:name=".RouletteActivity"></activity>
+        <activity android:name=".WorldcupActivity"></activity>
+
+
+        <!-- http 라이브러리 사용 -->
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
@@ -39,6 +51,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
