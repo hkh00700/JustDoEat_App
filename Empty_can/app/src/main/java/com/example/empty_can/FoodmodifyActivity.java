@@ -1,19 +1,8 @@
 package com.example.empty_can;
 
 import android.Manifest;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +14,6 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.empty_can.ATask.AllergySearchlist;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -110,9 +98,18 @@ public class FoodmodifyActivity extends AppCompatActivity {
 
     }
 
-    public void Allergylist(ArrayList<String> searchlist){
+    public ArrayList<String> Allergylist(ArrayList<String> searchlist){
         AllergySearchlist allergySearchlist = new AllergySearchlist();
+        try {
+            searchlist = (ArrayList<String>) allergySearchlist.execute().get();
 
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return searchlist;
     }
 
 

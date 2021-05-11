@@ -28,6 +28,7 @@ public class AllergySearchlist extends AsyncTask {
 
     //ArrayList<String> list;
     String list;
+    String state;
     HttpClient httpClient;
     HttpPost httpPost;
     HttpResponse httpResponse;
@@ -35,7 +36,7 @@ public class AllergySearchlist extends AsyncTask {
     ArrayList<String>  searchlist;
     SearchFragment searchFragment;
     @Override
-    protected Object doInBackground(Object[] objects) {
+    protected String doInBackground(Object[] objects) {
 
         try {
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
@@ -61,20 +62,12 @@ public class AllergySearchlist extends AsyncTask {
 
             while((line = bufferedReader.readLine()) != null){
                 stringBuffer.append(line + "\n");
-                list = stringBuffer.toString();
-                int idx = list.indexOf("<");
-                list.substring(0, idx);
-                searchlist.add(list);
             }
-
-
-
-
+            state = stringBuffer.toString().trim();
 
                 //: list를 줄 순서로 list에 담기
             //new FoodRandom(food);
 
-            Log.d(TAG, "doInBackground: 음식이름 : " + list);
             inputStream.close();
 
 
@@ -87,7 +80,7 @@ public class AllergySearchlist extends AsyncTask {
             if(httpClient != null) httpClient = null;
         }
 
-        return searchlist;
+        return state;
 
     }
 }

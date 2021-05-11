@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class SearchAdpter extends BaseAdapter {
     private List<String> list;
     private LayoutInflater inflater;
     private ViewHolder viewHolder;
+    FoodmodifyActivity activity;
 
     public SearchAdpter(List<String> list, Context context) {
         this.context = context;
@@ -28,7 +30,7 @@ public class SearchAdpter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return list.get(position);
     }
 
     @Override
@@ -51,6 +53,16 @@ public class SearchAdpter extends BaseAdapter {
 
         // 리스트에 있는 데이터를 리스트뷰 셀에 뿌린다.
         viewHolder.label.setText(list.get(position));
+
+        viewHolder.label.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,  list.get(position)+ "선택되었습니다.", Toast.LENGTH_SHORT).show();
+                AllergyListFragment allergyListFragment = new AllergyListFragment();
+                allergyListFragment.searchresult(list.get(position));
+
+            }
+        });
 
         return convertView;
     }

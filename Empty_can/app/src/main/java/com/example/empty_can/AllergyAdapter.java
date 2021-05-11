@@ -106,40 +106,6 @@ public class AllergyAdapter extends BaseAdapter {
         });
 
 
-       /*holder.checkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(holder.checkBox.isChecked() == true){
-                    holder.checkBox.setChecked(false);
-
-                    *//*if(items.size() == 0 || list.size() == 0){
-                        return;
-                    }
-
-                    for(int i=0; i<items.size(); i++){
-                        if(items.get(position).getText().equals(list.get(i))){
-                            list.remove(i);
-                            break;
-                        }
-                    }*//*
-                }else {
-                    holder.checkBox.setChecked(true);
-                    list.add(items.get(position).getText());
-                }
-
-                for(int i=0; i<list.size(); i++){
-                    Log.d(TAG, "onClick: " + list.get(i));
-                }
-
-                notifyDataSetChanged();
-            }
-        });*/
-
-
-
-
-
-
         return convertView;
     }
 

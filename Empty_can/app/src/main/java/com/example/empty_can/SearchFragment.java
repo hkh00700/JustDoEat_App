@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.empty_can.ATask.AllergySearchlist;
 
@@ -80,6 +82,8 @@ public class SearchFragment extends Fragment {
                 Log.d(TAG, "onClick: searchFragment 를 눌렀음");
             }
         });*/
+
+
         return rootview;
     }
 
@@ -94,28 +98,42 @@ public class SearchFragment extends Fragment {
             for(int i = 0; i<arraylist.size(); i++){
                 if(arraylist.get(i).toLowerCase().contains(chartext))
                 list.add(arraylist.get(i));
+
             }
 
         }
+
+
+
 
         adapter.notifyDataSetChanged();
     }
 
     //list 가져오기
-    public List<String> settingList() {
+    public void settingList() {
         AllergySearchlist allergySearchlist = new AllergySearchlist();
+        String search = "";
+
         try {
-            searchlist = (ArrayList<String>) allergySearchlist.execute().get();
+            search = (String) allergySearchlist.execute().get();
+            Log.d(TAG, "settingList: " + search);
+            String[] searchs = search.split("<br/>");
+
+            for(int i = 0; i < searchs.length; i++){
+                list.add(searchs[i].trim());
+            }
+
+
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        return searchlist;
-
 
     }
+
+
 
     /*    list.add("딸기");
         list.add("바나나");
@@ -128,5 +146,5 @@ public class SearchFragment extends Fragment {
         list.add("땅콩");
         list.add("조개");
         list.add("반지락");*/
-    }
 }
+

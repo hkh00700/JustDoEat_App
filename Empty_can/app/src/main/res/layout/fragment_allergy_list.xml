@@ -25,7 +25,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:src="@drawable/mag"/>
-            <TextView
+            <EditText
                 android:id="@+id/edit_text"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
