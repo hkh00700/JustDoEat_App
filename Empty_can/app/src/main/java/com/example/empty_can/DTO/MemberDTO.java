@@ -9,6 +9,7 @@ public class MemberDTO {
     String gender;
     String nikname;
 
+
     //암호 없이 멤버정보를 가져올때
     public MemberDTO(String id, String name, String phone, String email, String gender, String nikname) {
         this.id = id;
