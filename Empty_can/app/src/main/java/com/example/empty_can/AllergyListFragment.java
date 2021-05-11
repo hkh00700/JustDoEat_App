@@ -1,14 +1,12 @@
 package com.example.empty_can;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ListView;
+
+import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
 
@@ -58,3 +56,7 @@ public class AllergyListFragment extends Fragment {
         return rootview;
     }
 }
+
+
+
+//어댑터에 체크한 값 담겨있음,, 갑각류 등을 DB멤버행에 넣기

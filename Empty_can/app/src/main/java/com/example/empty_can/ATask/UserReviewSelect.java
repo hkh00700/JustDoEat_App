@@ -150,7 +150,7 @@ public class UserReviewSelect extends AsyncTask<Void, Void, Void> {
         }
         reader.endObject();
         Log.d("listselect:myitem", content + "," + title + ","  + photo_path);
-        return new MemberReviewDTO(content, title, photo_path);
+        return new MemberReviewDTO(title, content, photo_path);
 
     }
 

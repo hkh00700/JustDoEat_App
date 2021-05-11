@@ -1,19 +1,11 @@
 package com.example.empty_can;
 
 import android.Manifest;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,11 +15,13 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.empty_can.ATask.AllergyInsert;
 import com.example.empty_can.ATask.AllergySearchlist;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
+
+import static com.example.empty_can.Common.CommonMethod.loginDTO;
 
 public class FoodmodifyActivity extends AppCompatActivity {
     private static final String TAG = "main:FoodmodifyActivity";
@@ -43,6 +37,7 @@ public class FoodmodifyActivity extends AppCompatActivity {
     SearchFragment searchFragment;
     AllergyListFragment allergyListFragment;
 
+    Button btnModi;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +48,43 @@ public class FoodmodifyActivity extends AppCompatActivity {
        FragmentManager manager = getSupportFragmentManager();
        allergyListFragment = (AllergyListFragment) manager.findFragmentById(R.id.fragment);
        searchFragment = new SearchFragment();
+
+       btnModi=findViewById(R.id.btnModi);
+
+       btnModi.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(android.view.View v) {
+               ArrayList<String> allergyList =  allergyListFragment.adapter.getList();
+               Log.d(TAG, "onClick: " + allergyList);
+
+               String allergyStr = "";
+               // 데이터베이스에 삽입하기 위해 쉼표 작업하기
+               for(int i=0; i<allergyList.size(); i++){
+                   if(i < allergyList.size()-1){
+                       allergyStr += allergyList.get(i) + ",";
+                   }else {
+                       allergyStr += allergyList.get(i);
+                   }
+               }
+               Log.d(TAG, "onClick: " + allergyStr);
+
+               // 데이터베이스에 삽입
+               AllergyInsert allergyInsert = new AllergyInsert(loginDTO.getId(), allergyStr);
+               try {
+                   allergyInsert.execute().get();
+               } catch (ExecutionException e) {
+                   e.printStackTrace();
+               } catch (InterruptedException e) {
+                   e.printStackTrace();
+               }
+
+               finish();
+           }
+       });
+
+
+
+
 
 
      /*   items = new ArrayList<>();

@@ -409,7 +409,7 @@ public class WorldcupActivity extends AppCompatActivity {
                             TextView2.setVisibility(View.GONE);
                             vs.setVisibility(View.GONE);
                             result.setVisibility(View.VISIBLE);
-                            
+
                         }
                     }
                     j++;
