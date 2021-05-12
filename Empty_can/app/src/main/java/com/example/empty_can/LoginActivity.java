@@ -65,6 +65,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        checkDangerousPermissions();
+
         nContext = this;
         initData();
         initView();
@@ -87,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        checkDangerousPermissions();
+
 
         Log.e("Debug", Utility.INSTANCE.getKeyHash(this));
 
@@ -99,6 +101,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loginDTO = null;
+
 
                 if(u_id.getText().toString().length() != 0 && u_pw.getText().toString().length() != 0){
                     String id = u_id.getText().toString();
@@ -141,8 +144,10 @@ public class LoginActivity extends AppCompatActivity {
         btnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+   /*             Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
+                startActivity(intent);*/
             }
         });
 
@@ -358,29 +363,14 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private void checkDangerousPermissions() {
         String[] permissions = {
                 Manifest.permission.INTERNET,
                 Manifest.permission.ACCESS_NETWORK_STATE,
-                Manifest.permission.ACCESS_WIFI_STATE
+                Manifest.permission.ACCESS_WIFI_STATE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA
         };
 
         int permissionCheck = PackageManager.PERMISSION_GRANTED;

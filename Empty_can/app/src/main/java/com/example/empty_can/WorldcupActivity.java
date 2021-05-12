@@ -22,6 +22,7 @@ public class WorldcupActivity extends AppCompatActivity {
     ArrayList<String> list2 = new ArrayList<>();
     ArrayList<String> list3 = new ArrayList<>();
     ArrayList<String> list4 = new ArrayList<>();
+    ArrayList<String> list5 = new ArrayList<>();
     int num = 0;
     String[] foods = null;
     String xyz = "";
@@ -36,6 +37,7 @@ public class WorldcupActivity extends AppCompatActivity {
     int j = 1;
     int k = 1;
     int l = 1;
+    int m = 1;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -168,26 +170,94 @@ public class WorldcupActivity extends AppCompatActivity {
                         TextView2.setText(foods[2*j+1]);
                     }else if(j == 8 ){
                         list.add(TextView1.getText().toString());
-                        TextView1.setText(list.get(2*k-2));
-                        TextView2.setText(list.get(2*k-1));
-                        l++;
-
-                    }else if (j == 9){
+                        TextView1.setText(list.get(2*k-2));//0
+                        TextView2.setText(list.get(2*k-1));//1
+                        k++;
+                    }else if (j >= 9 && j <= 11){
                         list2.add(TextView1.getText().toString());
-                        TextView1.setText(list.get(2*k-2));//0,2,4
-                        TextView2.setText(list.get(2*k-1));//1,3,5
-                    }else if (j == 10){
+                        TextView1.setText(list.get(2*k-2));//2,4
+                        TextView2.setText(list.get(2*k-1));//3,5
+                        k++;
+                    }else if (j == 12){
+                        list2.add(TextView1.getText().toString());
+                        TextView1.setText(list2.get(2*l-2));//0,2,4
+                        TextView2.setText(list2.get(2*l-1));//1,3,5
+                        l++;
+                    } else if (j == 13) {
                         list3.add(TextView1.getText().toString());
-                        TextView1.setText(list.get(2*k-2));//0,2,4
-                        TextView2.setText(list.get(2*k-1));//1,3,5
-                    }else if (j == 11){
-                        list4.add(TextView1.getText().toString());
-                        TextView1.setText(list.get(2*k-2));//0,2,4
-                        TextView2.setText(list.get(2*k-1));//1,3,5
-                    }else if(j == 12){
+                        TextView1.setText(list2.get(2*l-2));//0,2,4
+                        TextView2.setText(list2.get(2*l-1));//1,3,5
+                        l++;
+                    }else if(j==14){
+                        list3.add(TextView1.getText().toString());
+                        TextView1.setText(list3.get(0));//2,4,6,8
+                        TextView2.setText(list3.get(1));
+                        /*result.setText(TextView1.getText());
+                        TextView1.setVisibility(View.GONE);
+                        TextView2.setVisibility(View.GONE);
+                        vs.setVisibility(View.GONE);
+                        result.setVisibility(View.VISIBLE);*/
+                    }else{
+                        result.setText(TextView1.getText());
+                        TextView1.setVisibility(View.GONE);
+                        TextView2.setVisibility(View.GONE);
+                        vs.setVisibility(View.GONE);
+                        result.setVisibility(View.VISIBLE);
 
                     }
 
+                }else if (num == 32) {   //32강
+                    if (j <= 15) {
+                        list.add(TextView1.getText().toString());
+                        TextView1.setText(foods[2 * j]);
+                        TextView2.setText(foods[2 * j + 1]);
+                    } else if (j == 16) {
+                        list.add(TextView1.getText().toString());
+                        TextView1.setText(list.get(2 * k - 2));//0
+                        TextView2.setText(list.get(2 * k - 1));//1
+                        k++;
+                    } else if (j >= 17 && j <= 23) {
+                        list2.add(TextView1.getText().toString());
+                        TextView1.setText(list.get(2 * k - 2));//0,2,4
+                        TextView2.setText(list.get(2 * k - 1));//1,3,5
+                        k++;
+                    } else if (j == 24) {
+                        list2.add(TextView1.getText().toString());
+                        TextView1.setText(list2.get(2 * l - 2));//0,2,4
+                        TextView2.setText(list2.get(2 * l - 1));//1,3,5
+                        l++;
+
+                    } else if (j >= 25 && j <= 27) {
+                        list3.add(TextView1.getText().toString());
+                        TextView1.setText(list2.get(2 * l - 2));//0,2,4
+                        TextView2.setText(list2.get(2 * l - 1));//1,3,5
+                        l++;
+                    } else if (j == 28) {
+                        list3.add(TextView1.getText().toString());
+                        TextView1.setText(list3.get(2 * m - 2));//0,2,4
+                        TextView2.setText(list3.get(2 * m - 1));//1,3,5
+                        m++;
+
+                    } else if (j == 29) {
+                        list4.add(TextView1.getText().toString());
+                        TextView1.setText(list3.get(2 * m - 2));//0,2,4
+                        TextView2.setText(list3.get(2 * m - 1));//1,3,5
+                        m++;
+
+                    } else if (j == 30) {
+                        list4.add(TextView1.getText().toString());
+                        TextView1.setText(list4.get(0));//2,4,6,8
+                        TextView2.setText(list4.get(1));
+
+                    } else {
+                        result.setText(TextView1.getText());
+                        TextView1.setVisibility(View.GONE);
+                        TextView2.setVisibility(View.GONE);
+                        vs.setVisibility(View.GONE);
+                        result.setVisibility(View.VISIBLE);
+
+
+                    }
 
                 }
                 j++;
@@ -246,29 +316,104 @@ public class WorldcupActivity extends AppCompatActivity {
                             vs.setVisibility(View.GONE);
                             result.setVisibility(View.VISIBLE);
                         }
-                    } else if (num == 16) {//16강
-                        if(j<=7){
+                    }else if (num == 16) {//16강
+                        if (j <= 7) {
                             list.add(TextView2.getText().toString());
-                            TextView1.setText(foods[2*j]);
-                            TextView2.setText(foods[2*j+1]);
-                        }else if(j == 8){
+                            TextView1.setText(foods[2 * j]);
+                            TextView2.setText(foods[2 * j + 1]);
+                        } else if (j == 8) {
                             list.add(TextView2.getText().toString());
-                            TextView1.setText(list.get(2*k-2));
-                            TextView2.setText(list.get(2*k-1));
+                            TextView1.setText(list.get(2 * k - 2));
+                            TextView2.setText(list.get(2 * k - 1));
+                            k++;
+                        } else if (j >= 9 && j <= 11) {
+                            list2.add(TextView2.getText().toString());
+                            TextView1.setText(list.get(2 * k - 2));//0,2,4
+                            TextView2.setText(list.get(2 * k - 1));//1,3,5
+                            k++;
+                        } else if (j == 12) {
+                            list2.add(TextView2.getText().toString());
+                            TextView1.setText(list2.get(2 * l - 2));//0,2,4
+                            TextView2.setText(list2.get(2 * l - 1));//1,3,5
                             l++;
+                        } else if (j == 13) {
+                            list3.add(TextView2.getText().toString());
+                            TextView1.setText(list2.get(2 * l - 2));//0,2,4
+                            TextView2.setText(list2.get(2 * l - 1));//1,3,5
+                            l++;
+                        } else if (j == 14) {
+                            list3.add(TextView2.getText().toString());
+                            TextView1.setText(list3.get(0));//2,4,6,8
+                            TextView2.setText(list3.get(1));
+                        /*result.setText(TextView1.getText());
+                        TextView1.setVisibility(View.GONE);
+                        TextView2.setVisibility(View.GONE);
+                        vs.setVisibility(View.GONE);
+                        result.setVisibility(View.VISIBLE);*/
+                        } else {
+                            result.setText(TextView2.getText());
+                            TextView1.setVisibility(View.GONE);
+                            TextView2.setVisibility(View.GONE);
+                            vs.setVisibility(View.GONE);
+                            result.setVisibility(View.VISIBLE);
 
                         }
 
 
+                    }else if (num == 32) {   //32강
+                        if (j <= 15) {
+                            list.add(TextView2.getText().toString());
+                            TextView1.setText(foods[2 * j]);
+                            TextView2.setText(foods[2 * j + 1]);
+                        } else if (j == 16) {
+                            list.add(TextView2.getText().toString());
+                            TextView1.setText(list.get(2 * k - 2));//0
+                            TextView2.setText(list.get(2 * k - 1));//1
+                            k++;
+                        } else if (j >= 17 && j <= 23) {
+                            list2.add(TextView2.getText().toString());
+                            TextView1.setText(list.get(2 * k - 2));//0,2,4
+                            TextView2.setText(list.get(2 * k - 1));//1,3,5
+                            k++;
+                        } else if (j == 24) {
+                            list2.add(TextView2.getText().toString());
+                            TextView1.setText(list2.get(2 * l - 2));//0,2,4
+                            TextView2.setText(list2.get(2 * l - 1));//1,3,5
+                            l++;
+
+                        } else if (j >= 25 && j <= 27) {
+                            list3.add(TextView2.getText().toString());
+                            TextView1.setText(list2.get(2 * l - 2));//0,2,4
+                            TextView2.setText(list2.get(2 * l - 1));//1,3,5
+                            l++;
+                        } else if (j == 28) {
+                            list3.add(TextView2.getText().toString());
+                            TextView1.setText(list3.get(2 * m - 2));//0,2,4
+                            TextView2.setText(list3.get(2 * m - 1));//1,3,5
+                            m++;
+
+                        } else if (j == 29) {
+                            list4.add(TextView2.getText().toString());
+                            TextView1.setText(list3.get(2 * m - 2));//0,2,4
+                            TextView2.setText(list3.get(2 * m - 1));//1,3,5
+                            m++;
+
+                        } else if (j == 30) {
+                            list4.add(TextView2.getText().toString());
+                            TextView1.setText(list4.get(0));//2,4,6,8
+                            TextView2.setText(list4.get(1));
+
+                        } else {
+                            result.setText(TextView2.getText());
+                            TextView1.setVisibility(View.GONE);
+                            TextView2.setVisibility(View.GONE);
+                            vs.setVisibility(View.GONE);
+                            result.setVisibility(View.VISIBLE);
+
+                        }
                     }
                     j++;
                 }
-
         });
-
-
-
-
     }
-
 }

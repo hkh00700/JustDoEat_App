@@ -18,13 +18,22 @@ public class List extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup View = (ViewGroup) inflater.inflate(R.layout.list, container,false);
 
-        Button btnWriting;
-
+        Button btnWriting,btnShowList ;
+        btnShowList=View.findViewById(R.id.btnShowList);
         btnWriting = View.findViewById(R.id.btnWriting);
         btnWriting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
                 Intent intent = new Intent(getActivity(), WritingActivity.class);
+
+                startActivity(intent);
+            }
+        });
+
+        btnShowList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View v) {
+                Intent intent = new Intent(getActivity(), ShowReviewActivity.class);
                 startActivity(intent);
             }
         });

@@ -104,7 +104,7 @@ public class GameSetActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(GameSetActivity.this,
 
-                    "ⓘ 아직 만들지 않는 서비스입니다.(추후 업데이트 예정) ", Toast.LENGTH_LONG).show();
+                    "ⓘ 아직 만들지 않는 서비스입니다.(추후 업데이트 예정) ", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -114,7 +114,7 @@ public class GameSetActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(GameSetActivity.this,
 
-                        "ⓘ 아직 만들지 않는 서비스입니다.(추후 업데이트 예정) ", Toast.LENGTH_LONG).show();
+                        "ⓘ 아직 만들지 않는 서비스입니다.(추후 업데이트 예정) ", Toast.LENGTH_SHORT).show();
             }
         });
 
