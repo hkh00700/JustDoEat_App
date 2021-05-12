@@ -2,7 +2,7 @@ package com.example.empty_can;
 
 public class ListViewItem {
     private String text;
-    private boolean check;
+    boolean check;
 
     public ListViewItem(String text, boolean check) {
         this.text = text;

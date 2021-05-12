@@ -3,12 +3,11 @@ package com.example.empty_can;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-<<<<<<< HEAD
-=======
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
->>>>>>> aa5be549d2587ec63896e1416ad35b19d8cdd32e
+
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,7 +39,7 @@ public class FoodmodifyActivity extends AppCompatActivity {
     SearchFragment searchFragment;
     AllergyListFragment allergyListFragment;
 
-    Button btnModi;
+    Button btnModi,btnReset;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +52,19 @@ public class FoodmodifyActivity extends AppCompatActivity {
        searchFragment = new SearchFragment();
 
        btnModi=findViewById(R.id.btnModi);
+       btnReset=findViewById(R.id.btnReset);
+
+
+
+
+       btnReset.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Toast.makeText(FoodmodifyActivity.this, "음식취향수정을 취소했습니다.", Toast.LENGTH_SHORT).show();
+               finish();
+           }
+       });
+
 
        btnModi.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -68,9 +80,15 @@ public class FoodmodifyActivity extends AppCompatActivity {
                    }else {
                        allergyStr += allergyList.get(i);
                    }
+
                }
                Log.d(TAG, "onClick: " + allergyStr);
+               if(allergyStr != "") {
+                   Toast.makeText(FoodmodifyActivity.this, allergyList + "을(를) 알레르기정보에 저장했습니다.", Toast.LENGTH_SHORT).show();
+               }else{
+                   Toast.makeText(FoodmodifyActivity.this, "알레르기 정보를 입력하지 않았습니다.", Toast.LENGTH_SHORT).show();
 
+               }
                // 데이터베이스에 삽입
                AllergyInsert allergyInsert = new AllergyInsert(loginDTO.getId(), allergyStr);
                try {
@@ -108,7 +126,7 @@ public class FoodmodifyActivity extends AppCompatActivity {
         adapter.addItem(new ListViewItem("콩류", false));
         adapter.addItem(new ListViewItem("육류", false));
 */
-        // 확인버튼 누르면 체크박스에 체크되어 있는 항목 찾아서 보내주기
+
 
 
     /*    test = "";

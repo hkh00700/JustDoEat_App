@@ -1,29 +1,16 @@
 package com.example.empty_can;
 
 import android.os.Bundle;
-<<<<<<< HEAD
-
-import androidx.fragment.app.Fragment;
-
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-
-import com.example.empty_can.ATask.AllergySearchlist;
-=======
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
->>>>>>> aa5be549d2587ec63896e1416ad35b19d8cdd32e
+
+import com.example.empty_can.ATask.AllergySearchlist;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -55,18 +42,9 @@ public class AllergyListFragment extends Fragment {
 
         listView = rootview.findViewById(R.id.listView);
 
-        adapter = new AllergyAdapter(getActivity(),items, list);
+        adapter = new AllergyAdapter(getActivity(), items, list);
         listView.setAdapter(adapter);
 
-        /*adapter.addItem(new ListViewItem("없음", false));
-        adapter.addItem(new ListViewItem("갑각류", false));
-        adapter.addItem(new ListViewItem("견과류", false));
-        adapter.addItem(new ListViewItem("계란", false));
-        adapter.addItem(new ListViewItem("밀류(글루텐)", false));
-        adapter.addItem(new ListViewItem("우유", false));
-        adapter.addItem(new ListViewItem("조개류", false));
-        adapter.addItem(new ListViewItem("콩류", false));
-        adapter.addItem(new ListViewItem("육류", false));*/
 
         /*if (searchresult != null){
             adapter.addItem(new ListViewItem(searchresult, true));
@@ -84,13 +62,11 @@ public class AllergyListFragment extends Fragment {
         editSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
+             }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -98,37 +74,9 @@ public class AllergyListFragment extends Fragment {
                 search(text);
             }
         });*/
-
         return rootview;
     }
-<<<<<<< HEAD
-
-   /* private void search(String chartext) {
-        //문자 입력시마다 리스트를 지우고 새로 뿌려주기
-        list.clear();
-
-        //문자 입력이 없을 떄는 모든 데이터를 보여준다.
-        if(chartext.length() == 0){
-            list.addAll(arraylist);
-        }else { //문자를 입력할 때는 리스트의 모든 데이터를 검색한다.
-            for(int i = 0; i<arraylist.size(); i++){
-                if(arraylist.get(i).toLowerCase().contains(chartext))
-                    list.add(arraylist.get(i));
-
-            }
-
-        }
-
-
-
-
-        adapter.notifyDataSetChanged();
-    }*/
-
-
-
-
-    public void searchresult(String searchresult){
+    public void searchresult(String searchresult) {
         this.searchresult = searchresult;
     }
 
@@ -141,27 +89,14 @@ public class AllergyListFragment extends Fragment {
             Log.d(TAG, "settingList: " + search);
             String[] searchs = search.split(",");
 
-            for(int i = 0; i < searchs.length; i++){
+            for (int i = 0; i < searchs.length; i++) {
                 String k = searchs[i].trim();
                 adapter.addItem(new ListViewItem(k, false));
             }
-
-
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
     }
-
-
 }
-=======
-}
-
-
-
-//어댑터에 체크한 값 담겨있음,, 갑각류 등을 DB멤버행에 넣기
->>>>>>> aa5be549d2587ec63896e1416ad35b19d8cdd32e
