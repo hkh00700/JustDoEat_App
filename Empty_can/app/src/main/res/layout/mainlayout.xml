@@ -63,7 +63,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="top|end"
             android:layout_marginRight="20dp"
-            android:src="@android:drawable/ic_input_add" />
+            android:src="@drawable/home"
+            app:backgroundTint="#FACB3E" />
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

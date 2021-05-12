@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <!-- naver app을 통한 인증을 위해 필요한 permission -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -26,7 +27,11 @@
         android:theme="@style/Theme.Empty_can"
 
         android:requestLegacyExternalStorage="true"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config">
+
+        <meta-data android:name="com.kakao.sdk.AppKey" android:value="4007c2646272cd2d41f9fb1099abeda5"/>
+
 
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".JoinActivity"></activity>
@@ -37,6 +42,7 @@
         <activity android:name=".FoodmodifyActivity"></activity>
         <activity android:name=".RouletteActivity"></activity>
         <activity android:name=".WorldcupActivity"></activity>
+        <activity android:name=".MapActivity"></activity>
 
 
         <!-- http 라이브러리 사용 -->

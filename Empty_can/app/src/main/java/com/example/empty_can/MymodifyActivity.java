@@ -19,7 +19,6 @@ import static com.example.empty_can.Common.CommonMethod.loginDTO;
 public class MymodifyActivity extends AppCompatActivity {
     private static final String TAG = "main:MymodifyActivity";
 
-
     String state;
     String m_email;
     EditText m_pw, m_name, m_phone, m_gender, m_nikname, m_address1, m_address2;
