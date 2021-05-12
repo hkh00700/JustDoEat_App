@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:textSize="25sp"
+        android:text="음식취향 수정"
+        android:layout_marginTop="5dp"/>
+
+
+    <LinearLayout android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:weightSum="3">
+ <!--  <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.5"
+        android:id="@+id/testText"/>-->
+ <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.5"
+        android:id="@+id/container">
+
+    <fragment
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:name="com.example.empty_can.AllergyListFragment"
+        android:id="@+id/fragment"/>
+    </FrameLayout>
+
+    <LinearLayout android:orientation="horizontal"
+    android:layout_height="0dp"
+    android:layout_width="match_parent"
+    android:weightSum="2"
+    android:layout_weight="0.5">
+
+        <Button
+            android:id="@+id/btnModi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="확인" />
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:text="취소"
+        android:layout_weight="1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="center_vertical"/>
+
+</LinearLayout>
+
+</LinearLayout>
+
+</LinearLayout>
