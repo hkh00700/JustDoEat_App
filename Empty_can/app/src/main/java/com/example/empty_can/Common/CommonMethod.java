@@ -11,15 +11,33 @@ import android.util.Log;
 
 import com.example.empty_can.DTO.MemberDTO;
 
-
 import java.io.File;
 import java.io.IOException;
 
 
 public class CommonMethod {
 
+<<<<<<< Updated upstream
 
-    public static String  ipConfig = "http://192.168.0.74:9191";
+
+
+<<<<<<< HEAD
+
+    public static String ipConfig = "http://192.168.0.33:8080";
+
+=======
+    public static String  ipConfig = "http://192.168.0.45:8989";
+>>>>>>> bfcf786c4477c0784ab5b2cfb5a707da5769df13
+
+
+
+=======
+
+    public static String  ipConfig = "http://192.168.0.67:8989";
+
+
+
+>>>>>>> Stashed changes
 
     public static MemberDTO loginDTO = null;
 

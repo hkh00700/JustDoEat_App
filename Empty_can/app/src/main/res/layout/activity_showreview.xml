@@ -29,7 +29,7 @@
             android:text="수정" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btnDrawinglots"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
@@ -39,7 +39,7 @@
             android:text="삭제" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/btnWorldcup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"

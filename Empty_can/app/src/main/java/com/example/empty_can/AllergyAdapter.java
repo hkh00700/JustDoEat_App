@@ -1,7 +1,7 @@
+
 package com.example.empty_can;
 
 import android.content.Context;
-import android.graphics.Point;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,15 +10,15 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.Checkable;
 import android.widget.CompoundButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 
 public class AllergyAdapter extends BaseAdapter {
     private static final String TAG = "main:AllergyAdapter";
-    
+
     Context context;
     ArrayList<ListViewItem> items;
     ArrayList<String> list;
@@ -58,10 +58,19 @@ public class AllergyAdapter extends BaseAdapter {
         return 0;
     }
 
+    /*public boolean itChk(int position) {
+        return items.get(position).isCheck();
+    }*/
+
+
+
+
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        ViewHolder holder;
+
+       /* ViewHolder holder;
 
         if(convertView == null){
             convertView = inflater.inflate(R.layout.row, parent, false);
@@ -87,25 +96,34 @@ public class AllergyAdapter extends BaseAdapter {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Log.d(TAG, "onCheckedChanged: " + isChecked);
 
-                if(holder.checkBox.isChecked() == true){
+                if (holder.checkBox.isChecked() == true) {
                     list.add(holder.textView.getText().toString());
+                    boolean newState = !items.get(position).isCheck();
+                    items.get(position).check = newState;
+                    Toast.makeText(context, items.get(position).getText() + "을(를) 선택하셨습니다.", Toast.LENGTH_SHORT).show();
                 }else if(holder.checkBox.isChecked() == false){
+
                     for(int i=0; i<list.size(); i++){
                         if(holder.textView.getText().equals(list.get(i))){
+                            items.get(position).setCheck(false);
+                            Toast.makeText(context, items.get(position).getText() + "을(를) 선택 해제 하셨습니다.", Toast.LENGTH_SHORT).show();
                             list.remove(i);
                             break;
                         }
                     }
                 }
 
-                for(int i=0; i<list.size(); i++){
+                for (int i = 0; i < list.size(); i++) {
                     Log.d(TAG, "onClick: " + list.get(i));
+
                 }
+
+
 
             }
         });
 
-
+        holder.checkBox.setChecked(itChk(position));*/
         return convertView;
     }
 
@@ -140,6 +158,18 @@ public class AllergyAdapter extends BaseAdapter {
             Log.d(TAG, "toggle: " + checkBox.isChecked());
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 

@@ -1,27 +1,26 @@
 package com.example.empty_can;
 
-public class ListViewItem { 
+public class ListViewItem {
+<<<<<<< HEAD
+    String name;
+    boolean isCheckable;
+=======
     private String text;
-    private boolean check;
+    boolean check;
+>>>>>>> bfcf786c4477c0784ab5b2cfb5a707da5769df13
 
-    public ListViewItem(String text, boolean check) {
-        this.text = text;
-        this.check = check;
+
+    public ListViewItem(String name) {
+        this.name = name;
+        boolean isCheckable = false;
     }
 
-    public boolean isCheck() {
-        return check;
+    public String getName() {
+        return name;
     }
 
-    public void setCheck(boolean check) {
-        this.check = check;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
 }

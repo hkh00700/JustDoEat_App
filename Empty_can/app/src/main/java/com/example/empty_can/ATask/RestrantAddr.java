@@ -2,7 +2,6 @@ package com.example.empty_can.ATask;
 
 import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -14,32 +13,27 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 
 import static com.example.empty_can.Common.CommonMethod.ipConfig;
 
-public class AllergySearchlist extends AsyncTask {
+public class RestrantAddr extends AsyncTask<Void, Void, String> {
+    private static final String TAG = "RestrantAddr: main";
+   String restrant;
 
-    private static final String TAG = "AllergySearchlist";
-
-    //ArrayList<String> list;
-    String list;
-    String state;
     HttpClient httpClient;
     HttpPost httpPost;
     HttpResponse httpResponse;
     HttpEntity httpEntity;
-    ArrayList<String>  searchlist;
+
     @Override
-    protected String doInBackground(Object[] objects) {
+    protected String doInBackground(Void... voids) {
 
         try {
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
             builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
             builder.setCharset(Charset.forName("UTF-8"));
-            String postURL = ipConfig + "/justdo_eat/allergySearchlist";
+            String postURL = ipConfig + "/justdo_eat/restrantaddr";
 
             //전송
             InputStream inputStream = null;
@@ -60,10 +54,11 @@ public class AllergySearchlist extends AsyncTask {
             while((line = bufferedReader.readLine()) != null){
                 stringBuffer.append(line + "\n");
             }
-            state = stringBuffer.toString().trim();
 
-                //: list를 줄 순서로 list에 담기
-            //new FoodRandom(food);
+            restrant = stringBuffer.toString().trim();
+
+
+
 
             inputStream.close();
 
@@ -77,7 +72,12 @@ public class AllergySearchlist extends AsyncTask {
             if(httpClient != null) httpClient = null;
         }
 
-        return state;
+        return restrant;
+
+    }
+
+    @Override
+    protected void onPostExecute(String s) {
 
     }
 }

@@ -18,7 +18,7 @@ import java.util.concurrent.ExecutionException;
 public class GameSetActivity extends AppCompatActivity { 
     private static final String TAG = "main:GameSetActivity";
 
-    Button btnRoulette,btnLadder,button3,button4;
+    Button btnRoulette,btnLadder,btnDrawinglots,btnWorldcup;
     MultiAutoCompleteTextView mTextView1,mTextView2,mTextView3,mTextView4;
 
     @Override
@@ -29,8 +29,8 @@ public class GameSetActivity extends AppCompatActivity {
 
         btnRoulette=findViewById(R.id.btnRoulette);
         btnLadder= findViewById(R.id.btnLadder);
-        button3=findViewById(R.id.button3);
-        button4=findViewById(R.id.button4);
+        btnDrawinglots=findViewById(R.id.btnDrawinglots);
+        btnWorldcup=findViewById(R.id.btnWorldcup);
         MultiAutoCompleteTextView mTextView1 = (MultiAutoCompleteTextView) findViewById(R.id.mTextView1);   // mTextView1 를 id 값으로 참조하여 객체를 생성한다
         MultiAutoCompleteTextView mTextView2 = (MultiAutoCompleteTextView) findViewById(R.id.mTextView2);
         MultiAutoCompleteTextView mTextView3 = (MultiAutoCompleteTextView) findViewById(R.id.mTextView3);
@@ -70,6 +70,7 @@ public class GameSetActivity extends AppCompatActivity {
         mTextView4.setText(foods[3]);
         mTextView5.setText(foods[4]);
 
+
         btnRoulette.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,23 +103,52 @@ public class GameSetActivity extends AppCompatActivity {
         btnLadder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(GameSetActivity.this,
+                //Toast.makeText(GameSetActivity.this, "ⓘ 아직 만들지 않는 서비스입니다.(추후 업데이트 예정) ", Toast.LENGTH_SHORT).show();
+                String t1 = mTextView1.getText().toString();   // 참조하여 생성한 객체 mTextView1 으로 값을 읽어 들여와 String 형태의 변수 t1에 저장한다
+                String t2 = mTextView2.getText().toString();
+                String t3 = mTextView3.getText().toString();
+                String t4 = mTextView4.getText().toString();
+                String t5 = mTextView5.getText().toString();
 
-                    "ⓘ 아직 만들지 않는 서비스입니다.(추후 업데이트 예정) ", Toast.LENGTH_SHORT).show();
+                int count = 5;
 
+                Intent intent = new Intent(getApplicationContext(), ladderActivity.class);
+                intent.putExtra("count", count);
+                intent.putExtra("t1", t1);
+                intent.putExtra("t2", t2);
+                intent.putExtra("t3", t3);
+                intent.putExtra("t4", t4);
+                intent.putExtra("t5", t5);
+                startActivityForResult(intent, 1000);
             }
         });
 
-        button3.setOnClickListener(new View.OnClickListener() {
+        btnDrawinglots.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(GameSetActivity.this,
+                //Toast.makeText(GameSetActivity.this, "ⓘ 아직 만들지 않는 서비스입니다.(추후 업데이트 예정) ", Toast.LENGTH_SHORT).show();
+                String t1 = mTextView1.getText().toString();   // 참조하여 생성한 객체 mTextView1 으로 값을 읽어 들여와 String 형태의 변수 t1에 저장한다
+                String t2 = mTextView2.getText().toString();
+                String t3 = mTextView3.getText().toString();
+                String t4 = mTextView4.getText().toString();
+                String t5 = mTextView5.getText().toString();
 
-                        "ⓘ 아직 만들지 않는 서비스입니다.(추후 업데이트 예정) ", Toast.LENGTH_SHORT).show();
+                int count = 5;
+
+                Intent intent = new Intent(getApplicationContext(), drawinglotsActivity.class);
+                intent.putExtra("count", count);
+                intent.putExtra("t1", t1);
+                intent.putExtra("t2", t2);
+                intent.putExtra("t3", t3);
+                intent.putExtra("t4", t4);
+                intent.putExtra("t5", t5);
+                startActivityForResult(intent, 1000);
+
+
             }
         });
 
-        button4.setOnClickListener(new View.OnClickListener() {
+        btnWorldcup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

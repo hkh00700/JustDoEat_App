@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -10,8 +12,8 @@
         android:layout_height="58dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="153dp"
+        android:layout_marginStart="-3dp"
+        android:layout_marginTop="40dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="오늘 뭐 먹지?"
         android:textSize="30sp" />
@@ -24,9 +26,9 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="-3dp"
-        android:layout_marginTop="229dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="138dp"
+        android:layout_marginEnd="-1dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="TextView"
         android:textSize="20sp" />
@@ -35,16 +37,26 @@
         android:id="@+id/btnRe"
         android:layout_width="wrap_content"
         android:layout_height="41dp"
+        android:layout_below="@+id/imageView3"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="71dp"
         android:layout_marginLeft="71dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="71dp"
-        android:layout_marginRight="71dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp"
         android:text="다시선택" />
+
+    <ImageView
+        android:id="@+id/foodView"
+        android:layout_width="290dp"
+        android:layout_height="248dp"
+        android:layout_below="@+id/foodName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:adjustViewBounds="true"
+        />
 </RelativeLayout>

@@ -15,27 +15,75 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.empty_can.ATask.RestrantAddr;
+
+import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapReverseGeoCoder;
 import net.daum.mf.map.api.MapView;
 
-public class MapActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapReverseGeoCoder.ReverseGeoCodingResultListener { 
-    private static final String LOG_TAG = "MapActivity";
+import java.util.concurrent.ExecutionException;
+
+public class MapActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapReverseGeoCoder.ReverseGeoCodingResultListener {
+
+    private static final String TAG = "MapActivity";
+
+    public double lad;
+    public double gt;
+
+    public static MapPoint CUSTOM_MARKER_POINT;     //= MapPoint.mapPointWithGeoCoord(lad, gt);
 
     private MapView map_view;
+    RestrantAddr rsaddr = new RestrantAddr();
 
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION};
 
+
+    private MapPOIItem CustomMarker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_map);
 
-        map_view = findViewById(R.id.daum_map_view);
+        String pp = "";
 
+        RestrantAddr rsaddr = new RestrantAddr();
+        try {
+            pp = rsaddr.execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        String k = "";
+        String j = "";
+        String n = "";
+
+        String[] dd = pp.split(",");
+
+        Log.d(TAG, "onCreate: name : " + dd);
+
+        for(int i = 0; i <dd.length; i++){
+
+            Log.d(TAG, "onCreate: 숫자는 " + dd[i].trim() + i);
+        }
+
+        k = dd[0].trim();
+        j = dd[1].trim();
+        n = dd[2].trim();
+
+        Log.d(TAG, "onCreate: 숫자는" + j.trim());
+
+        lad = Double.parseDouble(j);
+        gt = Double.parseDouble(n);
+
+
+        map_view = findViewById(R.id.daum_map_view);
         //mMapView.setDaumMapApiKey(MapApiConst.DAUM_MAPS_ANDROID_APP_API_KEY);
         map_view.setCurrentLocationEventListener(this);
 
@@ -47,7 +95,10 @@ public class MapActivity extends AppCompatActivity implements MapView.CurrentLoc
             checkRunTimePermission();
         }
 
+        createCustomMarker(map_view, lad, gt, k);
+
     }
+
 
     @Override
     protected void onDestroy() {
@@ -59,7 +110,7 @@ public class MapActivity extends AppCompatActivity implements MapView.CurrentLoc
     @Override
     public void onCurrentLocationUpdate(MapView mapView, MapPoint currentLocation, float accuracyInMeters) {
         MapPoint.GeoCoordinate mapPointGeo = currentLocation.getMapPointGeoCoord();
-        Log.i(LOG_TAG, String.format("MapView onCurrentLocationUpdate (%f,%f) accuracy (%f)", mapPointGeo.latitude, mapPointGeo.longitude, accuracyInMeters));
+        Log.i(TAG, String.format("MapView onCurrentLocationUpdate (%f,%f) accuracy (%f)", mapPointGeo.latitude, mapPointGeo.longitude, accuracyInMeters));
     }
 
 
@@ -93,12 +144,6 @@ public class MapActivity extends AppCompatActivity implements MapView.CurrentLoc
 //        Toast.makeText(LocationDemoActivity.this, "Reverse Geo-coding : " + result, Toast.LENGTH_SHORT).show();
     }
 
-
-
-
-    /*
-     * ActivityCompat.requestPermissions를 사용한 퍼미션 요청의 결과를 리턴받는 메소드입니다.
-     */
     @Override
     public void onRequestPermissionsResult(int permsRequestCode,
                                            @NonNull String[] permissions,
@@ -106,12 +151,8 @@ public class MapActivity extends AppCompatActivity implements MapView.CurrentLoc
 
         if ( permsRequestCode == PERMISSIONS_REQUEST_CODE && grandResults.length == REQUIRED_PERMISSIONS.length) {
 
-            // 요청 코드가 PERMISSIONS_REQUEST_CODE 이고, 요청한 퍼미션 개수만큼 수신되었다면
 
             boolean check_result = true;
-
-
-            // 모든 퍼미션을 허용했는지 체크합니다.
 
             for (int result : grandResults) {
                 if (result != PackageManager.PERMISSION_GRANTED) {
@@ -123,12 +164,9 @@ public class MapActivity extends AppCompatActivity implements MapView.CurrentLoc
 
             if ( check_result ) {
                 Log.d("@@@", "start");
-                //위치 값을 가져올 수 있음
                 map_view.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
             }
             else {
-                // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
-
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])) {
 
                     Toast.makeText(MapActivity.this, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
@@ -154,30 +192,13 @@ public class MapActivity extends AppCompatActivity implements MapView.CurrentLoc
 
 
         if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED ) {
-
-            // 2. 이미 퍼미션을 가지고 있다면
-            // ( 안드로이드 6.0 이하 버전은 런타임 퍼미션이 필요없기 때문에 이미 허용된 걸로 인식합니다.)
-
-
-            // 3.  위치 값을 가져올 수 있음
             map_view.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
-
-
-        } else {  //2. 퍼미션 요청을 허용한 적이 없다면 퍼미션 요청이 필요합니다. 2가지 경우(3-1, 4-1)가 있습니다.
-
-            // 3-1. 사용자가 퍼미션 거부를 한 적이 있는 경우에는
+        } else {
             if (ActivityCompat.shouldShowRequestPermissionRationale(MapActivity.this, REQUIRED_PERMISSIONS[0])) {
-
-                // 3-2. 요청을 진행하기 전에 사용자가에게 퍼미션이 필요한 이유를 설명해줄 필요가 있습니다.
                 Toast.makeText(MapActivity.this, "이 앱을 실행하려면 위치 접근 권한이 필요합니다.", Toast.LENGTH_LONG).show();
-                // 3-3. 사용자게에 퍼미션 요청을 합니다. 요청 결과는 onRequestPermissionResult에서 수신됩니다.
                 ActivityCompat.requestPermissions(MapActivity.this, REQUIRED_PERMISSIONS,
                         PERMISSIONS_REQUEST_CODE);
-
-
             } else {
-                // 4-1. 사용자가 퍼미션 거부를 한 적이 없는 경우에는 퍼미션 요청을 바로 합니다.
-                // 요청 결과는 onRequestPermissionResult에서 수신됩니다.
                 ActivityCompat.requestPermissions(MapActivity.this, REQUIRED_PERMISSIONS,
                         PERMISSIONS_REQUEST_CODE);
             }
@@ -185,10 +206,6 @@ public class MapActivity extends AppCompatActivity implements MapView.CurrentLoc
         }
 
     }
-
-
-
-    //여기부터는 GPS 활성화를 위한 메소드들
     private void showDialogForLocationServiceSetting() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MapActivity.this);
@@ -235,12 +252,34 @@ public class MapActivity extends AppCompatActivity implements MapView.CurrentLoc
                 break;
         }
     }
-
     public boolean checkLocationServicesStatus() {
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
+
+    private void createCustomMarker(MapView map_view, Double lad, Double gt, String k) {
+        CUSTOM_MARKER_POINT = MapPoint.mapPointWithGeoCoord(lad, gt);
+
+        CustomMarker = new MapPOIItem();
+        String name = k;
+        CustomMarker.setItemName(name);
+        CustomMarker.setTag(1);
+        CustomMarker.setMapPoint(CUSTOM_MARKER_POINT);
+
+        CustomMarker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
+
+        CustomMarker.setCustomImageResourceId(R.drawable.pin);
+        CustomMarker.setCustomImageAutoscale(false);
+        CustomMarker.setCustomImageAnchor(0.5f, 1.0f);
+
+        map_view.addPOIItem(CustomMarker);
+        map_view.selectPOIItem(CustomMarker, true);
+        map_view.setMapCenterPoint(CUSTOM_MARKER_POINT, false);
+
+    }
+
+
 }
 

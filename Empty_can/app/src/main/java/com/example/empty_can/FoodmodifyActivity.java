@@ -1,3 +1,4 @@
+
 package com.example.empty_can;
 
 import android.Manifest;
@@ -7,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,10 +36,10 @@ public class FoodmodifyActivity extends AppCompatActivity {
 
     String test;
 
-    SearchFragment searchFragment;
-    AllergyListFragment allergyListFragment;
+    /*SearchFragment searchFragment;
+    AllergyListFragment allergyListFragment;*/
 
-    Button btnModi;
+    Button btnModi,btnReset;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,11 +47,24 @@ public class FoodmodifyActivity extends AppCompatActivity {
         setContentView(R.layout.foodmodify);
 
         checkDangerousPermissions();
-       FragmentManager manager = getSupportFragmentManager();
+       /*FragmentManager manager = getSupportFragmentManager();
        allergyListFragment = (AllergyListFragment) manager.findFragmentById(R.id.fragment);
        searchFragment = new SearchFragment();
 
        btnModi=findViewById(R.id.btnModi);
+       btnReset=findViewById(R.id.btnReset);
+
+
+
+
+       btnReset.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Toast.makeText(FoodmodifyActivity.this, "음식취향수정을 취소했습니다.", Toast.LENGTH_SHORT).show();
+               finish();
+           }
+       });
+
 
        btnModi.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -67,9 +80,15 @@ public class FoodmodifyActivity extends AppCompatActivity {
                    }else {
                        allergyStr += allergyList.get(i);
                    }
+
                }
                Log.d(TAG, "onClick: " + allergyStr);
+               if(allergyStr != "") {
+                   Toast.makeText(FoodmodifyActivity.this, allergyList + "을(를) 알레르기정보에 저장했습니다.", Toast.LENGTH_SHORT).show();
+               }else{
+                   Toast.makeText(FoodmodifyActivity.this, "알레르기 정보를 입력하지 않았습니다.", Toast.LENGTH_SHORT).show();
 
+               }
                // 데이터베이스에 삽입
                AllergyInsert allergyInsert = new AllergyInsert(loginDTO.getId(), allergyStr);
                try {
@@ -85,7 +104,7 @@ public class FoodmodifyActivity extends AppCompatActivity {
        });
 
 
-
+*/
 
 
 
@@ -107,7 +126,7 @@ public class FoodmodifyActivity extends AppCompatActivity {
         adapter.addItem(new ListViewItem("콩류", false));
         adapter.addItem(new ListViewItem("육류", false));
 */
-        // 확인버튼 누르면 체크박스에 체크되어 있는 항목 찾아서 보내주기
+
 
 
     /*    test = "";
@@ -130,12 +149,12 @@ public class FoodmodifyActivity extends AppCompatActivity {
     }
 
     public void ChangeFragment(int state){
-        if(state == 0){
+       /* if(state == 0){
             getSupportFragmentManager().beginTransaction().replace(R.id.container, searchFragment).addToBackStack(null).commit();
         } else if (state == 1){
             getSupportFragmentManager().beginTransaction().replace(R.id.container, allergyListFragment).addToBackStack(null).commit();
         }
-
+*/
         //두번째 프래그먼트로 가는거, list 체크했을 때 없어지는거 그대로 있게 하기
 
 

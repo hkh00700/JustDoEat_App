@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="2">
 
     <TextView
         android:layout_height="40dp"
@@ -14,34 +15,72 @@
         android:text="음식취향 수정"
         android:layout_marginTop="5dp"/>
 
-
-    <LinearLayout android:orientation="vertical"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:weightSum="3">
- <!--  <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.5"
-        android:id="@+id/testText"/>-->
- <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2.5"
-        android:id="@+id/container">
+        android:layout_weight="1.8"
+        android:orientation="vertical"
+        android:weightSum="5">
 
-    <fragment
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:name="com.example.empty_can.AllergyListFragment"
-        android:id="@+id/fragment"/>
-    </FrameLayout>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="0.5"
+       android:weightSum="3"
+       android:orientation="horizontal">
+       <ImageView
+           android:layout_width="0dp"
+           android:layout_height="match_parent"
+           android:layout_weight="0.5"
+           android:src="@drawable/mag"/>
+       <EditText
+           android:id="@+id/editSearch"
+           android:layout_width="0dp"
+           android:layout_height="match_parent"
+           android:layout_weight="2.5"
+           android:textSize="14sp"
+           android:hint="검색하세요" />
+
+   </LinearLayout>
+
+        <Button
+            android:id="@+id/button_main"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:layout_weight="0.2"/>
+
+
+        <CheckBox
+            android:id="@+id/checkBox_main"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:text="전체선택" />
+
+
+
+
+        <ListView
+            android:layout_weight="4"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/listView_main"
+            android:textFilterEnabled="true"/>
+    </LinearLayout>
+
+
+
 
     <LinearLayout android:orientation="horizontal"
     android:layout_height="0dp"
     android:layout_width="match_parent"
     android:weightSum="2"
-    android:layout_weight="0.5">
+    android:layout_weight="0.2">
+
+
+
 
         <Button
             android:id="@+id/btnModi"
@@ -53,17 +92,19 @@
             android:layout_weight="1"
             android:text="확인" />
 
-    <Button
-        android:layout_height="wrap_content"
-        android:layout_width="0dp"
-        android:text="취소"
-        android:layout_weight="1"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_gravity="center_vertical"/>
+        <Button
+            android:id="@+id/btnReset"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="취소" />
 
-</LinearLayout>
 
-</LinearLayout>
+    </LinearLayout>
+
+
 
 </LinearLayout>
