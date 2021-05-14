@@ -17,17 +17,13 @@ import java.io.IOException;
 
 public class CommonMethod {
 
-<<<<<<< HEAD
-    public static String  ipConfig = "http://192.168.0.67:8989";
-=======
-
 
 
 
     public static String  ipConfig = "http://192.168.0.45:8989";
 
 
->>>>>>> 1d9fedcbc72b1a3d115bf46642e03d4e0582fd9a
+
 
     public static MemberDTO loginDTO = null;
 

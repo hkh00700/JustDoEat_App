@@ -2,15 +2,13 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_weightsum="5">
+    android:layout_height="match_parent">
 
 
 
     <net.daum.mf.map.api.MapView
         android:id="@+id/daum_map_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="4"/>
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>

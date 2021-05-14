@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnRoulette" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnDrawinglots"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -75,7 +75,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnLadder" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnWorldcup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -90,7 +90,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/btnDrawinglots" />
 
     <MultiAutoCompleteTextView
         android:id="@+id/mTextView1"
@@ -102,7 +102,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.068"
         app:layout_constraintStart_toEndOf="@+id/editTextNumber1"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/btnWorldcup" />
 
     <MultiAutoCompleteTextView
         android:id="@+id/mTextView2"
@@ -161,7 +161,7 @@
         android:textColor="#020202"
         android:textColorHint="#4CAF50"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/btnWorldcup"
         android:text="1" />
 
     <EditText
