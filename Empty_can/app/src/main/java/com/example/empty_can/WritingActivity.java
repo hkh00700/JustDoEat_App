@@ -32,7 +32,7 @@ import java.util.Date;
 import static com.example.empty_can.Common.CommonMethod.ipConfig;
 import static com.example.empty_can.Common.CommonMethod.isNetworkConnected;
 
-public class WritingActivity extends AppCompatActivity {
+public class WritingActivity extends AppCompatActivity { 
     private static final String TAG = "main:ReviewWriting";
 
     MediaController m;

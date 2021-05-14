@@ -1,3 +1,4 @@
+
 package com.example.empty_can;
 
 import android.content.Context;
@@ -57,9 +58,9 @@ public class AllergyAdapter extends BaseAdapter {
         return 0;
     }
 
-    public boolean itChk(int position) {
+    /*public boolean itChk(int position) {
         return items.get(position).isCheck();
-    }
+    }*/
 
 
 
@@ -69,7 +70,7 @@ public class AllergyAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
 
-        ViewHolder holder;
+       /* ViewHolder holder;
 
         if(convertView == null){
             convertView = inflater.inflate(R.layout.row, parent, false);
@@ -122,7 +123,7 @@ public class AllergyAdapter extends BaseAdapter {
             }
         });
 
-        holder.checkBox.setChecked(itChk(position));
+        holder.checkBox.setChecked(itChk(position));*/
         return convertView;
     }
 

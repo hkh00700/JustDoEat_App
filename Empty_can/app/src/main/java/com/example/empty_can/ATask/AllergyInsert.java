@@ -20,7 +20,7 @@ import java.nio.charset.Charset;
 import static com.example.empty_can.Common.CommonMethod.ipConfig;
 
 
-public class AllergyInsert extends AsyncTask<Void, Void, String> {
+public class AllergyInsert extends AsyncTask<Void, Void, String> { 
     private static final String TAG = "main:AllergyInsert";
 
     String m_id;

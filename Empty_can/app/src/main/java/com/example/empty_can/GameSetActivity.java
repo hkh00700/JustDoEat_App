@@ -15,7 +15,7 @@ import com.example.empty_can.ATask.RandomFive;
 
 import java.util.concurrent.ExecutionException;
 
-public class GameSetActivity extends AppCompatActivity {
+public class GameSetActivity extends AppCompatActivity { 
     private static final String TAG = "main:GameSetActivity";
 
     Button btnRoulette,btnLadder,btnDrawinglots,btnWorldcup;

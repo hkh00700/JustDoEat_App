@@ -17,7 +17,7 @@ import java.nio.charset.Charset;
 
 import static com.example.empty_can.Common.CommonMethod.ipConfig;
 
-public class Writing extends AsyncTask<Void, Void, String> {
+public class Writing extends AsyncTask<Void, Void, String> { 
     private static final String TAG = "main:UserReviewInsert";
 
     String s_title, s_content, s_nikname, s_photo_path, imageRealPath;

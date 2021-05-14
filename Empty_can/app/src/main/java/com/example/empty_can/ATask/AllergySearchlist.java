@@ -4,8 +4,6 @@ import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.empty_can.SearchFragment;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -34,7 +32,6 @@ public class AllergySearchlist extends AsyncTask {
     HttpResponse httpResponse;
     HttpEntity httpEntity;
     ArrayList<String>  searchlist;
-    SearchFragment searchFragment;
     @Override
     protected String doInBackground(Object[] objects) {
 

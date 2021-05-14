@@ -14,7 +14,7 @@ import com.example.empty_can.ATask.JoinInsert;
 
 import java.util.concurrent.ExecutionException;
 
-public class JoinActivity extends AppCompatActivity {
+public class JoinActivity extends AppCompatActivity { 
 
     private static final String TAG = "main:JoinActivity";
 

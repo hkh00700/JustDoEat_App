@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
@@ -19,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     int num = 0;
 
 
+    
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,12 +30,15 @@ public class MainActivity extends AppCompatActivity {
 
         fab = findViewById(R.id.fab);
 
+
         // 로그인 되었을 때 정보창에
         // 홈 액티비티에서 무슨버튼이 눌렸는지 가져오기
         Intent intent = getIntent();
         if(intent != null){
             num = intent.getIntExtra("num", 0);
         }
+
+
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         getSupportFragmentManager().beginTransaction().add(R.id.container, new Main()).commit();

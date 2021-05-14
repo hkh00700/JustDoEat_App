@@ -2,8 +2,11 @@ package com.example.empty_can;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,12 +14,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.bumptech.glide.Glide;
 import com.example.empty_can.ATask.FoodRandom;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
-public class RandomActivity extends AppCompatActivity {
+public class RandomActivity extends AppCompatActivity { 
     TextView foodname;
+    ImageView foodView;
+    Bitmap bitmap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +36,7 @@ public class RandomActivity extends AppCompatActivity {
         checkDangerousPermissions();
 
         foodname = findViewById(R.id.foodName);
+        foodView = findViewById(R.id.foodView);
 
         findViewById(R.id.btnRe).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,13 +45,51 @@ public class RandomActivity extends AppCompatActivity {
                 FoodRandom foodRandom = new FoodRandom();
                 try {
                     food = foodRandom.execute().get();
+
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 
+                String[] rs = food.split(",");
+                food = rs[0];
+                String link = rs[1];
+
                 foodname.setText(food);
+
+                Thread thread = new Thread() {
+                    @Override
+                    public void run() {
+
+                        try {
+                            URL url = new URL(link);
+                            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                            conn.setDoInput(true);
+                            conn.connect();
+
+                            InputStream is = conn.getInputStream();
+                            bitmap = BitmapFactory.decodeStream(is);
+
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                };
+
+                thread.start();
+
+                try {
+                    thread.join();
+                    foodView.setImageBitmap(bitmap);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
 }

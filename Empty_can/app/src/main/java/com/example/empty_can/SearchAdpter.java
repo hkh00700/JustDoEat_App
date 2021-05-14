@@ -1,3 +1,4 @@
+/*
 package com.example.empty_can;
 
 import android.content.Context;
@@ -73,3 +74,4 @@ public class SearchAdpter extends BaseAdapter {
     }
 
 }
+*/

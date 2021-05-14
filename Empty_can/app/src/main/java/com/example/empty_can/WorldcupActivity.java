@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 
-public class WorldcupActivity extends AppCompatActivity {
+public class WorldcupActivity extends AppCompatActivity { 
     private static final String TAG = "main:WorldcupActivity";
     ArrayList<String> list = new ArrayList<>();
     ArrayList<String> list2 = new ArrayList<>();

@@ -1,3 +1,4 @@
+
 package com.example.empty_can;
 
 import android.Manifest;
@@ -7,10 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,8 +36,8 @@ public class FoodmodifyActivity extends AppCompatActivity {
 
     String test;
 
-    SearchFragment searchFragment;
-    AllergyListFragment allergyListFragment;
+    /*SearchFragment searchFragment;
+    AllergyListFragment allergyListFragment;*/
 
     Button btnModi,btnReset;
 
@@ -50,7 +47,7 @@ public class FoodmodifyActivity extends AppCompatActivity {
         setContentView(R.layout.foodmodify);
 
         checkDangerousPermissions();
-       FragmentManager manager = getSupportFragmentManager();
+       /*FragmentManager manager = getSupportFragmentManager();
        allergyListFragment = (AllergyListFragment) manager.findFragmentById(R.id.fragment);
        searchFragment = new SearchFragment();
 
@@ -107,7 +104,7 @@ public class FoodmodifyActivity extends AppCompatActivity {
        });
 
 
-
+*/
 
 
 
@@ -152,12 +149,12 @@ public class FoodmodifyActivity extends AppCompatActivity {
     }
 
     public void ChangeFragment(int state){
-        if(state == 0){
+       /* if(state == 0){
             getSupportFragmentManager().beginTransaction().replace(R.id.container, searchFragment).addToBackStack(null).commit();
         } else if (state == 1){
             getSupportFragmentManager().beginTransaction().replace(R.id.container, allergyListFragment).addToBackStack(null).commit();
         }
-
+*/
         //두번째 프래그먼트로 가는거, list 체크했을 때 없어지는거 그대로 있게 하기
 
 
