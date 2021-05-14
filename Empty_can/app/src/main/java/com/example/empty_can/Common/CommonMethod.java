@@ -17,27 +17,10 @@ import java.io.IOException;
 
 public class CommonMethod {
 
-<<<<<<< Updated upstream
-
-
-
-<<<<<<< HEAD
 
     public static String ipConfig = "http://192.168.0.33:8080";
-
-=======
-    public static String  ipConfig = "http://192.168.0.45:8989";
->>>>>>> bfcf786c4477c0784ab5b2cfb5a707da5769df13
-
-
-
-=======
-
-    public static String  ipConfig = "http://192.168.0.67:8989";
-
-
-
->>>>>>> Stashed changes
+    //public static String  ipConfig = "http://192.168.0.45:8989";
+    //public static String  ipConfig = "http://192.168.0.67:8989";
 
     public static MemberDTO loginDTO = null;
 

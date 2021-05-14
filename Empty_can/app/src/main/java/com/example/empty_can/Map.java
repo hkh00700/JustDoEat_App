@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import net.daum.mf.map.api.MapView;
 
+
 public class Map extends Fragment {
     MainActivity activity;
     Button btnmap;

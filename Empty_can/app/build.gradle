@@ -43,7 +43,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    /* 안드로이드와 통신할수 있는 버전 가져오기  */
+/* 안드로이드와 통신할수 있는 버전 가져오기 */
     implementation group: 'org.apache.httpcomponents', name: 'httpclient-android', version: '4.3.5.1'
     implementation('org.apache.httpcomponents:httpmime:4.3') {
         exclude module: "httpclient"
@@ -57,10 +57,10 @@ dependencies {
 
 
 
-    //네이버 로그인
-    implementation files('D:\\JustDoEat_App\\Empty_can\\app\\lib\\naveridlogin_android_sdk_4.2.6.aar')   // import from jcenter
+//네이버 로그인
+    implementation files('D:\\JustDoEat_App\\Empty_can\\app\\lib\\naveridlogin_android_sdk_4.2.6.aar') // import from jcenter
 
-    // naveridlogin dependencies
+// naveridlogin dependencies
     def android_x_version = "1.0.0"
     implementation "androidx.appcompat:appcompat:$android_x_version"
     implementation "androidx.legacy:legacy-support-core-utils:$android_x_version"
@@ -77,12 +77,12 @@ dependencies {
 
 
 
-    /* 리사이클러 뷰 사용하기 */
+/* 리사이클러 뷰 사용하기 */
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
-    // URL 이미지로더
-    // 사용법
-    //Glide.with(this).load("http://www.selphone.co.kr/homepage/img/team/3.jpg").into(imageView);
+// URL 이미지로더
+// 사용법
+//Glide.with(this).load("http://www.selphone.co.kr/homepage/img/team/3.jpg").into(imageView);
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
