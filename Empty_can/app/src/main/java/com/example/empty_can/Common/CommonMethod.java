@@ -17,6 +17,7 @@ import java.io.IOException;
 
 public class CommonMethod {
 
+<<<<<<< Updated upstream
 
 
 
@@ -24,6 +25,13 @@ public class CommonMethod {
 
 
 
+=======
+
+    public static String  ipConfig = "http://192.168.0.67:8989";
+
+
+
+>>>>>>> Stashed changes
 
     public static MemberDTO loginDTO = null;
 

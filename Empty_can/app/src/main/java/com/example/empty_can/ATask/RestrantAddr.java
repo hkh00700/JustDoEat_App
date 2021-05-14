@@ -2,7 +2,6 @@ package com.example.empty_can.ATask;
 
 import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -15,18 +14,17 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+
 import static com.example.empty_can.Common.CommonMethod.ipConfig;
 
-public class FoodRandom extends AsyncTask<Void, Void, String> {
-    private static final String TAG = "main:FoodRandom";
-
-    String food = "";
+public class RestrantAddr extends AsyncTask<Void, Void, String> {
+    private static final String TAG = "RestrantAddr: main";
+   String restrant;
 
     HttpClient httpClient;
     HttpPost httpPost;
     HttpResponse httpResponse;
     HttpEntity httpEntity;
-
 
     @Override
     protected String doInBackground(Void... voids) {
@@ -35,7 +33,7 @@ public class FoodRandom extends AsyncTask<Void, Void, String> {
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
             builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
             builder.setCharset(Charset.forName("UTF-8"));
-            String postURL = ipConfig + "/justdo_eat/recommand";
+            String postURL = ipConfig + "/justdo_eat/restrantaddr";
 
             //전송
             InputStream inputStream = null;
@@ -57,10 +55,11 @@ public class FoodRandom extends AsyncTask<Void, Void, String> {
                 stringBuffer.append(line + "\n");
             }
 
-            food = stringBuffer.toString().trim();
-            //new FoodRandom(food);
+            restrant = stringBuffer.toString().trim();
 
-            Log.d(TAG, "doInBackground: 음식이름 : " + food);
+
+
+
             inputStream.close();
 
 
@@ -73,7 +72,7 @@ public class FoodRandom extends AsyncTask<Void, Void, String> {
             if(httpClient != null) httpClient = null;
         }
 
-        return food;
+        return restrant;
 
     }
 
@@ -81,5 +80,4 @@ public class FoodRandom extends AsyncTask<Void, Void, String> {
     protected void onPostExecute(String s) {
 
     }
-
 }

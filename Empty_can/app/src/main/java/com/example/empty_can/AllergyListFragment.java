@@ -76,7 +76,38 @@ public class AllergyListFragment extends Fragment {
         });*/
         return rootview;
     }
+<<<<<<< Updated upstream
     public void searchresult(String searchresult) {
+=======
+
+
+   /* private void search(String chartext) {
+        //문자 입력시마다 리스트를 지우고 새로 뿌려주기
+        list.clear();
+
+        //문자 입력이 없을 떄는 모든 데이터를 보여준다.
+        if(chartext.length() == 0){
+            list.addAll(arraylist);
+        }else { //문자를 입력할 때는 리스트의 모든 데이터를 검색한다.
+            for(int i = 0; i<arraylist.size(); i++){
+                if(arraylist.get(i).toLowerCase().contains(chartext))
+                    list.add(arraylist.get(i));
+
+            }
+
+        }
+
+
+
+
+        adapter.notifyDataSetChanged();
+    }*/
+
+
+
+
+    public void searchresult(String searchresult){
+>>>>>>> Stashed changes
         this.searchresult = searchresult;
     }
 
@@ -99,4 +130,10 @@ public class AllergyListFragment extends Fragment {
             e.printStackTrace();
         }
     }
+<<<<<<< Updated upstream
 }
+=======
+
+
+}
+>>>>>>> Stashed changes

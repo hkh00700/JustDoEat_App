@@ -144,5 +144,10 @@ public class SearchFragment extends Fragment {
         list.add("땅콩");
         list.add("조개");
         list.add("반지락");*/
+<<<<<<< Updated upstream
 
 }
+=======
+}
+
+>>>>>>> Stashed changes
