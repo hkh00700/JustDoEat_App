@@ -76,9 +76,7 @@ public class AllergyListFragment extends Fragment {
         });*/
         return rootview;
     }
-<<<<<<< Updated upstream
     public void searchresult(String searchresult) {
-=======
 
 
    /* private void search(String chartext) {
@@ -107,7 +105,6 @@ public class AllergyListFragment extends Fragment {
 
 
     public void searchresult(String searchresult){
->>>>>>> Stashed changes
         this.searchresult = searchresult;
     }
 
@@ -130,10 +127,7 @@ public class AllergyListFragment extends Fragment {
             e.printStackTrace();
         }
     }
-<<<<<<< Updated upstream
 }
-=======
 
 
 }
->>>>>>> Stashed changes
