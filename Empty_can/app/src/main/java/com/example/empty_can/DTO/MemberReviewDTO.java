@@ -1,24 +1,28 @@
 package com.example.empty_can.DTO;
 
-public class MemberReviewDTO { 
+import java.io.Serializable;
+
+public class MemberReviewDTO implements Serializable {
     private int no;
     private String title;
     private String content;
     private String photo_path;
-    private String nikname;
+    private String id;
 
-    public MemberReviewDTO(int no, String title, String content, String photo_path, String nikname) {
+    public MemberReviewDTO(int no, String title, String content, String photo_path, String id) {
         this.no = no;
         this.title = title;
         this.content = content;
         this.photo_path = photo_path;
-        this.nikname = nikname;
+        this.id = id;
     }
 
-    public MemberReviewDTO(String title, String content, String photo_path) {
+    public MemberReviewDTO(String title, String content, String photo_path, int no, String id) {
         this.title = title;
         this.content = content;
         this.photo_path = photo_path;
+        this.no = no;
+        this.id = id;
     }
 
     public int getNo() {
@@ -53,11 +57,11 @@ public class MemberReviewDTO {
         this.photo_path = photo_path;
     }
 
-    public String getNikname() {
-        return nikname;
+    public String getId() {
+        return id;
     }
 
-    public void setNikname(String nikname) {
-        this.nikname = nikname;
+    public void setId(String id) {
+        this.id = id;
     }
 }

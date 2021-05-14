@@ -18,28 +18,10 @@
             android:text="추가"
             android:textSize="14sp" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@android:color/holo_orange_dark"
-            android:onClick="btn2Clicked"
-            android:text="수정" />
+
 
         <Button
-            android:id="@+id/btnDrawinglots"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@android:color/holo_orange_dark"
-            android:onClick="btn3Clicked"
-            android:text="삭제" />
-
-        <Button
-            android:id="@+id/btnWorldcup"
+            android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
@@ -51,14 +33,14 @@
     </LinearLayout>
 
     <ScrollView
+        android:fillViewport="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/showreview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
     </ScrollView>
 
 
