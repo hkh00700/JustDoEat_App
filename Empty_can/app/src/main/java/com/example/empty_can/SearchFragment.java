@@ -1,3 +1,4 @@
+/*
 package com.example.empty_can;
 
 import android.os.Bundle;
@@ -9,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -39,7 +39,7 @@ public class SearchFragment extends Fragment {
 
 
         editSearch = rootview.findViewById(R.id.editSearch);
-        listView = rootview.findViewById(R.id.listView);
+        listView = rootview.findViewById(R.id.RecylerView);
 
         //리스트 생성
         list = new ArrayList<String>();
@@ -54,7 +54,6 @@ public class SearchFragment extends Fragment {
         //리스트에 연동될 아답터 생성
         adapter = new SearchAdpter(list, getActivity());
         listView.setAdapter(adapter);
-
 
 
         editSearch.addTextChangedListener(new TextWatcher() {
@@ -75,12 +74,13 @@ public class SearchFragment extends Fragment {
             }
         });
 
-   /*     listView.setOnClickListener(new View.OnClickListener() {
+     listView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: searchFragment 를 눌렀음");
             }
-        });*/
+        });
+
 
 
         return rootview;
@@ -91,18 +91,16 @@ public class SearchFragment extends Fragment {
         list.clear();
 
         //문자 입력이 없을 떄는 모든 데이터를 보여준다.
-        if(chartext.length() == 0){
+        if (chartext.length() == 0) {
             list.addAll(arraylist);
-        }else { //문자를 입력할 때는 리스트의 모든 데이터를 검색한다.
-            for(int i = 0; i<arraylist.size(); i++){
-                if(arraylist.get(i).toLowerCase().contains(chartext))
-                list.add(arraylist.get(i));
+        } else { //문자를 입력할 때는 리스트의 모든 데이터를 검색한다.
+            for (int i = 0; i < arraylist.size(); i++) {
+                if (arraylist.get(i).toLowerCase().contains(chartext))
+                    list.add(arraylist.get(i));
 
             }
 
         }
-
-
 
 
         adapter.notifyDataSetChanged();
@@ -118,7 +116,7 @@ public class SearchFragment extends Fragment {
             Log.d(TAG, "settingList: " + search);
             String[] searchs = search.split("<br/>");
 
-            for(int i = 0; i < searchs.length; i++){
+            for (int i = 0; i < searchs.length; i++) {
                 list.add(searchs[i].trim());
             }
 
@@ -134,7 +132,7 @@ public class SearchFragment extends Fragment {
 
 
 
-    /*    list.add("딸기");
+    list.add("딸기");
         list.add("바나나");
         list.add("사과");
         list.add("돼지고기");
@@ -144,10 +142,8 @@ public class SearchFragment extends Fragment {
         list.add("사과");
         list.add("땅콩");
         list.add("조개");
-        list.add("반지락");*/
-<<<<<<< HEAD
-}
+        list.add("반지락");
 
-=======
-    }
->>>>>>> aa5be549d2587ec63896e1416ad35b19d8cdd32e
+
+}
+*/

@@ -37,19 +37,16 @@
         android:layout_marginRight="5dp"/>
 
     </LinearLayout>
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
+
 
             <ListView
-                android:id="@+id/listView"
+                android:id="@+id/RecylerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:choiceMode="multipleChoice"/>
 
 
-        </ScrollView>
+
 
 
     </LinearLayout>
