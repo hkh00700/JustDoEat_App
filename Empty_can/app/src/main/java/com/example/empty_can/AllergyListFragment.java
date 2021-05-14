@@ -1,7 +1,7 @@
 package com.example.empty_can;
 
 import android.os.Bundle;
-<<<<<<< HEAD
+
 
 import androidx.fragment.app.Fragment;
 
@@ -16,14 +16,14 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.example.empty_can.ATask.AllergySearchlist;
-=======
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
->>>>>>> aa5be549d2587ec63896e1416ad35b19d8cdd32e
+
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -101,7 +101,7 @@ public class AllergyListFragment extends Fragment {
 
         return rootview;
     }
-<<<<<<< HEAD
+
 
    /* private void search(String chartext) {
         //문자 입력시마다 리스트를 지우고 새로 뿌려주기
@@ -158,10 +158,10 @@ public class AllergyListFragment extends Fragment {
 
 
 }
-=======
-}
+
+
 
 
 
 //어댑터에 체크한 값 담겨있음,, 갑각류 등을 DB멤버행에 넣기
->>>>>>> aa5be549d2587ec63896e1416ad35b19d8cdd32e
+

@@ -71,10 +71,10 @@ dependencies {
 
     androidTestImplementation "androidx.test.espresso:espresso-core:3.1.0"
 
-<<<<<<< HEAD
+
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-=======
+
 
 
     /* 리사이클러 뷰 사용하기 */
@@ -86,6 +86,5 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
->>>>>>> 1d9fedcbc72b1a3d115bf46642e03d4e0582fd9a
 
 }

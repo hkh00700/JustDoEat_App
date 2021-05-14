@@ -16,7 +16,7 @@ import java.util.concurrent.ExecutionException;
 
 import static com.example.empty_can.Common.CommonMethod.loginDTO;
 
-public class MymodifyActivity extends AppCompatActivity {
+public class MymodifyActivity extends AppCompatActivity { 
     private static final String TAG = "main:MymodifyActivity";
 
     String state;

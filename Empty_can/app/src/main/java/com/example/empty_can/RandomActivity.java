@@ -15,7 +15,7 @@ import com.example.empty_can.ATask.FoodRandom;
 
 import java.util.concurrent.ExecutionException;
 
-public class RandomActivity extends AppCompatActivity {
+public class RandomActivity extends AppCompatActivity { 
     TextView foodname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

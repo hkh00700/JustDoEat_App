@@ -11,23 +11,15 @@ import android.util.Log;
 
 import com.example.empty_can.DTO.MemberDTO;
 
+
 import java.io.File;
 import java.io.IOException;
 
 
 public class CommonMethod {
 
-<<<<<<< HEAD
-    public static String  ipConfig = "http://192.168.0.67:8989";
-=======
 
-<<<<<<< HEAD
-    public static String ipConfig = "http://192.168.0.33:8080";
-=======
-    public static String  ipConfig = "http://192.168.0.45:8989";
->>>>>>> aa5be549d2587ec63896e1416ad35b19d8cdd32e
-
->>>>>>> 1d9fedcbc72b1a3d115bf46642e03d4e0582fd9a
+    public static String  ipConfig = "http://192.168.0.74:9191";
 
     public static MemberDTO loginDTO = null;
 

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 import static com.example.empty_can.Common.CommonMethod.isNetworkConnected;
 
-public class ShowReviewActivity extends AppCompatActivity {
+public class ShowReviewActivity extends AppCompatActivity { 
     public static MemberReviewDTO selItem = null;
 
     UserReviewSelect userReviewSelect;

@@ -3,12 +3,11 @@ package com.example.empty_can;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-<<<<<<< HEAD
-=======
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
->>>>>>> aa5be549d2587ec63896e1416ad35b19d8cdd32e
+
 import android.widget.TextView;
 import android.widget.Toast;
 

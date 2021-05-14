@@ -1,6 +1,6 @@
 package com.example.empty_can;
 
-public class ListViewItem {
+public class ListViewItem { 
     private String text;
     private boolean check;
 

@@ -3,7 +3,7 @@ package com.example.empty_can.DTO;
 public class tDTO {
     String t1, t2, t3, t4, t5;
 
-    public tDTO(String t1, String t2, String t3, String t4, String t5) {
+    public tDTO(String t1, String t2, String t3, String t4, String t5) { 
         this.t1 = t1;
         this.t2 = t2;
         this.t3 = t3;

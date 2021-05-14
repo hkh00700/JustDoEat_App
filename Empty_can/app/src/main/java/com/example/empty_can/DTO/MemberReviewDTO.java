@@ -1,6 +1,6 @@
 package com.example.empty_can.DTO;
 
-public class MemberReviewDTO {
+public class MemberReviewDTO { 
     private int no;
     private String title;
     private String content;
