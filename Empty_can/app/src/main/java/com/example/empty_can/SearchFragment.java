@@ -142,8 +142,19 @@ public class SearchFragment extends Fragment {
         list.add("사과");
         list.add("땅콩");
         list.add("조개");
+<<<<<<< HEAD
         list.add("반지락");
 
 
 }
 */
+=======
+        list.add("반지락");*/
+<<<<<<< Updated upstream
+
+}
+=======
+}
+
+>>>>>>> Stashed changes
+>>>>>>> bfcf786c4477c0784ab5b2cfb5a707da5769df13
