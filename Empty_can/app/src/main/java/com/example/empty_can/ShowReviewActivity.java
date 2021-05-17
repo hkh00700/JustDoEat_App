@@ -12,15 +12,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.empty_can.ATask.ReviewUpdate;
 import com.example.empty_can.ATask.UserReviewSelect;
 import com.example.empty_can.Adapter.ReviewAdapter;
 import com.example.empty_can.DTO.MemberReviewDTO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import static com.example.empty_can.Common.CommonMethod.isNetworkConnected;
 
-public class ShowReviewActivity extends AppCompatActivity { 
+public class ShowReviewActivity extends AppCompatActivity {
     public static MemberReviewDTO selItem = null;
 
     UserReviewSelect userReviewSelect;
@@ -78,9 +80,9 @@ public class ShowReviewActivity extends AppCompatActivity {
             if(selItem != null){
                 Log.d("writing:update1", selItem.getTitle());
 
-                /*Intent intent = new Intent(getApplicationContext(), Sub1Update.class);
-                intent.putExtra("selItem", selItem);
-                startActivity(intent);*/
+                Intent intent = new Intent(getApplicationContext(), ReviewUpdate.class);
+                intent.putExtra("selItem", (Serializable) selItem);
+                startActivity(intent);
 
             }else {
                 Toast.makeText(getApplicationContext(), "항목 선택을 해 주세요",
@@ -100,11 +102,11 @@ public class ShowReviewActivity extends AppCompatActivity {
             if(selItem != null){
                 Log.d("Writing : selImg => ", selItem.getPhoto_path());
 
-               /* ListDelete listDelete = new ListDelete(selItem.getId(), selItem.getImage_path());
-                listDelete.execute();*/
+                //ReviewDelete listDelete = new ReviewDelete(selItem.getTitle(), selItem.getPhoto_path());
+                //listDelete.execute();
 
                 // 화면갱신
-                Intent refresh = new Intent(this, WritingActivity.class);
+                Intent refresh = new Intent(this, ShowReviewActivity.class);
                 startActivity(refresh);
                 this.finish(); // 화면끝내기
 

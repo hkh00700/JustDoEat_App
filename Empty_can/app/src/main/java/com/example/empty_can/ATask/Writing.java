@@ -16,16 +16,17 @@ import java.io.File;
 import java.nio.charset.Charset;
 
 import static com.example.empty_can.Common.CommonMethod.ipConfig;
+import static com.example.empty_can.Common.CommonMethod.loginDTO;
 
-public class Writing extends AsyncTask<Void, Void, String> { 
+public class Writing extends AsyncTask<Void, Void, String> {
     private static final String TAG = "main:UserReviewInsert";
 
-    String s_title, s_content, s_nikname, s_photo_path, imageRealPath;
+    String s_title, s_content, s_id, s_photo_path, imageRealPath;
 
-    public Writing(String s_title, String s_content, String s_nikname, String s_photo_path, String imageRealPath) {
+    public Writing(String s_title, String s_content, String s_id, String s_photo_path, String imageRealPath) {
         this.s_title = s_title;
         this.s_content = s_content;
-        this.s_nikname = s_nikname;
+        this.s_id = s_id;
         this.s_photo_path = s_photo_path;
         this.imageRealPath = imageRealPath;
     }
@@ -44,14 +45,15 @@ public class Writing extends AsyncTask<Void, Void, String> {
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
             builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
             builder.setCharset(Charset.forName("UTF-8"));
-            String nikname = "niks1";//유저 닉네임 값
+            //유저 닉네임 값
             // 문자열 및 데이터 추가
             builder.addTextBody("s_title", s_title, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("s_content", s_content, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("s_id", loginDTO.getId(), ContentType.create("Multipart/related", "UTF-8"));
             if(s_photo_path != null)
                 builder.addTextBody("s_photo_path", s_photo_path, ContentType.create("Multipart/related", "UTF-8"));
-            if(s_photo_path != null)
-                builder.addPart("image", new FileBody(new File(s_photo_path)));
+            if(imageRealPath != null)
+                builder.addPart("image", new FileBody(new File(imageRealPath)));
 
             String postURL = ipConfig + "/justdo_eat/ReviewInsert";
             // 전송
