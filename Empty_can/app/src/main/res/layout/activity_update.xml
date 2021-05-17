@@ -17,7 +17,7 @@
         android:layout_weight="1"
         android:orientation="horizontal">
         <EditText
-            android:id="@+id/title"
+            android:id="@+id/utitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -26,7 +26,7 @@
 
     </LinearLayout>
     <EditText
-        android:id="@+id/content"
+        android:id="@+id/ucontent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
@@ -70,11 +70,11 @@
                     android:layout_margin="10dp">
 
                     <ImageView
-                        android:id="@+id/imageView"
+                        android:id="@+id/imageView2"
                         android:layout_width="200dp"
                         android:layout_height="match_parent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/blank" />
+                        android:src="@drawable/blank"/>
 
                 </FrameLayout>
 
@@ -95,15 +95,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="btnAddClicked"
-            android:text="등록"/>
+            android:text="수정"/>
 
         <Button
             android:id="@+id/reviewReset"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="btnCancelClicked"
             android:text="취소"/>
     </LinearLayout>
 

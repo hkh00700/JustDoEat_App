@@ -133,8 +133,8 @@ public class UserReviewSelect extends AsyncTask<Void, Void, Void> {
     }
 
     public MemberReviewDTO readMessage(JsonReader reader) throws IOException {
-        String content = "", photo_path = "", title = "";
-
+        String content = "", photo_path = "", title = "", id = "";
+        int no = 0;
         reader.beginObject();
         while (reader.hasNext()) {
             String readStr = reader.nextName();
@@ -144,13 +144,17 @@ public class UserReviewSelect extends AsyncTask<Void, Void, Void> {
                 content = reader.nextString();
             } else if (readStr.equals("s_photo_path")) {
                 photo_path = reader.nextString();
+            } else if (readStr.equals("no")) {
+                no = reader.nextInt();
+            } else if (readStr.equals("s_id")) {
+                id = reader.nextString();
             }   else {
                 reader.skipValue();
             }
         }
         reader.endObject();
         Log.d("listselect:myitem", content + "," + title + ","  + photo_path);
-        return new MemberReviewDTO(title, content, photo_path);
+        return new MemberReviewDTO(title, content, photo_path, no, id);
 
     }
 

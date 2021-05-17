@@ -7,13 +7,17 @@ import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.example.empty_can.ATask.RestrantAddr;
 
@@ -25,9 +29,12 @@ import net.daum.mf.map.api.MapView;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-public class MapActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapReverseGeoCoder.ReverseGeoCodingResultListener {
+import static android.content.Context.LOCATION_SERVICE;
 
-    private static final String TAG = "MapActivity";
+public class MapFragment extends Fragment implements MapView.CurrentLocationEventListener, MapReverseGeoCoder.ReverseGeoCodingResultListener {
+
+
+    private static final String TAG = "main:MapFragment";
 
     public double lad;
     public double gt;
@@ -44,10 +51,10 @@ public class MapActivity extends AppCompatActivity implements MapView.CurrentLoc
 
     private MapPOIItem CustomMarker;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ViewGroup View = (ViewGroup) inflater.inflate(R.layout.map_fragment, container, false );
 
         String pp = "";
 
@@ -65,35 +72,9 @@ public class MapActivity extends AppCompatActivity implements MapView.CurrentLoc
         String[] pps = pp.split("<br/>");
 
 
-
-
         Log.d(TAG, "onCreate: list" + pps);
 
-/*
-        String k = "";
-        String j = "";
-        String n = "";
-
-        String[] dd = pp.split(",");
-
-        Log.d(TAG, "onCreate: name : " + dd);
-
-        for(int i = 0; i <dd.length; i++){
-
-            Log.d(TAG, "onCreate: 숫자는 " + dd[i].trim() + i);
-        }
-
-        k = dd[0].trim();
-        j = dd[1].trim();
-        n = dd[2].trim();
-
-        Log.d(TAG, "onCreate: 숫자는" + j.trim());
-
-        lad = Double.parseDouble(j);
-        gt = Double.parseDouble(n);*/
-
-
-        map_view = findViewById(R.id.daum_map_view);
+        map_view = View.findViewById(R.id.daum_map_view);
         //mMapView.setDaumMapApiKey(MapApiConst.DAUM_MAPS_ANDROID_APP_API_KEY);
         map_view.setCurrentLocationEventListener(this);
 
@@ -105,13 +86,15 @@ public class MapActivity extends AppCompatActivity implements MapView.CurrentLoc
             checkRunTimePermission();
         }
 
- /*       createCustomMarker(map_view, lad, gt, k);*/
+        /*       createCustomMarker(map_view, lad, gt, k);*/
         createCustomMarker(map_view, pps);
+
+
+        return View;
     }
 
-
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         map_view.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOff);
         map_view.setShowCurrentLocationMarker(false);
@@ -177,15 +160,15 @@ public class MapActivity extends AppCompatActivity implements MapView.CurrentLoc
                 map_view.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
             }
             else {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), REQUIRED_PERMISSIONS[0])) {
 
-                    Toast.makeText(MapActivity.this, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
-                    finish();
+                    Toast.makeText(getActivity().getBaseContext(), "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
+                    getActivity().finish();
 
 
                 }else {
 
-                    Toast.makeText(MapActivity.this, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity().getBaseContext(), "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
 
                 }
             }
@@ -197,19 +180,19 @@ public class MapActivity extends AppCompatActivity implements MapView.CurrentLoc
 
         //런타임 퍼미션 처리
         // 1. 위치 퍼미션을 가지고 있는지 체크합니다.
-        int hasFineLocationPermission = ContextCompat.checkSelfPermission(MapActivity.this,
+        int hasFineLocationPermission = ContextCompat.checkSelfPermission(getActivity().getBaseContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION);
 
 
         if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED ) {
             map_view.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
         } else {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(MapActivity.this, REQUIRED_PERMISSIONS[0])) {
-                Toast.makeText(MapActivity.this, "이 앱을 실행하려면 위치 접근 권한이 필요합니다.", Toast.LENGTH_LONG).show();
-                ActivityCompat.requestPermissions(MapActivity.this, REQUIRED_PERMISSIONS,
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), REQUIRED_PERMISSIONS[0])) {
+                Toast.makeText(getActivity().getBaseContext(), "이 앱을 실행하려면 위치 접근 권한이 필요합니다.", Toast.LENGTH_LONG).show();
+                ActivityCompat.requestPermissions(getActivity(), REQUIRED_PERMISSIONS,
                         PERMISSIONS_REQUEST_CODE);
             } else {
-                ActivityCompat.requestPermissions(MapActivity.this, REQUIRED_PERMISSIONS,
+                ActivityCompat.requestPermissions(getActivity(), REQUIRED_PERMISSIONS,
                         PERMISSIONS_REQUEST_CODE);
             }
 
@@ -218,7 +201,7 @@ public class MapActivity extends AppCompatActivity implements MapView.CurrentLoc
     }
     private void showDialogForLocationServiceSetting() {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(MapActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("위치 서비스 비활성화");
         builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다.\n"
                 + "위치 설정을 수정하실래요?");
@@ -242,7 +225,7 @@ public class MapActivity extends AppCompatActivity implements MapView.CurrentLoc
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode) {
@@ -263,7 +246,7 @@ public class MapActivity extends AppCompatActivity implements MapView.CurrentLoc
         }
     }
     public boolean checkLocationServicesStatus() {
-        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
 
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
@@ -272,9 +255,9 @@ public class MapActivity extends AppCompatActivity implements MapView.CurrentLoc
     private void createCustomMarker(MapView map_view, String[] pps) {
 
         for(int i = 0; i < pps.length; i++){
-           String[] cusmaker = pps[i].split(",");
-           Double lad = Double.parseDouble(cusmaker[1]);
-           Double lod = Double.parseDouble(cusmaker[2]);
+            String[] cusmaker = pps[i].split(",");
+            Double lad = Double.parseDouble(cusmaker[1]);
+            Double lod = Double.parseDouble(cusmaker[2]);
 
             Log.d(TAG, "createCustomMarker: 가게 이름" + cusmaker[0].trim());
             Log.d(TAG, "createCustomMarker: 위도" + lad);
@@ -340,5 +323,5 @@ public class MapActivity extends AppCompatActivity implements MapView.CurrentLoc
     }
 
 
-}
 
+}

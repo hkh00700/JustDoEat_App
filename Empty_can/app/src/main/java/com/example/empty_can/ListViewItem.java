@@ -4,8 +4,6 @@ public class ListViewItem {
     String name;
     boolean isCheckable;
 
-
-
     public ListViewItem(String name) {
         this.name = name;
         boolean isCheckable = false;
