@@ -6,9 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="200dp"
+        android:layout_height="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:gravity="left"
+        android:text="제비뽑기"
+        android:textColor="#00458A"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageButton
         android:id="@+id/imageButton1"
-        android:layout_width="60dp"
+        android:layout_width="50dp"
         android:layout_height="60dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="204dp"
@@ -18,11 +37,11 @@
         app:layout_constraintHorizontal_bias="0.009"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/drawinglots" />
+        android:background="@drawable/drawinglots"/>
 
     <ImageButton
         android:id="@+id/imageButton2"
-        android:layout_width="60dp"
+        android:layout_width="50dp"
         android:layout_height="60dp"
         android:layout_marginTop="204dp"
         android:adjustViewBounds="true"
@@ -31,11 +50,11 @@
         app:layout_constraintHorizontal_bias="0.327"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/drawinglots" />
+        android:background="@drawable/drawinglots" />
 
     <ImageButton
         android:id="@+id/imageButton3"
-        android:layout_width="60dp"
+        android:layout_width="50dp"
         android:layout_height="60dp"
         android:layout_marginTop="204dp"
         android:adjustViewBounds="true"
@@ -44,11 +63,11 @@
         app:layout_constraintHorizontal_bias="0.544"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/drawinglots" />
+        android:background="@drawable/drawinglots" />
 
     <ImageButton
         android:id="@+id/imageButton5"
-        android:layout_width="60dp"
+        android:layout_width="50dp"
         android:layout_height="60dp"
         android:layout_marginTop="204dp"
         android:adjustViewBounds="true"
@@ -57,12 +76,12 @@
         app:layout_constraintHorizontal_bias="0.952"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/drawinglots" />
+        android:background="@drawable/drawinglots"/>
 
     <ImageButton
 
         android:id="@+id/imageButton4"
-        android:layout_width="60dp"
+        android:layout_width="50dp"
         android:layout_height="60dp"
         android:layout_marginTop="204dp"
         android:adjustViewBounds="true"
@@ -71,26 +90,39 @@
         app:layout_constraintHorizontal_bias="0.752"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/drawinglots" />
+        android:background="@drawable/drawinglots" />
 
     <Button
         android:id="@+id/btnOpen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
+        android:layout_marginTop="416dp"
         android:text="선택한 제비 펼치기"
         android:textSize="24sp"
         app:backgroundTint="@color/purple_200"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintHorizontal_bias="0.598"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="440dp"
+        android:text="맛집이동"
+        android:textSize="24sp"
+        app:backgroundTint="@color/purple_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/openlot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="284dp"
+        android:layout_marginTop="300dp"
         android:text="result"
         android:textAlignment="center"
         android:textDirection="firstStrong"
@@ -102,18 +134,18 @@
 
     <ImageView
         android:id="@+id/closelot"
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="100dp"
-        android:layout_marginTop="284dp"
+        android:layout_marginTop="312dp"
         android:adjustViewBounds="true"
+        android:background="@drawable/drawinglots"
         android:scaleType="fitCenter"
         android:text="result"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/drawinglots" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/lotResult"
