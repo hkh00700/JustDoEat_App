@@ -146,8 +146,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
-   /*             Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
-                startActivity(intent);*/
+                Intent intent1 = new Intent(getApplicationContext(), JoinActivity.class);
+                startActivity(intent1);
             }
         });
 

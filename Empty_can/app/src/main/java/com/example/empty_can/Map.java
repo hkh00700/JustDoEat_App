@@ -1,6 +1,5 @@
 package com.example.empty_can;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +17,7 @@ public class Map extends Fragment {
     MainActivity activity;
     Button btnmap;
     private MapView mapView;
+    MapFragment mapFragment;
 
     @Nullable
     @Override
@@ -26,20 +26,9 @@ public class Map extends Fragment {
 
         activity = (MainActivity) getActivity();
 
-        /*지도 보이기*/
-       /* mapView = new MapView(activity);
-        ViewGroup mapViewContainer = View.findViewById(R.id.map_view);
-        mapViewContainer.addView(mapView);*/
+        mapFragment = new MapFragment();
+        activity.getSupportFragmentManager().beginTransaction().replace(R.id.contain, mapFragment).commit();
 
-        btnmap = View.findViewById(R.id.btnmap);
-
-        btnmap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(android.view.View v) {
-                Intent intent = new Intent(getActivity(), MapActivity.class);
-                startActivity(intent);
-            }
-        });
 
         return View;
     }

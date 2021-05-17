@@ -40,12 +40,14 @@
         <activity android:name=".FoodmodifyActivity"></activity>
         <activity android:name=".RouletteActivity"></activity>
         <activity android:name=".WorldcupActivity"></activity>
-
         <activity android:name=".ladderActivity"></activity>
-        <activity android:name=".drawinglotsActivity"></activity>
         <activity android:name=".MapActivity"></activity>
+        <activity android:name=".drawinglotsActivity"></activity>
+
         <activity android:name=".RandomActivity" />
         <activity android:name=".ShowReviewActivity"></activity>
+
+
 
         <!-- http 라이브러리 사용 -->
         <uses-library
@@ -74,7 +76,5 @@
             </intent-filter>
         </activity>
     </application>
-
-
 
 </manifest>
