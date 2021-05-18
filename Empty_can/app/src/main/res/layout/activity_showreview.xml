@@ -1,47 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@android:color/holo_orange_dark"
-            android:onClick="btn1Clicked"
-            android:text="추가"
-            android:textSize="14sp" />
-
-
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@android:color/holo_orange_dark"
-            android:onClick="btn4Clicked"
-            android:text="메인으로" />
-
-    </LinearLayout>
+    android:layout_height="match_parent"
+    android:weightSum="5">
 
     <ScrollView
         android:fillViewport="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="3">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/showreview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </ScrollView>
+
+
+
+        <Button
+            android:id="@+id/btnadd"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="1dp"
+            android:layout_weight="0.5"
+            android:background="@android:color/holo_orange_dark"
+            android:onClick="btn1Clicked"
+            android:text="추가"
+            android:textSize="14sp" />
+
+
 
 
 </LinearLayout>

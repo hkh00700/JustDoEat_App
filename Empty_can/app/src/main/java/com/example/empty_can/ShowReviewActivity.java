@@ -1,28 +1,9 @@
 package com.example.empty_can;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.empty_can.ATask.ReviewUpdate;
-import com.example.empty_can.ATask.UserReviewSelect;
-import com.example.empty_can.Adapter.ReviewAdapter;
-import com.example.empty_can.DTO.MemberReviewDTO;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-
-import static com.example.empty_can.Common.CommonMethod.isNetworkConnected;
 
 public class ShowReviewActivity extends AppCompatActivity {
+/*
     public static MemberReviewDTO selItem = null;
 
     UserReviewSelect userReviewSelect;
@@ -158,6 +139,7 @@ public class ShowReviewActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
     }
+*/
 
 
 }

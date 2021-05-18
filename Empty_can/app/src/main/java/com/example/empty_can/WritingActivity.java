@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
 
 import static com.example.empty_can.Common.CommonMethod.ipConfig;
 import static com.example.empty_can.Common.CommonMethod.isNetworkConnected;
@@ -65,6 +66,7 @@ public class WritingActivity extends AppCompatActivity {
         content = (EditText)findViewById(R.id.content);
         title = (EditText)findViewById(R.id.title);
         btnLoad = (Button) findViewById(R.id.btnLoad);
+
 
 
 
@@ -190,23 +192,39 @@ public class WritingActivity extends AppCompatActivity {
         if(isNetworkConnected(this) == true){
             Log.d(TAG, "btnAddClicked: fileSize : " + fileSize);
             if(fileSize <= 30000000){  // 파일크기가 30메가 보다 작아야 업로드 할수 있음
-                s_content = content.getText().toString();
-                s_title = title.getText().toString();
-                Log.d(TAG, "btnAddClicked: s_phto_path" + s_phto_path);
-                Writing userReviewInsert = new Writing(s_title, s_content, s_id, s_phto_path, imageRealPath);
-                userReviewInsert.execute();
+                    s_content = content.getText().toString();
+                    s_title = title.getText().toString();
+                    Log.d(TAG, "btnAddClicked: s_phto_path" + s_phto_path);
+                    Writing userReviewInsert = new Writing(s_title, s_content, s_id, s_phto_path, imageRealPath);
+                try {
+                    userReviewInsert.execute().get();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-               // activity.finish();
-                Intent showIntent = new Intent(getApplicationContext(), ShowReviewActivity.class);
-                //showIntent.putExtra("selItem", String.valueOf(selItem));
-                showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |   // 이 엑티비티 플래그를 사용하여 엑티비티를 호출하게 되면 새로운 태스크를 생성하여 그 태스크안에 엑티비티를 추가하게 됩니다. 단, 기존에 존재하는 태스크들중에 생성하려는 엑티비티와 동일한 affinity(관계, 유사)를 가지고 있는 태스크가 있다면 그곳으로 새 엑티비티가 들어가게됩니다.
-                        Intent.FLAG_ACTIVITY_SINGLE_TOP | // 엑티비티를 호출할 경우 호출된 엑티비티가 현재 태스크의 최상단에 존재하고 있었다면 새로운 인스턴스를 생성하지 않습니다. 예를 들어 ABC가 엑티비티 스택에 존재하는 상태에서 C를 호출하였다면 여전히 ABC가 존재하게 됩니다.
-                        Intent.FLAG_ACTIVITY_CLEAR_TOP); // 만약에 엑티비티스택에 호출하려는 엑티비티의 인스턴스가 이미 존재하고 있을 경우에 새로운 인스턴스를 생성하는 것 대신에 존재하고 있는 엑티비티를 포그라운드로 가져옵니다. 그리고 엑티비티스택의 최상단 엑티비티부터 포그라운드로 가져올 엑티비티까지의 모든 엑티비티를 삭제합니다.*/
+                //activity.finish();
+
+                Intent showIntent = new Intent(getApplicationContext(), MainActivity.class);
+                showIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                showIntent.putExtra("num", 5);
                 startActivity(showIntent);
+
+            // showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |   // 이 엑티비티 플래그를 사용하여 엑티비티를 호출하게 되면 새로운 태스크를 생성하여 그 태스크안에 엑티비티를 추가하게 됩니다. 단, 기존에 존재하는 태스크들중에 생성하려는 엑티비티와 동일한 affinity(관계, 유사)를 가지고 있는 태스크가 있다면 그곳으로 새 엑티비티가 들어가게됩니다.
+            //           Intent.FLAG_ACTIVITY_SINGLE_TOP | // 엑티비티를 호출할 경우 호출된 엑티비티가 현재 태스크의 최상단에 존재하고 있었다면 새로운 인스턴스를 생성하지 않습니다. 예를 들어 ABC가 엑티비티 스택에 존재하는 상태에서 C를 호출하였다면 여전히 ABC가 존재하게 됩니다.
+            //           Intent.FLAG_ACTIVITY_CLEAR_TOP); // 만약에 엑티비티스택에 호출하려는 엑티비티의 인스턴스가 이미 존재하고 있을 경우에 새로운 인스턴스를 생성하는 것 대신에 존재하고 있는 엑티비티를 포그라운드로 가져옵니다. 그리고 엑티비티스택의 최상단 엑티비티부터 포그라운드로 가져올 엑티비티까지의 모든 엑티비티를 삭제합니다.*/
+            //MainActivity activity = new MainActivity();
+            //activity.MainActivity(2);
+               //showIntent.putExtra("num", 2);
+                //startActivity(showIntent);
 
                 finish();
 
                 Toast.makeText(this, "리뷰가 등록되었습니다.", Toast.LENGTH_SHORT).show();
+
+
             }else{
                 // 알림창 띄움
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);

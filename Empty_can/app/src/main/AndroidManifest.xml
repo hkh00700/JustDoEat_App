@@ -8,11 +8,48 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera2"
+        android:required="true"/>
+
+
 
 
     <!-- android test 돌릴 때 화면 lock 풀어야 로그인 touch 가능 -->
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <queries>
+        <!-- WebView -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="http" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" />
+        </intent>
+        ​
+        <!-- Camera -->
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        ​
+        <!-- Gallery -->
+        <intent>
+            <action android:name="android.intent.action.GET_CONTENT" />
+        </intent>
+        ​
+        <intent>
+            <action android:name="android.media.browse.MediaBrowserService" />
+        </intent>
+    </queries>
+
+
 
 
     <application
@@ -43,6 +80,7 @@
         <activity android:name=".ladderActivity"></activity>
         <activity android:name=".MapActivity"></activity>
         <activity android:name=".drawinglotsActivity"></activity>
+        <activity android:name=".ReviewUpdateActivity"></activity>
 
         <activity android:name=".RandomActivity" />
         <activity android:name=".ShowReviewActivity"></activity>
@@ -75,6 +113,20 @@
                     android:scheme="kakao4007c2646272cd2d41f9fb1099abeda5" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:authorities="${applicationId}.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths"/>
+        </provider>
+
+
     </application>
+
+
 
 </manifest>
