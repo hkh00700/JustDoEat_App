@@ -3,9 +3,6 @@ package com.example.empty_can;
 public class ListViewItem {
     String name;
     boolean isCheckable;
-    private String text;
-    boolean check;
-
 
     public ListViewItem(String name) {
         this.name = name;

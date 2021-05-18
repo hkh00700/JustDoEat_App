@@ -1,11 +1,13 @@
 package com.example.empty_can;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,6 +64,7 @@ public class WorldcupActivity extends AppCompatActivity {
 
 
 
+
         Spinner worldSpinner = (Spinner)findViewById(R.id.spinner);
 
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
@@ -99,6 +102,9 @@ public class WorldcupActivity extends AppCompatActivity {
         TextView vs =  (TextView) findViewById(R.id.vs);
         TextView result = (TextView) findViewById(R.id.result);
         result.setVisibility(View.GONE);
+        Button btnSwitch2 = findViewById(R.id.btnSwitch2);
+        btnSwitch2.setVisibility(View.GONE);
+
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,6 +136,16 @@ public class WorldcupActivity extends AppCompatActivity {
                         TextView2.setVisibility(View.GONE);
                         vs.setVisibility(View.GONE);
                         result.setVisibility(View.VISIBLE);
+                        btnSwitch2.setVisibility(View.VISIBLE);
+                        btnSwitch2.setText("내주변 " + list.get(0)+" 잘하는 집 검색하기");
+                        btnSwitch2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/"+list.get(0)));
+                                startActivity(intent);
+                            }
+                        });
+
                     }
                 //8강
                 }else if(num == 8){
@@ -162,6 +178,15 @@ public class WorldcupActivity extends AppCompatActivity {
                         TextView2.setVisibility(View.GONE);
                         vs.setVisibility(View.GONE);
                         result.setVisibility(View.VISIBLE);
+                        btnSwitch2.setVisibility(View.VISIBLE);
+                        btnSwitch2.setText("내주변 " + result.getText() +" 잘하는 집 검색하기");
+                        btnSwitch2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/"+result.getText()));
+                                startActivity(intent);
+                            }
+                        });
                     }
                 }else if (num == 16) {//16강
                     if(j<=7){
@@ -203,6 +228,15 @@ public class WorldcupActivity extends AppCompatActivity {
                         TextView2.setVisibility(View.GONE);
                         vs.setVisibility(View.GONE);
                         result.setVisibility(View.VISIBLE);
+                        btnSwitch2.setVisibility(View.VISIBLE);
+                        btnSwitch2.setText("내주변 " + result.getText() +" 잘하는 집 검색하기");
+                        btnSwitch2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/"+result.getText()));
+                                startActivity(intent);
+                            }
+                        });
 
                     }
 
@@ -255,6 +289,15 @@ public class WorldcupActivity extends AppCompatActivity {
                         TextView2.setVisibility(View.GONE);
                         vs.setVisibility(View.GONE);
                         result.setVisibility(View.VISIBLE);
+                        btnSwitch2.setVisibility(View.VISIBLE);
+                        btnSwitch2.setText("내주변 " + result.getText()+" 잘하는 집 검색하기");
+                        btnSwitch2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/"+result.getText()));
+                                startActivity(intent);
+                            }
+                        });
 
 
                     }
@@ -282,6 +325,15 @@ public class WorldcupActivity extends AppCompatActivity {
                             TextView2.setVisibility(View.GONE);
                             vs.setVisibility(View.GONE);
                             result.setVisibility(View.VISIBLE);
+                            btnSwitch2.setVisibility(View.VISIBLE);
+                            btnSwitch2.setText("내주변 " + list.get(1)+" 잘하는 집 검색하기");
+                            btnSwitch2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/"+list.get(1)));
+                                    startActivity(intent);
+                                }
+                            });
                         }
                     //8강
                     }else if (num == 8) {
@@ -309,12 +361,20 @@ public class WorldcupActivity extends AppCompatActivity {
                         vs.setVisibility(View.GONE);
                         result.setVisibility(View.VISIBLE);*/
                         }else {
-
                             result.setText(TextView2.getText());
                             TextView1.setVisibility(View.GONE);
                             TextView2.setVisibility(View.GONE);
                             vs.setVisibility(View.GONE);
                             result.setVisibility(View.VISIBLE);
+                            btnSwitch2.setVisibility(View.VISIBLE);
+                            btnSwitch2.setText("내주변 " + result.getText() +" 잘하는 집 검색하기");
+                            btnSwitch2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/"+result.getText()));
+                                    startActivity(intent);
+                                }
+                            });
                         }
                     }else if (num == 16) {//16강
                         if (j <= 7) {
@@ -356,6 +416,15 @@ public class WorldcupActivity extends AppCompatActivity {
                             TextView2.setVisibility(View.GONE);
                             vs.setVisibility(View.GONE);
                             result.setVisibility(View.VISIBLE);
+                            btnSwitch2.setVisibility(View.VISIBLE);
+                            btnSwitch2.setText("내주변 " + result.getText()+" 잘하는 집 검색하기");
+                            btnSwitch2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/"+result.getText()));
+                                    startActivity(intent);
+                                }
+                            });
 
                         }
 
@@ -409,6 +478,15 @@ public class WorldcupActivity extends AppCompatActivity {
                             TextView2.setVisibility(View.GONE);
                             vs.setVisibility(View.GONE);
                             result.setVisibility(View.VISIBLE);
+                            btnSwitch2.setVisibility(View.VISIBLE);
+                            btnSwitch2.setText("내주변 " + result.getText()+" 잘하는 집 검색하기");
+                            btnSwitch2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/"+result.getText()));
+                                    startActivity(intent);
+                                }
+                            });
 
                         }
                     }

@@ -5,13 +5,16 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -22,19 +25,24 @@ import com.example.empty_can.DTO.tDTO;
 public class RouletteActivity extends AppCompatActivity {
 
         private ImageView mImageView;
-        private ImageButton rotate;
-
+        private Button rotate;
         private Bitmap mBitmap;
         private float angle = 0.0f; // 초기 각도
-        private final int IMG_DP = 300; // 이미지 DP
+        private final int IMG_DP = 380; // 이미지 DP
 
         tDTO dto;
-
+        TextView result;
+        Button btnSwitch4;
 
         @Override
         protected void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_roulette);
+            result=findViewById(R.id.result);
+            result.setVisibility(View.GONE);
+            btnSwitch4 = findViewById(R.id.btnSwitch4);
+            btnSwitch4.setVisibility(View.GONE);
+
 
             // 받기
             Intent intent = getIntent();
@@ -47,16 +55,9 @@ public class RouletteActivity extends AppCompatActivity {
 
             dto = new tDTO(t1, t2, t3, t4, t5);
             this.dto = dto;
-
-
-
-
             mImageView = findViewById(R.id.wheel);
-
             mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.roulette);
-            mImageView.setImageBitmap(onResizeImage(mBitmap));
-
-            rotate = findViewById(R.id.rotate);
+            rotate=findViewById(R.id.rotate);
             rotate.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -70,73 +71,86 @@ public class RouletteActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         // TODO: handle exception
                     }
-
                 }
             });
-
-
         }
-
-
-        /**
-         * from DP to Pixel
-         * @param dp
-         * @param context
-         * @return
-         */
-        private static float convertDpToPixel(float dp, Context context){
-            Resources resources = context.getResources();
-            DisplayMetrics metrics = resources.getDisplayMetrics();
-            float px = dp * (metrics.densityDpi/160f);
-            return px;
-        }
-
-
-        /**
-         * image resizing
-         * @param bitmap
-         * @return
-         */
-        private Bitmap onResizeImage(Bitmap bitmap){
-            int height = bitmap.getHeight();
-            int width  = bitmap.getWidth();
-
-            Float size = convertDpToPixel(IMG_DP, this);
-
-            Bitmap resized = null;
-            while(height > size.intValue()){
-                resized = Bitmap.createScaledBitmap(bitmap, (width*size.intValue())/height, size.intValue(), true);
-                height  = resized.getHeight();
-                width   = resized.getWidth();
-            }
-            return resized;
-        }
-
         private int getRandom(int max){
             return (int) (Math.random()*max);
         }
-
-
-
-
-
         private void getTargetEvent(float value){
 
             if((value>=1046 && value<=1080) || (value>=720 && value<=756)){
                 Toast.makeText(getApplicationContext(), dto.getT1()+" 당첨~!!*^^*", Toast.LENGTH_LONG).show();
+                result.setText(dto.getT1());
+                result.setVisibility(View.VISIBLE);
+                rotate.setVisibility(View.GONE);
+                btnSwitch4.setText("내주변 " + result.getText() +" 잘하는 집 검색하기");
+                btnSwitch4.setVisibility(View.VISIBLE);
+                btnSwitch4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/"+ result.getText()));
+                        startActivity(intent);
+                    }
+                });
             }else if(value>=974 && value<=1045){
                 Toast.makeText(getApplicationContext(), dto.getT2()+" 당첨~!!*^^*", Toast.LENGTH_LONG).show();
+                result.setText(dto.getT2());
+                result.setVisibility(View.VISIBLE);
+                rotate.setVisibility(View.GONE);
+                btnSwitch4.setVisibility(View.VISIBLE);
+                btnSwitch4.setText("내주변 " + result.getText() +" 잘하는 집 검색하기");
+                btnSwitch4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/"+ result.getText()));
+                        startActivity(intent);
+                    }
+                });
             }else if(value>=902 && value<=973){
                 Toast.makeText(getApplicationContext(), dto.getT3()+" 당첨~!!*^^*", Toast.LENGTH_LONG).show();
+                result.setText(dto.getT3());
+                result.setVisibility(View.VISIBLE);
+                rotate.setVisibility(View.GONE);
+                btnSwitch4.setVisibility(View.VISIBLE);
+                btnSwitch4.setText("내주변 " +  result.getText() +" 잘하는 집 검색하기");
+                btnSwitch4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/"+result.getText()));
+                        startActivity(intent);
+                    }
+                });
             }else if(value>=830 && value<=901){
                 Toast.makeText(getApplicationContext(), dto.getT4()+" 당첨~!!*^^*", Toast.LENGTH_LONG).show();
+                result.setText(dto.getT4());
+                result.setVisibility(View.VISIBLE);
+                rotate.setVisibility(View.GONE);
+                btnSwitch4.setVisibility(View.VISIBLE);
+                btnSwitch4.setText("내주변 " + result.getText() +" 잘하는 집 검색하기");
+                btnSwitch4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/"+ result.getText()));
+                        startActivity(intent);
+                    }
+                });
             }else if(value>=757 && value<=829){
                 Toast.makeText(getApplicationContext(), dto.getT5()+" 당첨~!!*^^*", Toast.LENGTH_LONG).show();
+                result.setText(dto.getT5());
+                result.setVisibility(View.VISIBLE);
+                rotate.setVisibility(View.GONE);
+                btnSwitch4.setVisibility(View.VISIBLE);
+                btnSwitch4.setText("내주변 " + result.getText() +" 잘하는 집 검색하기");
+                btnSwitch4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/"+ result.getText()));
+                        startActivity(intent);
+                    }
+                });
             }
-
         }
-
-
 
     class onWheelImage implements Runnable{
 
@@ -149,7 +163,6 @@ public class RouletteActivity extends AppCompatActivity {
                 RotateAnimation animation = new RotateAnimation(angle, fromAngle
                         , Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
 
-
                 // 초기 시작각도 업데이트
                 angle = fromAngle;
                 animation.setDuration(2000); // 지속시간이 길수록 느려짐
@@ -159,23 +172,14 @@ public class RouletteActivity extends AppCompatActivity {
 
                 animation.setAnimationListener(new Animation.AnimationListener() {
                     @Override
-                    public void onAnimationStart(Animation animation) {
-
-                    }
-
+                    public void onAnimationStart(Animation animation) { }
                     @Override
                     public void onAnimationEnd(Animation animation) {
                         getTargetEvent(angle);
                     }
-
                     @Override
-                    public void onAnimationRepeat(Animation animation) {
-
-                    }
+                    public void onAnimationRepeat(Animation animation) { }
                 });
-
             }
-
-    }
-
+        }
 }

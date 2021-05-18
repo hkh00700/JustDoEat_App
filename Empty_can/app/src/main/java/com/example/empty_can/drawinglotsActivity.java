@@ -1,6 +1,7 @@
 package com.example.empty_can;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +19,7 @@ import java.util.Random;
 public class drawinglotsActivity extends AppCompatActivity {
 
     tDTO dto;
-    Button btnAll,btnOpen;
+    Button btnAll,btnOpen,btnSwitch;
     ImageButton imageButton1,imageButton2,imageButton3,imageButton4,imageButton5;
     ImageView openlot,closelot;
     TextView lotResult;
@@ -48,13 +49,16 @@ public class drawinglotsActivity extends AppCompatActivity {
         imageButton3=findViewById(R.id.imageButton3);
         imageButton4=findViewById(R.id.imageButton4);
         imageButton5=findViewById(R.id.imageButton5);
+        btnSwitch = findViewById(R.id.btnSwitch);
         openlot= findViewById(R.id.openlot);
         closelot= findViewById(R.id.closelot);
         btnOpen= findViewById(R.id.btnOpen);
         lotResult = findViewById(R.id.lotResult);
+        btnSwitch.setVisibility(View.GONE);
         closelot.setVisibility(View.GONE);
         openlot.setVisibility(View.GONE);
         lotResult.setVisibility(View.GONE);
+        btnSwitch.setText("");
 
 
         imageButton1.setOnClickListener(new View.OnClickListener() {
@@ -112,27 +116,87 @@ public class drawinglotsActivity extends AppCompatActivity {
                     //Toast.makeText(getApplicationContext(), dto.getT1(), Toast.LENGTH_LONG).show();
                     lotResult.setText(t1);
                     lotResult.setVisibility(View.VISIBLE);
+                    btnOpen.setVisibility(View.GONE);
+                    btnSwitch.setText("내주변 "+t1+" 잘하는 집 검색하기");
+                    btnSwitch.setVisibility(View.VISIBLE);
+                    btnSwitch.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/"+t1));
+                            startActivity(intent);
+                        }
+                    });
 
                 }else if(value == 1){
                    // Toast.makeText(getApplicationContext(), dto.getT2()+" 당첨~!!*^^*", Toast.LENGTH_LONG).show();
                     lotResult.setText(t2);
                     lotResult.setVisibility(View.VISIBLE);
+                    btnOpen.setVisibility(View.GONE);
+                    btnSwitch.setVisibility(View.VISIBLE);
+                    btnSwitch.setText("내주변 "+t2+" 잘하는 집 검색하기");
+                    btnSwitch.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/"+t2));
+                            startActivity(intent);
+                        }
+                    });
+
                 }else if(value == 2){
                     //Toast.makeText(getApplicationContext(), dto.getT3()+" 당첨~!!*^^*", Toast.LENGTH_LONG).show();
                     lotResult.setText(t3);
                     lotResult.setVisibility(View.VISIBLE);
+                    btnOpen.setVisibility(View.GONE);
+                    btnSwitch.setVisibility(View.VISIBLE);
+                    btnSwitch.setText("내주변 "+t3+" 잘하는 집 검색하기");
+                    btnSwitch.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/"+t3));
+                            startActivity(intent);
+                        }
+                    });
+
                 }else if(value== 3){
                     //Toast.makeText(getApplicationContext(), dto.getT4()+" 당첨~!!*^^*", Toast.LENGTH_LONG).show();
                     lotResult.setText(t4);
                     lotResult.setVisibility(View.VISIBLE);
+                    btnOpen.setVisibility(View.GONE);
+                    btnSwitch.setVisibility(View.VISIBLE);
+                    btnSwitch.setText("내주변 "+t4+" 잘하는 집 검색하기");
+                    btnSwitch.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/"+t4));
+                            startActivity(intent);
+                        }
+                    });
                 }else if( value == 4){
                     //Toast.makeText(getApplicationContext(), dto.getT5()+" 당첨~!!*^^*", Toast.LENGTH_LONG).show();
                     lotResult.setText(t5);
                     lotResult.setVisibility(View.VISIBLE);
+                    btnOpen.setVisibility(View.GONE);
+                    btnSwitch.setVisibility(View.VISIBLE);
+                    btnSwitch.setText("내주변 "+t5+" 잘하는 집 검색하기");
+                    btnSwitch.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/"+t5));
+                            startActivity(intent);
+                        }
+                    });
+
                 }
 
             }
         });
+       /* btnSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/"));
+                startActivity(intent);
+            }
+        });*/
 
 
 

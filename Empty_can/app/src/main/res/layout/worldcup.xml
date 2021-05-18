@@ -2,52 +2,103 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#EFF2F3">
+
+    <ImageView
+        android:id="@+id/worldcup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="30dp"
+        android:scaleType="matrix"
+        android:src="@drawable/worldcup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="200dp"
+        android:layout_height="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:gravity="left"
+        android:text="음식 이상형 월드컵"
+        android:textColor="#00458A"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView17"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="200dp"
+        android:layout_height="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="100dp"
+
+        android:gravity="left"
         android:text="총 라운드를 선택하세요."
-        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent" />
 
 
 
     <Button
         android:id="@+id/button"
-        android:layout_width="0dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/btn_colol_half_round"
+        android:radius="50dp"
         android:text="으로 선택"
-        android:textSize="24sp"
+
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        android:gravity="left"
+        app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/spinner"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="202dp"
+        android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
+        android:background="@drawable/spinner_colol_half_round"
         android:gravity="center"
         android:textAlignment="center"
         app:layout_constraintEnd_toStartOf="@+id/button"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17"
-        android:background="@drawable/border"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
     <TextView
         android:id="@+id/textView19"
         android:layout_width="10dp"
@@ -59,66 +110,83 @@
         app:layout_constraintEnd_toStartOf="@+id/button"
         app:layout_constraintTop_toTopOf="@+id/spinner" />
 
+
     <TextView
         android:id="@+id/TextView1"
-        android:layout_width="148dp"
-        android:layout_height="146dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="#000000"
+        android:layout_width="180dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="5dp"
+
         android:gravity="center"
-        android:text="강 선택부터"
+        android:text="선택"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/Orange"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.471" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner"
+        app:layout_constraintVertical_bias="0.574" />
 
     <TextView
         android:id="@+id/TextView2"
-        android:layout_width="145dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/border"
+        android:layout_width="177dp"
+        android:layout_height="114dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
         android:clickable="true"
+
         android:gravity="center"
-        android:text="하세요!!!"
+        android:text="하세요!"
         android:textAlignment="center"
+        android:textColor="@color/blue"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.474" />
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintVertical_bias="0.578" />
 
     <TextView
         android:id="@+id/vs"
-        android:layout_width="47dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="24dp"
+        android:layout_width="74dp"
+        android:layout_height="58dp"
         android:layout_marginEnd="24dp"
+
         android:gravity="center"
         android:text="VS"
-        android:textSize="24sp"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/TextView2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/TextView1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.486" />
+        app:layout_constraintEnd_toEndOf="@+id/worldcup"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="@+id/worldcup"
+        app:layout_constraintTop_toTopOf="@+id/worldcup"
+        app:layout_constraintVertical_bias="0.248" />
 
     <TextView
         android:id="@+id/result"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="136dp"
+        android:layout_width="293dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="60dp"
         android:gravity="center"
         android:text="result"
-        android:textSize="30sp"
+
+        android:textSize="36sp"
+        android:textColor="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    <Button
+        android:id="@+id/btnSwitch2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="472dp"
+        android:text="맛집이동"
+        android:textSize="24sp"
+        app:backgroundTint="#B9BB86FC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

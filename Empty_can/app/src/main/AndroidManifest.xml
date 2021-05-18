@@ -71,7 +71,6 @@
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".JoinActivity"></activity>
         <activity android:name=".WritingActivity"></activity>
-        <activity android:name=".GameSetActivity"></activity>
         <activity android:name=".MymodifyActivity"></activity>
         <activity android:name=".EatenweekActivity"></activity>
         <activity android:name=".FoodmodifyActivity"></activity>

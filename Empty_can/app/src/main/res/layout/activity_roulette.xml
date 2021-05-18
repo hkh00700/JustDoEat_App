@@ -1,13 +1,64 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#EFF2F3">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="200dp"
+        android:layout_height="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+
+        android:gravity="left"
+        android:text="원판돌리기"
+        android:textColor="#00458A"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnSwitch4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="336dp"
+        android:text="맛집이동"
+        android:textSize="24sp"
+        app:backgroundTint="#B9BB86FC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/point1"
-        android:layout_width="match_parent"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
-        android:text="오늘머먹지?"
-        android:gravity="center"/>
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginRight="51dp"
+        android:fontFamily="@font/"
+        android:gravity="center"
+        android:text="메뉴가 선택되었습니다\n시작버튼을 누르면 게임이 시작됩니다."
+        android:textColor="#1B1C20" />
+
     <TextView
         android:id="@+id/point2"
         android:layout_width="match_parent"
@@ -17,48 +68,108 @@
         android:gravity="center"/>
 
 
-
-
-        <ImageView
-            android:id="@+id/wheel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="100dp"
-            android:scaleType="matrix"
-            android:src="@drawable/roulette" />
+    <!-- <ImageButton
+         android:id="@+id/rotate"
+         android:layout_width="314dp"
+         android:layout_height="60dp"
+         android:layout_below="@+id/wheel"
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="100dp"
+         android:background="@drawable/rotate"
+         android:text="start" />-->
 
 
     <ImageView
-        android:id="@+id/te"
-        android:layout_width="match_parent"
+        android:id="@+id/wheel"
+        android:layout_width="314dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
 
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="97dp"
-        android:layout_marginLeft="105dp"
-        android:scaleType="matrix"
-        android:src="@drawable/te" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
 
-    <ImageButton
-        android:background="@drawable/apple1"
-        android:id="@+id/rotate"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:scaleType="matrix"
+        android:src="@drawable/roulette" />
+
+    <ImageView
+        android:id="@+id/wheel3"
+        android:layout_width="342dp"
+        android:layout_height="348dp"
+        android:layout_alignParentStart="true"
+
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+
+        android:layout_centerInParent="true"
+        android:layout_marginStart="53dp"
+        android:layout_marginLeft="53dp"
+        android:layout_marginTop="157dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:scaleType="matrix"
+        android:src="@drawable/shadow" />
+
+    <ImageView
+        android:id="@+id/te"
+        android:layout_width="42dp"
+        android:layout_height="38dp"
+        android:layout_alignBottom="@+id/wheel"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="205dp"
+        android:layout_marginLeft="205dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginRight="164dp"
+        android:layout_marginBottom="287dp"
+        android:scaleType="matrix"
+        android:src="@drawable/te3" />
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="288dp"
+        android:layout_height="63dp"
         android:layout_below="@+id/wheel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+
+        android:gravity="center"
+        android:text="result"
+        android:textColor="@color/blue"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    <Button
+        android:id="@+id/rotate"
+        android:layout_width="314dp"
+        android:layout_height="50dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="165dp"
-        android:layout_marginLeft="165dp"
-        android:layout_marginTop="180dp"
-        android:layout_marginEnd="159dp"
-        android:layout_marginRight="159dp"
-        android:layout_marginBottom="150dp"
-        android:text="start" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="42dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginBottom="136dp"
+        android:background="@drawable/btn_colol"
+        android:text="START"
+        android:textColor="#00458A"
+        android:textSize="20dp"
+        app:backgroundTint="@null" />
 
 </RelativeLayout>

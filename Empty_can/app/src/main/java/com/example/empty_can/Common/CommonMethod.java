@@ -18,9 +18,11 @@ import java.io.IOException;
 public class CommonMethod {
 
 
-    //public static String ipConfig = "http://192.168.0.33:8080";
-    //public static String  ipConfig = "http://192.168.0.45:8989";
-    public static String  ipConfig = "http://192.168.0.67:8989";
+
+   // public static String ipConfig = "http://192.168.0.33:8080";
+    public static String  ipConfig = "http://192.168.0.45:8989";
+    //public static String  ipConfig = "http://192.168.0.67:8989";
+
 
     public static MemberDTO loginDTO = null;
 
