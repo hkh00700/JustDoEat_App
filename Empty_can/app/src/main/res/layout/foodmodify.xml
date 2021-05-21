@@ -5,15 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#FAF1F1"
     android:weightSum="2">
 
     <TextView
         android:layout_height="40dp"
         android:layout_width="match_parent"
         android:gravity="center_horizontal"
-        android:textSize="25sp"
+        android:textSize="30sp"
         android:text="음식취향 수정"
-        android:layout_marginTop="5dp"/>
+        android:textColor="#ec5c53"
+        android:textStyle="bold"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="15dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,37 +26,32 @@
         android:orientation="vertical"
         android:weightSum="5">
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="0dp"
-       android:layout_weight="0.5"
-       android:weightSum="3"
-       android:orientation="horizontal">
-       <ImageView
-           android:layout_width="0dp"
-           android:layout_height="match_parent"
-           android:layout_weight="0.5"
-           android:src="@drawable/mag"/>
-       <EditText
-           android:id="@+id/editSearch"
-           android:layout_width="0dp"
-           android:layout_height="match_parent"
-           android:layout_weight="2.5"
-           android:textSize="14sp"
-           android:hint="검색하세요" />
+        <!--
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="0dp"
+               android:layout_weight="0.5"
+               android:weightSum="3"
+               android:orientation="horizontal">
+               <ImageView
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="0.5"
+                   android:src="@drawable/mag"/>
+               <EditText
+                   android:id="@+id/meditSearch"
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="2.5"
+                   android:textSize="14sp"
+                   android:hint="검색하세요" />
 
-   </LinearLayout>
-
-        <Button
-            android:id="@+id/button_main"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/white"
-            android:textColor="@color/black"
-            android:layout_weight="0.2"/>
+           </LinearLayout>
+        -->
 
 
         <CheckBox
+            android:layout_marginLeft="10dp"
             android:id="@+id/checkBox_main"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
@@ -64,20 +63,25 @@
 
         <ListView
             android:layout_weight="4"
+            android:paddingTop="5dp"
+            android:paddingLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:id="@+id/listView_main"
-            android:textFilterEnabled="true"/>
+
+            android:choiceMode="none"/>
     </LinearLayout>
 
-
+    <!--
+        android:textFilterEnabled="true"
+    -->
 
 
     <LinearLayout android:orientation="horizontal"
-    android:layout_height="0dp"
-    android:layout_width="match_parent"
-    android:weightSum="2"
-    android:layout_weight="0.2">
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:weightSum="2"
+        android:layout_weight="0.2">
 
 
 

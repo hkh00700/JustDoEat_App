@@ -7,109 +7,139 @@
     android:layout_height="match_parent"
     tools:context=".WritingActivity"
     android:orientation="vertical"
-    android:weightSum="4.5"
+    android:weightSum="5"
     android:focusable="true"
     android:focusableInTouchMode="true">
 
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-        <EditText
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint="제목" />
-
-    </LinearLayout>
-    <EditText
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:inputType="textMultiLine"
-        android:hint="리뷰내용"/>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="4">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_weight="2"
-                android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/btnLoad"
-                    android:layout_width="match_parent"
-                    android:layout_height="75dp"
-                    android:text="사진로드" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_weight="2"
-                android:orientation="vertical">
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp">
-
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="200dp"
-                        android:layout_height="match_parent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/blank" />
-
-                </FrameLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:orientation="horizontal"
-
-        android:weightSum="2">
-
-        <Button
-            android:id="@+id/reviewSubmit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="btnAddClicked"
-            android:text="등록"/>
+        android:layout_weight="0.5">
 
         <Button
             android:id="@+id/reviewReset"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="btnCancelClicked"
-            android:text="취소"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ec5c53"
+            android:backgroundTint="@color/white"
+            android:text="취소"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            style="?android:attr/borderlessButtonStyle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="50dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:text="글쓰기"
+            android:textColor="#ec5c53"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
     </LinearLayout>
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:paddingTop="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="20dp">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/imgxbox" />
+
+
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/btnLoad"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:backgroundTint="#74C6C6C6"
+            android:text="사진로드"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
+            tools:layout_editor_absoluteX="20dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <EditText
+        android:id="@+id/utitle"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:hint="제목" />
+
+
+
+    <EditText
+        android:id="@+id/ucontent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:textSize="16sp"
+        android:inputType="textMultiLine"
+        android:paddingLeft="10dp"
+        android:gravity="top"
+
+        android:hint="내용"/>
+
+    <Button
+        android:onClick="btnAddClicked"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/reviewSubmit"
+        android:background="@drawable/btn_colol"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="등 록"/>
+
 
 
 
 </LinearLayout>
+
+
 
 
 

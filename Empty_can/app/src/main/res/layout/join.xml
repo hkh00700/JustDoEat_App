@@ -1,213 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FAF1F1">
 
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="회원가입"
+        android:gravity="center_horizontal"
+        android:textColor="#ec5c53"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
-        android:layout_height="34dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="42dp"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="78dp"
-        android:text="ID : "
-        android:textSize="18sp" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="20dp"
+        android:text="아이디"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTitle" />
 
     <EditText
         android:id="@+id/m_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="73dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginRight="38dp"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+
+        android:hint="아이디 "
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="148dp"
-        android:text="PASSWORD : " />
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="15dp"
+        android:text="비밀번호 "
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/m_id" />
 
     <EditText
         android:id="@+id/m_pw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="137dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginRight="38dp"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+
+        android:hint="비밀번호 "
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="213dp"
-        android:text="NAME : " />
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="15dp"
+        android:text="이름"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/m_pw"/>
 
     <EditText
         android:id="@+id/m_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="202dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginRight="38dp"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+
+        android:hint="이름 "
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="17dp"
-        android:layout_marginLeft="17dp"
-        android:layout_marginTop="283dp"
-        android:text="PhoneNumber : " />
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="15dp"
+        android:text="휴대전화"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/m_name" />
 
     <EditText
         android:id="@+id/m_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="271dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginRight="38dp"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+
+        android:hint="휴대전화 "
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="19dp"
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="353dp"
-        android:text="gender : " />
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="15dp"
+        android:text="성별"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/m_phone" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="416dp"
-        android:text="email : " />
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="15dp"
+        android:text="이메일 "
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/m_gender" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="26dp"
-        android:layout_marginLeft="26dp"
-        android:layout_marginTop="485dp"
-        android:text="nikname : " />
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="15dp"
+        android:text="닉네임"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/m_email" />
 
     <EditText
         android:id="@+id/m_gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="333dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginRight="38dp"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+
+        android:hint="성별 "
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <EditText
         android:id="@+id/m_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="401dp"
-        android:layout_marginEnd="37dp"
-        android:layout_marginRight="37dp"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+
+        android:hint="이메일 "
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <EditText
         android:id="@+id/m_nikname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="469dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+
+        android:hint="닉네임 "
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/btnJoin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="98dp"
-        android:layout_marginLeft="98dp"
-        android:layout_marginTop="519dp"
-        android:text="가입" />
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/btnchk"
+        android:text="가입"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/m_nikname" />
 
     <Button
         android:id="@+id/btnCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="520dp"
-        android:layout_marginEnd="68dp"
-        android:layout_marginRight="68dp"
-        android:text="취소" />
-</RelativeLayout>
+        android:layout_width="320dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btnempty"
+        android:text="취소"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnJoin" />
+</androidx.constraintlayout.widget.ConstraintLayout>

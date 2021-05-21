@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
         btnJoin = findViewById(R.id.btnJoin);
         btnLogin = findViewById(R.id.btnLogin);
 
-        buttonOAuthLogout = findViewById(R.id.buttonOAuthLogout);
+     /*   buttonOAuthLogout = findViewById(R.id.buttonOAuthLogout);
 
         buttonOAuthLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                 new DeleteTokenTask().execute();
             }
         });
-
+*/
 
 
         Log.e("Debug", Utility.INSTANCE.getKeyHash(this));

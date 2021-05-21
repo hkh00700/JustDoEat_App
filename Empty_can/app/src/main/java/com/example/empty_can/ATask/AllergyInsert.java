@@ -20,14 +20,14 @@ import java.nio.charset.Charset;
 import static com.example.empty_can.Common.CommonMethod.ipConfig;
 
 
-public class AllergyInsert extends AsyncTask<Void, Void, String> { 
+public class AllergyInsert extends AsyncTask<Void, Void, String> {
     private static final String TAG = "main:AllergyInsert";
 
-    String m_id;
+    String m_nikname;
     String m_allergy;
 
-    public AllergyInsert(String m_id, String m_allergy) {
-        this.m_id = m_id;
+    public AllergyInsert(String m_nikname, String m_allergy) {
+        this.m_nikname = m_nikname;
         this.m_allergy = m_allergy;
     }
 
@@ -46,7 +46,7 @@ public class AllergyInsert extends AsyncTask<Void, Void, String> {
             builder.setCharset(Charset.forName("UTF-8"));
 
             // 문자열 및 데이터 추가
-            builder.addTextBody("m_id", m_id, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("m_nikname", m_nikname, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("m_allergy", m_allergy, ContentType.create("Multipart/related", "UTF-8"));
 
             String postURL = ipConfig + "/justdo_eat/allergyInsert";
@@ -67,6 +67,8 @@ public class AllergyInsert extends AsyncTask<Void, Void, String> {
             while ((line = bufferedReader.readLine()) != null){
                 stringBuilder.append(line + "\n");
             }
+
+            Log.d(TAG, "doInBackground: 응답 : " + state);
             state = stringBuilder.toString();
 
             inputStream.close();

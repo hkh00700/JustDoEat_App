@@ -20,17 +20,17 @@ public class MyPage extends Fragment {
 
         Button btnEatenWeek, btnFoodModify, btnMyModify;
 
-        btnEatenWeek = View.findViewById(R.id.btnEatenWeek);
+      //  btnEatenWeek = View.findViewById(R.id.btnEatenWeek);
         btnFoodModify = View.findViewById(R.id.btnFoodModify);
         btnMyModify = View.findViewById(R.id.btnMyModify);
 
-        btnEatenWeek.setOnClickListener(new View.OnClickListener() {
+   /*     btnEatenWeek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
                 Intent intent = new Intent(getActivity(), EatenweekActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         btnFoodModify.setOnClickListener(new View.OnClickListener() {
             @Override

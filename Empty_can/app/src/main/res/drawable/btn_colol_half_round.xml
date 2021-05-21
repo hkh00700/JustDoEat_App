@@ -6,7 +6,7 @@
     <!-- 평상시 -->
 <item android:state_focused="false" android:state_pressed="false">
 <shape>
-    <solid android:color="#FFE000" />
+    <solid android:color="#ec5c53" />
     <corners
         android:bottomLeftRadius="0dp"
         android:bottomRightRadius="50dp"
@@ -18,13 +18,13 @@
     <!-- 클릭했을 때 -->
 <item android:state_focused="false" android:state_pressed="true">
 <shape>
-    <solid android:color="#FFE000" />
+    <solid android:color="#ec5c53" />
     <corners
         android:bottomLeftRadius="0dp"
         android:bottomRightRadius="50dp"
         android:topLeftRadius="0dp"
         android:topRightRadius="50dp" />
-    <stroke android:width="1dp" android:color="#00458A" />
+    <stroke android:width="1dp" android:color="#FFFFFF" />
 </shape>
 </item>
 

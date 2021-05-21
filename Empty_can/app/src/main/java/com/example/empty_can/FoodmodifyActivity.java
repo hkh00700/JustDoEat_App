@@ -1,138 +1,72 @@
-
 package com.example.empty_can;
 
+
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentManager;
 
+import com.example.empty_can.ATask.AllergyGet;
 import com.example.empty_can.ATask.AllergyInsert;
 import com.example.empty_can.ATask.AllergySearchlist;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
-
 import static com.example.empty_can.Common.CommonMethod.loginDTO;
+
 
 public class FoodmodifyActivity extends AppCompatActivity {
     private static final String TAG = "main:FoodmodifyActivity";
-   /* ListView listView;
-    AllergyAdapter adapter;
-    ArrayList<ListViewItem> items;
-    ArrayList<String> list;*/
 
-    TextView textView;
+    ListView mlistView;
+    CheckBox mcheckBox;
+    Button mButton, btnModi;
+    ArrayList<String> resultlist = new ArrayList<String>(); //선택결과를 담을 리스트
+    String allergyStr = "";
+    String[] allergys = null;
 
-    String test;
 
-    /*SearchFragment searchFragment;
-    AllergyListFragment allergyListFragment;*/
 
-    Button btnModi,btnReset;
+
+
+    private AllergyAdapter adapter = null;
+    //    private ArrayList<String> arrayList = new ArrayList<>();
+    private ArrayList<ListViewItem> arrayList = new ArrayList<ListViewItem>();
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.foodmodify);
 
         checkDangerousPermissions();
-       /*FragmentManager manager = getSupportFragmentManager();
-       allergyListFragment = (AllergyListFragment) manager.findFragmentById(R.id.fragment);
-       searchFragment = new SearchFragment();
 
-       btnModi=findViewById(R.id.btnModi);
-       btnReset=findViewById(R.id.btnReset);
+        setLayout();
 
 
-
-
-       btnReset.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Toast.makeText(FoodmodifyActivity.this, "음식취향수정을 취소했습니다.", Toast.LENGTH_SHORT).show();
-               finish();
-           }
-       });
-
-
-       btnModi.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(android.view.View v) {
-               ArrayList<String> allergyList =  allergyListFragment.adapter.getList();
-               Log.d(TAG, "onClick: " + allergyList);
-
-               String allergyStr = "";
-               // 데이터베이스에 삽입하기 위해 쉼표 작업하기
-               for(int i=0; i<allergyList.size(); i++){
-                   if(i < allergyList.size()-1){
-                       allergyStr += allergyList.get(i) + ",";
-                   }else {
-                       allergyStr += allergyList.get(i);
-                   }
-
-               }
-               Log.d(TAG, "onClick: " + allergyStr);
-               if(allergyStr != "") {
-                   Toast.makeText(FoodmodifyActivity.this, allergyList + "을(를) 알레르기정보에 저장했습니다.", Toast.LENGTH_SHORT).show();
-               }else{
-                   Toast.makeText(FoodmodifyActivity.this, "알레르기 정보를 입력하지 않았습니다.", Toast.LENGTH_SHORT).show();
-
-               }
-               // 데이터베이스에 삽입
-               AllergyInsert allergyInsert = new AllergyInsert(loginDTO.getId(), allergyStr);
-               try {
-                   allergyInsert.execute().get();
-               } catch (ExecutionException e) {
-                   e.printStackTrace();
-               } catch (InterruptedException e) {
-                   e.printStackTrace();
-               }
-
-               finish();
-           }
-       });
-
-
-*/
-
-
-
-     /*   items = new ArrayList<>();
-        list = new ArrayList<>();
-
-        adapter = new AllergyAdapter(FoodmodifyActivity.this, items, list);
-
-        listView = findViewById(R.id.listView);
-        listView.setAdapter(adapter);
-
-        adapter.addItem(new ListViewItem("없음", false));
-        adapter.addItem(new ListViewItem("갑각류", false));
-        adapter.addItem(new ListViewItem("견과류", false));
-        adapter.addItem(new ListViewItem("계란", false));
-        adapter.addItem(new ListViewItem("밀류(글루텐)", false));
-        adapter.addItem(new ListViewItem("우유", false));
-        adapter.addItem(new ListViewItem("조개류", false));
-        adapter.addItem(new ListViewItem("콩류", false));
-        adapter.addItem(new ListViewItem("육류", false));
-*/
-
-
-
-    /*    test = "";
         AllergySearchlist allergySearchlist = new AllergySearchlist();
+        String search = "";
+        AllergyGet allergyGet = new AllergyGet(loginDTO.getNikname());
         try {
-            test = (String) allergySearchlist.execute().get();
+            String allergy = allergyGet.execute().get();
+            Log.d(TAG, "onCreate: 알러지" + allergy);
+            allergys = allergy.split(",");
+            Log.d(TAG, "onCreate: 알러지 리스트" + allergys);
+
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -140,33 +74,52 @@ public class FoodmodifyActivity extends AppCompatActivity {
         }
 
 
-        textView = findViewById(R.id.testText);
-        textView.setText(test);
-*/
-
-
-
-    }
-
-    public void ChangeFragment(int state){
-       /* if(state == 0){
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, searchFragment).addToBackStack(null).commit();
-        } else if (state == 1){
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, allergyListFragment).addToBackStack(null).commit();
-        }
-*/
-        //두번째 프래그먼트로 가는거, list 체크했을 때 없어지는거 그대로 있게 하기
-
-
-
-
-
-    }
-
-    public ArrayList<String> Allergylist(ArrayList<String> searchlist){
-        AllergySearchlist allergySearchlist = new AllergySearchlist();
         try {
-            searchlist = (ArrayList<String>) allergySearchlist.execute().get();
+            search = (String) allergySearchlist.execute().get();
+            Log.d(TAG, "settingList: " + search);
+            String[] searchs = search.split(",");
+
+            for (int i = 0; i < searchs.length; i++) {
+                String s = searchs[i].trim();
+                arrayList.add(new ListViewItem(s,false));
+                for(int j = 0; j < allergys.length; j++){
+                    if(allergys[j].trim().equals(s) ) {
+                        arrayList.get(i).setIsCheckable(true);
+                        //arrayList.add(new ListViewItem(s, true));
+                        Log.d(TAG, "onCreate: s 모든 리스트 for" + s);
+                        //arrayList.remove(allergys[j]);
+
+                    }
+
+                }
+
+            }
+
+           /* for (int i = 0; i < searchs.length; i++) {
+                String s = searchs[i].trim();
+                arrayList.add(new ListViewItem(s, false));
+                Log.d(TAG, "onCreate: s 모든 리스트" + s);
+
+                for(int j = 0; j < allergys.length; j++){
+                    if(allergys[j].toString().equals(s) ) {
+                        Log.d(TAG, "onCreate: allergys" + allergys[j] + j);
+                        Log.d(TAG, "onCreate: s 모든 리스트 for" + s);
+
+                        arrayList.get(i).setIsCheckable(true);
+                    }
+                    Log.d(TAG, "onCreate: s 모든 리스트 for2" + s);
+
+                }
+            }*/
+
+
+
+
+
+
+
+
+
 
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -174,11 +127,119 @@ public class FoodmodifyActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        return searchlist;
+
+
+        adapter = new AllergyAdapter(FoodmodifyActivity.this, arrayList);
+        mlistView.setAdapter(adapter);
+        mlistView.setOnItemClickListener(mItemClickListener);
+
+
+        btnModi = findViewById(R.id.btnModi);
+
+        btnModi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              String allergyStr = "";
+
+              for (int i = 0; i < resultlist.size(); i++) {
+                    if (i < resultlist.size() - 1) {
+                        allergyStr += resultlist.get(i) + ",";
+                    } else {
+                        allergyStr += resultlist.get(i);
+                    }
+                }
+                Toast.makeText(FoodmodifyActivity.this, "선택했다!!" + allergyStr, Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onClick: " + allergyStr);
+
+
+                // 데이터베이스에 삽입
+                AllergyInsert allergyInsert = new AllergyInsert(loginDTO.getNikname(), allergyStr);
+                try {
+                    String allergy = allergyInsert.execute().get();
+
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                finish();
+            }
+
+
+
+
+        });
+
+
+
+
+    }
+
+    private AdapterView.OnItemClickListener mItemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            adapter.setChecked(position);
+
+            if(adapter.isCheckedConfirm[position]){
+                Toast.makeText(FoodmodifyActivity.this, adapter.sArrayList.get(position).getName() + "을 선택하셨습니다.", Toast.LENGTH_SHORT).show();
+                resultlist.add(adapter.sArrayList.get(position).name);
+                adapter.notifyDataSetChanged();
+
+            } else {
+                Toast.makeText(FoodmodifyActivity.this, adapter.sArrayList.get(position).name + "을 선택해제 하셨습니다.", Toast.LENGTH_SHORT).show();
+                for(int i = 0; i < resultlist.size(); i++){
+                    if(resultlist.get(i).equals(adapter.sArrayList.get(position)))
+                        resultlist.remove(i);
+                }
+
+                adapter.notifyDataSetChanged();
+
+            }
+            adapter.notifyDataSetChanged();
+        }
+    };
+
+
+
+
+    private void setLayout() {
+        mlistView = findViewById(R.id.listView_main);
+        mcheckBox = findViewById(R.id.checkBox_main);
+/*
+    //    mButton = findViewById(R.id.button_main);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                for(int i = 0; i < adapter.geChecked().size(); i++){
+                    int a = adapter.geChecked().get(i);
+                    mButton.setText("현재 선택하신 알레르기는 : " + adapter.getItem(a).toString());
+                }
+
+            }
+        });
+*/
+
+
+
+        //전체선택 했을 때 좀 더 고민해보기.
+        mcheckBox = findViewById(R.id.checkBox_main);
+        mcheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adapter.allnoCheck(mcheckBox.isChecked());
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 
 
 
+
+
+
+    //인터넷 연결
     private void checkDangerousPermissions() {
         String[] permissions = {
                 Manifest.permission.INTERNET,
@@ -195,14 +256,14 @@ public class FoodmodifyActivity extends AppCompatActivity {
         }
 
         if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this, "권한 있음", Toast.LENGTH_LONG).show();
+            //        Toast.makeText(this, "권한 있음", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(this, "권한 없음", Toast.LENGTH_LONG).show();
+            //        Toast.makeText(this, "권한 없음", Toast.LENGTH_LONG).show();
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[0])) {
-                Toast.makeText(this, "권한 설명 필요함.", Toast.LENGTH_LONG).show();
+                //           Toast.makeText(this, "권한 설명 필요함.", Toast.LENGTH_LONG).show();
             } else {
-                ActivityCompat.requestPermissions(this, permissions, 1);
+                //            ActivityCompat.requestPermissions(this, permissions, 1);
             }
         }
     }
@@ -212,9 +273,9 @@ public class FoodmodifyActivity extends AppCompatActivity {
         if (requestCode == 1) {
             for (int i = 0; i < permissions.length; i++) {
                 if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this, permissions[i] + " 권한이 승인됨.", Toast.LENGTH_LONG).show();
+                    //         Toast.makeText(this, permissions[i] + " 권한이 승인됨.", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(this, permissions[i] + " 권한이 승인되지 않음.", Toast.LENGTH_LONG).show();
+                    //          Toast.makeText(this, permissions[i] + " 권한이 승인되지 않음.", Toast.LENGTH_LONG).show();
                 }
             }
         }

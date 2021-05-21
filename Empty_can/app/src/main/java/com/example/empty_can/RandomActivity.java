@@ -23,8 +23,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
+import static com.example.empty_can.Common.CommonMethod.loginDTO;
 
-public class RandomActivity extends AppCompatActivity { 
+
+public class RandomActivity extends AppCompatActivity {
     TextView foodname;
     ImageView foodView;
     Bitmap bitmap;
@@ -38,11 +40,12 @@ public class RandomActivity extends AppCompatActivity {
         foodname = findViewById(R.id.foodName);
         foodView = findViewById(R.id.foodView);
 
+
         findViewById(R.id.btnRe).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String food = "";
-                FoodRandom foodRandom = new FoodRandom();
+                FoodRandom foodRandom = new FoodRandom(loginDTO.getNikname());
                 try {
                     food = foodRandom.execute().get();
 
@@ -92,7 +95,7 @@ public class RandomActivity extends AppCompatActivity {
 
             }
         });
-}
+    }
 
     //보안
 

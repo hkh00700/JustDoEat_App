@@ -18,7 +18,7 @@
 
         android:gravity="left"
         android:text="원판돌리기"
-        android:textColor="#00458A"
+        android:textColor="#ec5c53"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -35,7 +35,7 @@
         android:layout_marginTop="336dp"
         android:text="맛집이동"
         android:textSize="24sp"
-        app:backgroundTint="#B9BB86FC"
+        app:background="@drawable/btn_colol"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.537"
         app:layout_constraintStart_toStartOf="parent"
@@ -147,7 +147,7 @@
 
         android:gravity="center"
         android:text="result"
-        android:textColor="@color/blue"
+        android:textColor="#ec5c53"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -168,7 +168,7 @@
         android:layout_marginBottom="136dp"
         android:background="@drawable/btn_colol"
         android:text="START"
-        android:textColor="#00458A"
+        android:textColor="#FFFFFF"
         android:textSize="20dp"
         app:backgroundTint="@null" />
 
