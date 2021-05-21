@@ -24,6 +24,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.empty_can.ATask.RestrantAddr;
 import com.example.empty_can.DTO.RestMenuInfoDTO;
 
@@ -32,6 +33,8 @@ import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapReverseGeoCoder;
 import net.daum.mf.map.api.MapView;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -281,6 +284,7 @@ public class MapFragment extends Fragment implements MapView.CurrentLocationEven
             Log.d(TAG, "createCustomMarker: 주소" + address);
             Log.d(TAG, "createCustomMarker: 전번" + tel);
             Log.d(TAG, "createCustomMarker: 메뉴" + menu);
+            Log.d(TAG, "createCustomMarker: 이미지경로" + imgpath);
 
             CUSTOM_MARKER_POINT = MapPoint.mapPointWithGeoCoord(lad, lod);
 
@@ -345,11 +349,16 @@ public class MapFragment extends Fragment implements MapView.CurrentLocationEven
         TextView tvTel = view.findViewById(R.id.tel);
         TextView tvMenu = view.findViewById(R.id.menu);
 
+        Log.d(TAG, "popupImgXml: 이미지경로 => " + restMenuInfoDTO.getImgPath());
 
-
-
-
-        imageView.setImageResource(R.drawable.gugbab);   //restMenuInfoDTO.getImgPath()
+        URL url = null;
+        try {
+            url = new URL(restMenuInfoDTO.getImgPath());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        //imageView.setImageResource(R.drawable.gugbab);   //restMenuInfoDTO.getImgPath()
+        Glide.with(this).load(url).into(imageView);
         tvTitle.setText(restMenuInfoDTO.getTitle());
         tvAddr.setText(restMenuInfoDTO.getAddress());
         tvTel.setText(restMenuInfoDTO.getTel());
