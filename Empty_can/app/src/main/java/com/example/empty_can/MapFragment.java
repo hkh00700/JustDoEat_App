@@ -4,12 +4,17 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Point;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,6 +25,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.empty_can.ATask.RestrantAddr;
+import com.example.empty_can.DTO.RestMenuInfoDTO;
 
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
@@ -31,8 +37,7 @@ import java.util.concurrent.ExecutionException;
 
 import static android.content.Context.LOCATION_SERVICE;
 
-public class MapFragment extends Fragment implements MapView.CurrentLocationEventListener, MapReverseGeoCoder.ReverseGeoCodingResultListener {
-
+public class MapFragment extends Fragment implements MapView.CurrentLocationEventListener, MapReverseGeoCoder.ReverseGeoCodingResultListener, MapView.POIItemEventListener {
 
     private static final String TAG = "main:MapFragment";
 
@@ -50,6 +55,8 @@ public class MapFragment extends Fragment implements MapView.CurrentLocationEven
 
 
     private MapPOIItem CustomMarker;
+
+    AlertDialog dialog;
 
     @Nullable
     @Override
@@ -77,6 +84,8 @@ public class MapFragment extends Fragment implements MapView.CurrentLocationEven
         map_view = View.findViewById(R.id.daum_map_view);
         //mMapView.setDaumMapApiKey(MapApiConst.DAUM_MAPS_ANDROID_APP_API_KEY);
         map_view.setCurrentLocationEventListener(this);
+        //map_view.setMapViewEventListener(this);
+        map_view.setPOIItemEventListener(this);
 
         if (!checkLocationServicesStatus()) {
 
@@ -88,7 +97,6 @@ public class MapFragment extends Fragment implements MapView.CurrentLocationEven
 
         /*       createCustomMarker(map_view, lad, gt, k);*/
         createCustomMarker(map_view, pps);
-
 
         return View;
     }
@@ -200,7 +208,6 @@ public class MapFragment extends Fragment implements MapView.CurrentLocationEven
 
     }
     private void showDialogForLocationServiceSetting() {
-
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("위치 서비스 비활성화");
         builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다.\n"
@@ -236,7 +243,7 @@ public class MapFragment extends Fragment implements MapView.CurrentLocationEven
                 if (checkLocationServicesStatus()) {
                     if (checkLocationServicesStatus()) {
 
-                        Log.d("@@@", "onActivityResult : GPS 활성화 되있음");
+                        Log.d(TAG, "onActivityResult : GPS 활성화 되있음");
                         checkRunTimePermission();
                         return;
                     }
@@ -250,23 +257,35 @@ public class MapFragment extends Fragment implements MapView.CurrentLocationEven
 
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
     }
 
     private void createCustomMarker(MapView map_view, String[] pps) {
 
         for(int i = 0; i < pps.length; i++){
             String[] cusmaker = pps[i].split(",");
+
+            String name = cusmaker[0].trim();
             Double lad = Double.parseDouble(cusmaker[1]);
             Double lod = Double.parseDouble(cusmaker[2]);
+            String address = cusmaker[3];
+            String tel = cusmaker[4];
+            String menu = cusmaker[5];
+            String imgpath = cusmaker[6];
+
+            RestMenuInfoDTO restMenuInfoDTO = new RestMenuInfoDTO(imgpath, name, address, tel, menu );
 
             Log.d(TAG, "createCustomMarker: 가게 이름" + cusmaker[0].trim());
             Log.d(TAG, "createCustomMarker: 위도" + lad);
-            Log.d(TAG, "createCustomMarker: 위도" + lod);
+            Log.d(TAG, "createCustomMarker: 경도" + lod);
+            Log.d(TAG, "createCustomMarker: 주소" + address);
+            Log.d(TAG, "createCustomMarker: 전번" + tel);
+            Log.d(TAG, "createCustomMarker: 메뉴" + menu);
 
             CUSTOM_MARKER_POINT = MapPoint.mapPointWithGeoCoord(lad, lod);
 
             CustomMarker = new MapPOIItem();
-            String name = cusmaker[0].trim();
+            CustomMarker.setUserObject(restMenuInfoDTO);
             CustomMarker.setItemName(name);
             CustomMarker.setTag(1);
             CustomMarker.setMapPoint(CUSTOM_MARKER_POINT);
@@ -280,48 +299,113 @@ public class MapFragment extends Fragment implements MapView.CurrentLocationEven
             map_view.addPOIItem(CustomMarker);
             map_view.selectPOIItem(CustomMarker, true);
             map_view.setMapCenterPoint(CUSTOM_MARKER_POINT, false);
+
         }
-
-       /* CUSTOM_MARKER_POINT = MapPoint.mapPointWithGeoCoord(lad, gt);
-
-        CustomMarker = new MapPOIItem();
-        String name = k;
-        CustomMarker.setItemName(name);
-        CustomMarker.setTag(1);
-        CustomMarker.setMapPoint(CUSTOM_MARKER_POINT);
-
-        CustomMarker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
-
-        CustomMarker.setCustomImageResourceId(R.drawable.pin);
-        CustomMarker.setCustomImageAutoscale(false);
-        CustomMarker.setCustomImageAnchor(0.5f, 1.0f);
-
-        map_view.addPOIItem(CustomMarker);
-        map_view.selectPOIItem(CustomMarker, true);
-        map_view.setMapCenterPoint(CUSTOM_MARKER_POINT, false);
-*/
-
-
-      /*  CustomMarker = new MapPOIItem();
-        String name1 = "원조가마솥국밥";
-        CustomMarker.setItemName(name1);
-        CustomMarker.setTag(1);
-        CustomMarker.setMapPoint(MapPoint.mapPointWithGeoCoord(35.152847,126.88861705708976));
-
-        CustomMarker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
-
-        CustomMarker.setCustomImageResourceId(R.drawable.pin);
-        CustomMarker.setCustomImageAutoscale(false);
-        CustomMarker.setCustomImageAnchor(0.5f, 1.0f);
-
-        map_view.addPOIItem(CustomMarker);
-        map_view.selectPOIItem(CustomMarker, true);
-        map_view.setMapCenterPoint(CUSTOM_MARKER_POINT, false);*/
-
-
 
     }
 
 
+    @Override
+    public void onPOIItemSelected(MapView mapView, MapPOIItem mapPOIItem) {
+
+    }
+
+    @Override
+    public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem) {
+        Toast.makeText(getActivity(), "Clicked야야야 " + mapPOIItem.getItemName(), Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onCalloutBalloonOfPOIItemTouched 맵뷰: " + mapView + "포인트" + mapPOIItem);
+
+        RestMenuInfoDTO restMenuInfoDTO = (RestMenuInfoDTO) mapPOIItem.getUserObject();
+        popupImgXml(restMenuInfoDTO);
+    }
+
+    @Override
+    public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem, MapPOIItem.CalloutBalloonButtonType calloutBalloonButtonType) {
+
+    }
+
+    @Override
+    public void onDraggablePOIItemMoved(MapView mapView, MapPOIItem mapPOIItem, MapPoint mapPoint) {
+
+    }
+
+    private void popupImgXml(RestMenuInfoDTO restMenuInfoDTO) {
+        // 1. xml 파일 생성
+        // 2. 화면을 inflate 시켜 setView 한다.
+
+        String menus[] = restMenuInfoDTO.getMenu().split("/");
+
+        // 팝업창에 xml 붙이기
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        View view = inflater.inflate(R.layout.popup, null);
+
+        ImageView imageView = view.findViewById(R.id.imageView);
+        TextView tvTitle = view.findViewById(R.id.title);
+        TextView tvAddr = view.findViewById(R.id.address);
+        TextView tvTel = view.findViewById(R.id.tel);
+        TextView tvMenu = view.findViewById(R.id.menu);
+
+
+
+
+
+        imageView.setImageResource(R.drawable.gugbab);   //restMenuInfoDTO.getImgPath()
+        tvTitle.setText(restMenuInfoDTO.getTitle());
+        tvAddr.setText(restMenuInfoDTO.getAddress());
+        tvTel.setText(restMenuInfoDTO.getTel());
+        for(int i=0; i<menus.length; i++){
+            tvMenu.append(menus[i] + "\n");
+        }
+
+        //알람창 띄우기
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("이미지 띄우기").setView(view);
+        builder.setNegativeButton("종료", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(dialog != null){
+                    dialog.dismiss();
+                }
+            }
+        });
+        dialog = builder.create();
+        dialog.show();
+
+        //디바이스 사이즈 구하기
+        Point size = getDeviceSize();
+
+        // 디바이스 사이즈를 받아 팝업크기창을 조절
+        int sizeX = size.x;
+        int sizeY = size.y;
+
+        // AlertDiaLog에서 위치, 크기 조절
+        WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
+        params.x = (int) Math.round(sizeX * 0.005);      // 창의 시작 x 위치
+        params.y = (int) Math.round(sizeY * 0.01);      // 창의 시작 y 위치
+        params.width = (int) Math.round(sizeX * 0.9);   // 창의 넓이
+        params.height = (int) Math.round(sizeY * 0.8);  // 창의 높이
+
+        dialog.getWindow().setAttributes(params);
+    }
+
+    // 디바이스 가로 세로 사이즈 구하기
+    // getRealSize()는 status bar 등 system instet을
+    // 포함한 스크린사이즈를 가져오는 방법이고,
+    // getSize()는 status bar 등 system insets을
+    // 제외한 부분에 대한 사이즈를 가져오는 함수입니다.
+    // 단위는 픽셀
+    private Point getDeviceSize() {
+
+        // 액티비티에서 가져올 때
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        //프레그먼트에서 가져올 때
+        //Display display = getActivity().getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getRealSize(size);  //or getSize(size) : API 17 이상부터
+        int width = size.x;     // 디바이스 넓이
+        int height = size.y;    // 디바이스 높이
+
+        return size;
+    }
 
 }
