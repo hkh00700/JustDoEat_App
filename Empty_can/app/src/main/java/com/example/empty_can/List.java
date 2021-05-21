@@ -70,7 +70,6 @@ public class List extends Fragment {
         });
 
 
-
         return View;
 
 

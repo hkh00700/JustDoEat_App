@@ -1,175 +1,106 @@
-
 package com.example.empty_can;
-
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.Checkable;
-import android.widget.CompoundButton;
+import android.widget.Filter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static com.example.empty_can.R.layout.row;
 
 public class AllergyAdapter extends BaseAdapter {
     private static final String TAG = "main:AllergyAdapter";
+    ViewHolder viewHolder = null;
+    ArrayList<ListViewItem> sArrayList = new ArrayList<ListViewItem>();
+
+    LayoutInflater inflater = null;
+    //  ArrayList<String> sArrayList = new ArrayList<>();
+    boolean[] isCheckedConfirm;
 
     Context context;
-    ArrayList<ListViewItem> items;
-    ArrayList<String> list;
+    public AllergyAdapter (Context context, ArrayList<ListViewItem> mlist){
+        inflater = LayoutInflater.from(context);
+        this.sArrayList = mlist;
+        this.isCheckedConfirm = new boolean[sArrayList.size()];
 
-    LayoutInflater inflater;
-
-    public AllergyAdapter(Context context, ArrayList<ListViewItem> items, ArrayList<String> list) {
-        this.context = context;
-        this.items = items;
-        this.list = list;
-
-        this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        for(int i = 0; i <sArrayList.size(); i++){
+            this.isCheckedConfirm[i] = sArrayList.get(i).isCheckable;
+        }
     }
 
-    // 아이템 추가
-    public void addItem(ListViewItem item){
-        items.add(item);
+    //CheckBox를 모두 해제하는 메소드
+    public void allnoCheck(boolean ischked){
+        int tempSize = isCheckedConfirm.length;
+        for(int a = 0; a<tempSize; a++){
+            isCheckedConfirm[a] = ischked;
+        }
+
+    }
+    public void setChecked(int position) {
+        isCheckedConfirm[position] = !isCheckedConfirm[position];
     }
 
-    // 선택한 아이템 리스트 가져오기
-    public ArrayList<String> getList(){
-        return list;
+    public ArrayList<Integer> geChecked() {
+        int tempSize = isCheckedConfirm.length;
+        ArrayList<Integer> mArrayList = new ArrayList<Integer>();
+        for(int b=0 ; b<tempSize ; b++){
+            if(isCheckedConfirm[b]){
+                mArrayList.add(b);
+            }
+        }
+        return mArrayList;
     }
+
 
     @Override
     public int getCount() {
-        return items.size();
+        return sArrayList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return items.get(position);
+        return position;
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
-
-    /*public boolean itChk(int position) {
-        return items.get(position).isCheck();
-    }*/
-
-
-
-
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-
-       /* ViewHolder holder;
-
         if(convertView == null){
-            convertView = inflater.inflate(R.layout.row, parent, false);
-            holder = new ViewHolder();
-
-            holder.textView = convertView.findViewById(R.id.textView);
-            holder.checkBox = convertView.findViewById(R.id.checkBox);
-
-            convertView.setTag(holder);
+            viewHolder = new ViewHolder();
+            convertView = inflater.inflate(R.layout.row, null);
+            viewHolder.cBox = convertView.findViewById(R.id.rcheckBox);
+            convertView.setTag(viewHolder);
         } else {
-            holder = (ViewHolder) convertView.getTag();
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        ListViewItem item = items.get(position);
-        String food = item.getText();
-        Boolean check = item.isCheck();
+        viewHolder.cBox.setClickable(false);
+        viewHolder.cBox.setFocusable(false);
 
-        holder.textView.setText(food);
-        holder.checkBox.setChecked(check);
-
-        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Log.d(TAG, "onCheckedChanged: " + isChecked);
-
-                if (holder.checkBox.isChecked() == true) {
-                    list.add(holder.textView.getText().toString());
-                    boolean newState = !items.get(position).isCheck();
-                    items.get(position).check = newState;
-                    Toast.makeText(context, items.get(position).getText() + "을(를) 선택하셨습니다.", Toast.LENGTH_SHORT).show();
-                }else if(holder.checkBox.isChecked() == false){
-
-                    for(int i=0; i<list.size(); i++){
-                        if(holder.textView.getText().equals(list.get(i))){
-                            items.get(position).setCheck(false);
-                            Toast.makeText(context, items.get(position).getText() + "을(를) 선택 해제 하셨습니다.", Toast.LENGTH_SHORT).show();
-                            list.remove(i);
-                            break;
-                        }
-                    }
-                }
-
-                for (int i = 0; i < list.size(); i++) {
-                    Log.d(TAG, "onClick: " + list.get(i));
-
-                }
+        viewHolder.cBox.setText(sArrayList.get(position).getName());
+        viewHolder.cBox.setChecked(isCheckedConfirm[position]);
 
 
 
-            }
-        });
-
-        holder.checkBox.setChecked(itChk(position));*/
         return convertView;
     }
 
-    /*public class ViewHolder {
-        public TextView textView;
-        public CheckBox checkBox;
-    }*/
-
-    public class ViewHolder implements Checkable{
-        public TextView textView;
-        public CheckBox checkBox;
-        public int Position;
-
-
-        @Override
-        public void setChecked(boolean checked) {
-            if(checkBox.isChecked() != checked){
-                checkBox.setChecked(checked) ;
-                Log.d(TAG, "setChecked: " + checkBox.isChecked());
-            }
-        }
-
-        @Override
-        public boolean isChecked() {
-            Log.d(TAG, "isChecked: " + checkBox.isChecked());
-            return checkBox.isChecked() ;
-        }
-
-        @Override
-        public void toggle() {
-            setChecked(checkBox.isChecked() ? false : true) ;
-            Log.d(TAG, "toggle: " + checkBox.isChecked());
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
 }
+
+class ViewHolder {
+    // 새로운 Row에 들어갈 CheckBox
+    CheckBox cBox = null;
+}
+
 
 

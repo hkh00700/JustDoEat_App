@@ -8,101 +8,92 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        app:cardCornerRadius="10dp"
+        android:layout_height="200dp"
+        app:cardCornerRadius="30dp"
         app:cardElevation="5dp"
-        app:cardUseCompatPadding="true"> <!--  app:cardBackgroundColor="#FFFFFFFF" -->
+        app:cardUseCompatPadding="true">
+        <!----><!--  app:cardBackgroundColor="#FFFFFFFF" -->
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:weightSum="2">
+            android:id="@+id/parentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
 
+
+          <ImageView
+                android:id="@+id/iv_img"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:src="@mipmap/ic_launcher"
+                android:scaleType="fitXY" />
 
             <LinearLayout
-                android:id="@+id/parentLayout"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.35"
-                android:orientation="horizontal"
-                android:weightSum="1">
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:orientation="vertical"
+                android:weightSum="2">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.6"
-                    android:orientation="vertical"
-                    android:weightSum="1">
+                <TextView
+                    android:paddingLeft="10dp"
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="글 제목"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
+                    android:text="우선은 글내용"
+                    android:paddingLeft="10dp" />
+                <TextView
+                    android:id="@+id/id"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
+                    android:text="작성자"
+                    android:paddingLeft="10dp" />
 
-                    <TextView
-                        android:id="@+id/id"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.4"
-                        android:paddingLeft="10dp"
-                        android:text="아이디"
-                        android:textSize="12sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:orientation="vertical"
+                android:weightSum="2">
 
-                    <TextView
-                        android:id="@+id/title"
-                        android:layout_width="match_parent"
-                        android:layout_height="8dp"
-                        android:layout_weight="0.6"
-                        android:gravity="center"
-                        android:text="제목"
-                        android:textSize="22dp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <ImageView
+                <TextView
                     android:id="@+id/review_update"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:src="@drawable/review_update" />
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5"
+                    android:layout_marginLeft="10dp"
+                    android:text="+"
+                    android:textColor="#60000000"
+                    android:textSize="30sp" />
 
                 <ImageView
                     android:id="@+id/review_delete"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:src="@drawable/review_delete" />
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
+                    android:src="@drawable/trash"
+                    android:layout_marginBottom="10dp"/>
+
+
             </LinearLayout>
-
-
-            <TextView
-                android:id="@+id/content"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.85"
-                android:paddingLeft="20dp"
-                android:text="댓글내용"
-                android:textSize="24sp" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.8">
-
-
-                <ImageView
-                    android:id="@+id/iv_img"
-                    android:layout_width="200dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentBottom="true"
-                    android:layout_gravity="end"
-                    android:layout_marginStart="100dp"
-                    android:layout_marginBottom="5dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/ic_launcher" />
-
-            </RelativeLayout>
-
-
-
         </LinearLayout>
 
 

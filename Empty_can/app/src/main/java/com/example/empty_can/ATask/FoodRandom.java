@@ -8,6 +8,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 
@@ -21,6 +22,11 @@ public class FoodRandom extends AsyncTask<Void, Void, String> {
     private static final String TAG = "main:FoodRandom";
 
     String food = "";
+    String m_nikname;
+
+    public FoodRandom(String m_nikname){
+        this.m_nikname = m_nikname;
+    }
 
     HttpClient httpClient;
     HttpPost httpPost;
@@ -35,6 +41,9 @@ public class FoodRandom extends AsyncTask<Void, Void, String> {
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
             builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
             builder.setCharset(Charset.forName("UTF-8"));
+
+            builder.addTextBody("m_nikname", m_nikname, ContentType.create("Multipart/related", "UTF-8"));
+
             String postURL = ipConfig + "/justdo_eat/recommand";
 
             //전송
@@ -58,7 +67,7 @@ public class FoodRandom extends AsyncTask<Void, Void, String> {
             }
 
             food = stringBuffer.toString().trim();
-            //new FoodRandom(food);
+            new FoodRandom(food);
 
             Log.d(TAG, "doInBackground: 음식이름 : " + food);
             inputStream.close();

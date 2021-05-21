@@ -42,10 +42,10 @@ public class Main extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.activity_random, container,false);
 
-        textView1 = view.findViewById(R.id.textView);
+        textView1 = view.findViewById(R.id.todaymenu);
 
         if(loginDTO != null){
-            textView1.setText(loginDTO.getNikname() + "님 로그인되었습니다.");
+            textView1.setText(loginDTO.getNikname() + "님을 위한 메뉴추천");
 
         }
 
@@ -59,7 +59,22 @@ public class Main extends Fragment {
         view.findViewById(R.id.btnRe).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recommandfood();
+                String food = "";
+                FoodRandom foodRandom = new FoodRandom(loginDTO.getNikname());
+                try {
+                    food = foodRandom.execute().get();
+
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                String[] rs = food.split(",");
+                food = rs[0];
+                String link = rs[1];
+
+                foodname.setText(food);
             }
         });
 
@@ -68,7 +83,7 @@ public class Main extends Fragment {
 
     public void recommandfood() {
         String food = "";
-        FoodRandom foodRandom = new FoodRandom();
+        FoodRandom foodRandom = new FoodRandom(loginDTO.getNikname());
         try {
             food = foodRandom.execute().get();
 
@@ -84,7 +99,7 @@ public class Main extends Fragment {
 
         foodname.setText(food);
 
-        Thread thread = new Thread() {
+       Thread thread = new Thread() {
             @Override
             public void run() {
 

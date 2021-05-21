@@ -3,12 +3,21 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="5">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:text="게시판"
+        android:textSize="20sp"
+        android:paddingTop="20dp"
+        android:paddingLeft="20dp"
+        android:textColor="#ec5c53"/>
 
     <ScrollView
         android:fillViewport="true"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3">
+        android:layout_weight="4">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/showreview"
@@ -22,12 +31,14 @@
             android:id="@+id/btnadd"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="1dp"
-            android:layout_weight="0.5"
-            android:background="@android:color/holo_orange_dark"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="0.35"
+            android:background="@drawable/btn_colol"
             android:onClick="btn1Clicked"
-            android:text="추가"
-            android:textSize="14sp" />
+            android:text="글쓰기"
+            android:textStyle="bold"
+            android:textSize="20sp" />
 
 
 

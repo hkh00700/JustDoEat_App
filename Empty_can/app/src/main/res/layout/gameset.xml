@@ -39,7 +39,7 @@
         android:background="@drawable/btn_colol"
 
         android:text="원판돌리기"
-        android:textColor="#00458A"
+        android:textColor="#FFFFFF"
         android:textSize="20dp"
         app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +61,7 @@
         android:background="@drawable/btn_colol"
 
         android:text="사다리타기"
-        android:textColor="#00458A"
+        android:textColor="#FFFFFF"
         android:textSize="20dp"
         app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +82,7 @@
         android:background="@drawable/btn_colol"
 
         android:text="제비뽑기"
-        android:textColor="#00458A"
+        android:textColor="#FFFFFF"
         android:textSize="20dp"
         app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,7 +104,7 @@
         android:background="@drawable/btn_colol"
 
         android:text="음식 이상형 월드컵"
-        android:textColor="#00458A"
+        android:textColor="#FFFFFF"
         android:textSize="20dp"
         app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"

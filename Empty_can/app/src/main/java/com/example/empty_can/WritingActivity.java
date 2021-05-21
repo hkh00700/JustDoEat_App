@@ -62,9 +62,9 @@ public class WritingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_writing);
 
-        imageView = findViewById(R.id.imageView);
-        content = (EditText)findViewById(R.id.content);
-        title = (EditText)findViewById(R.id.title);
+        imageView = findViewById(R.id.imageView2);
+        content = (EditText)findViewById(R.id.ucontent);
+        title = (EditText)findViewById(R.id.utitle);
         btnLoad = (Button) findViewById(R.id.btnLoad);
 
 
