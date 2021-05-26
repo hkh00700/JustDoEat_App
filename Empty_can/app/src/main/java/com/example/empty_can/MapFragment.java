@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
+import android.graphics.drawable.ColorDrawable;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -342,12 +343,21 @@ public class MapFragment extends Fragment implements MapView.CurrentLocationEven
         // 팝업창에 xml 붙이기
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         View view = inflater.inflate(R.layout.popup, null);
+        //view.setBackground(R.drawable.radius);
 
         ImageView imageView = view.findViewById(R.id.imageView);
         TextView tvTitle = view.findViewById(R.id.title);
         TextView tvAddr = view.findViewById(R.id.address);
         TextView tvTel = view.findViewById(R.id.tel);
         TextView tvMenu = view.findViewById(R.id.menu);
+
+        imageView.setPadding(20, 0, 20, 0);
+        tvTitle.setPadding(20, 0, 20, 0);
+        tvAddr.setPadding(20, 0, 20, 0);
+        tvTel.setPadding(20, 0, 20, 0);
+        tvMenu.setPadding(20, 0, 20, 0);
+        tvTitle.setTextSize(25);
+
 
         Log.d(TAG, "popupImgXml: 이미지경로 => " + restMenuInfoDTO.getImgPath());
 
@@ -368,7 +378,9 @@ public class MapFragment extends Fragment implements MapView.CurrentLocationEven
 
         //알람창 띄우기
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("이미지 띄우기").setView(view);
+        builder.setTitle("음식점 상세정보").setView(view);
+
+        //
         builder.setNegativeButton("종료", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -395,6 +407,8 @@ public class MapFragment extends Fragment implements MapView.CurrentLocationEven
         params.height = (int) Math.round(sizeY * 0.8);  // 창의 높이
 
         dialog.getWindow().setAttributes(params);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.radius);
     }
 
     // 디바이스 가로 세로 사이즈 구하기
