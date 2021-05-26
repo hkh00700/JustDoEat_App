@@ -21,9 +21,9 @@ public class MymodifyActivity extends AppCompatActivity {
     private static final String TAG = "main:MymodifyActivity";
 
     String state;
-    String m_email;
+    String m_email ;
     EditText m_pw, m_name, m_phone, m_gender, m_nikname, m_address1, m_address2;
-
+    String pwChk = "chk";
     Button btnModify, btnCancel;
 
     @Override
@@ -38,7 +38,9 @@ public class MymodifyActivity extends AppCompatActivity {
         m_nikname = findViewById(R.id.m_nikname);
         m_address1 = findViewById(R.id.m_address1);
         m_address2 = findViewById(R.id.m_address2);
+
         m_email = loginDTO.getEmail();
+
 
         m_name.setText(loginDTO.getName());
         m_phone.setText(loginDTO.getPhone());
@@ -62,9 +64,12 @@ public class MymodifyActivity extends AppCompatActivity {
                 String address2 = m_address2.getText().toString();
 
 
-
                 ModifyUpdate modifyUpdate = new ModifyUpdate(pw, name, phone, gender, nikname, address1, address2, m_email);
 
+              if(pw.length() == 0){
+                  Toast.makeText(MymodifyActivity.this, "비밀번호를 입력하세요!!", Toast.LENGTH_SHORT).show();
+                  return;
+              }
 
                 try {
                     state = modifyUpdate.execute().get().trim();
@@ -75,19 +80,22 @@ public class MymodifyActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                if(state.equals("1")){
-                    Toast.makeText(MymodifyActivity.this, "수정성공 !!!", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "회원정보 수정이 완료되었습니다.");
 
-                    Intent intent = new Intent(MymodifyActivity.this, LoginActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    startActivity(intent);
-                    finish();
-                }else{
-                    Toast.makeText(MymodifyActivity.this, "수정실패 !!!", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "회원정보 수정이 실패하였습니다." + state);
-                    finish();
-                }
+                    if (state.equals("1")) {
+                        Toast.makeText(MymodifyActivity.this, "수정성공 !!!", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "회원정보 수정이 완료되었습니다.");
+
+                        Intent intent = new Intent(MymodifyActivity.this, LoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Toast.makeText(MymodifyActivity.this, "수정실패 !!!", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "회원정보 수정이 실패하였습니다." + state);
+                        finish();
+                    }
+
+
             }
         });
 
