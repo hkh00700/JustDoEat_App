@@ -59,7 +59,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Empty_can"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ReviewRead"></activity>
+        <activity android:name=".ReviewRead" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
@@ -79,11 +79,12 @@
         <activity android:name=".ReviewUpdateActivity" />
         <activity android:name=".RandomActivity" />
         <activity android:name=".ShowReviewActivity" /> <!-- http 라이브러리 사용 -->
+        <activity android:name=".LoginActivity"/>
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".LoginActivity">
+        <activity android:name=".IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -108,7 +109,8 @@
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
             android:exported="false"
-            android:grantUriPermissions="true">
+            android:grantUriPermissions="true">....+
+            .
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />

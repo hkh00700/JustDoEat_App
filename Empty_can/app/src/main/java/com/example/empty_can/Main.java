@@ -3,7 +3,6 @@ package com.example.empty_can;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,11 +19,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.empty_can.ATask.FoodRandom;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
 import static com.example.empty_can.Common.CommonMethod.loginDTO;
@@ -72,7 +66,7 @@ public class Main extends Fragment {
 
                 String[] rs = food.split(",");
                 food = rs[0];
-                String link = rs[1];
+//                String link = rs[1];
 
                 foodname.setText(food);
             }
@@ -95,41 +89,9 @@ public class Main extends Fragment {
 
         String[] rs = food.split(",");
         food = rs[0];
-        String link = rs[1];
+
 
         foodname.setText(food);
-
-       Thread thread = new Thread() {
-            @Override
-            public void run() {
-
-                try {
-                    URL url = new URL(link);
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setDoInput(true);
-                    conn.connect();
-
-                    InputStream is = conn.getInputStream();
-                    bitmap = BitmapFactory.decodeStream(is);
-
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-
-            }
-        };
-
-        thread.start();
-
-        try {
-            thread.join();
-            foodView.setImageBitmap(bitmap);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
 
     }
