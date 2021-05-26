@@ -1,5 +1,6 @@
 package com.example.empty_can;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -77,6 +78,10 @@ public class MymodifyActivity extends AppCompatActivity {
                 if(state.equals("1")){
                     Toast.makeText(MymodifyActivity.this, "수정성공 !!!", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "회원정보 수정이 완료되었습니다.");
+
+                    Intent intent = new Intent(MymodifyActivity.this, LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
                     finish();
                 }else{
                     Toast.makeText(MymodifyActivity.this, "수정실패 !!!", Toast.LENGTH_SHORT).show();

@@ -7,9 +7,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.empty_can.ATask.Email_check;
+import com.example.empty_can.ATask.Id_check;
 import com.example.empty_can.ATask.JoinInsert;
 
 import java.util.concurrent.ExecutionException;
@@ -21,7 +22,8 @@ public class JoinActivity extends AppCompatActivity {
     String state;
 
     EditText m_id, m_pw, m_name, m_phone, m_gender, m_email, m_nikname;
-    Button btnJoin, btnCancel;
+    Button btnJoin, btnCancel, btnjun, btnejun;
+    String chk = "chk";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,62 @@ public class JoinActivity extends AppCompatActivity {
 
         btnJoin = findViewById(R.id.btnJoin);
         btnCancel = findViewById(R.id.btnCancel);
+        btnjun = findViewById(R.id.btnjun);
+        btnejun = findViewById(R.id.btnejun);
+
+        btnjun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String id = m_id.getText().toString();
+                Id_check id_check = new Id_check(id);
+
+                try {
+                    state = id_check.execute().get().trim();
+                    Log.d("main:joinact0 : ", state);
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                if(state.equals("1")){
+                    Toast.makeText(JoinActivity.this, "사용중인 아이디입니다.", Toast.LENGTH_SHORT).show();
+                    m_id.setText("");
+                    chk = "chk";
+                }else{
+                    Toast.makeText(JoinActivity.this, "사용가능한 아이디입니다.", Toast.LENGTH_SHORT).show();
+                    chk = "chked";
+                }
+
+            }
+        });
+
+        btnejun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = m_email.getText().toString();
+                Email_check email_check = new Email_check(email);
+
+                try {
+                    state = email_check.execute().get().trim();
+                    Log.d("main:joinact0 : ", state);
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                if(state.equals("1")){
+                    Toast.makeText(JoinActivity.this, "사용중인 이메일입니다.", Toast.LENGTH_SHORT).show();
+                    m_email.setText("");
+                    chk = "chk";
+                }else{
+                    Toast.makeText(JoinActivity.this, "사용가능한 이메일입니다.", Toast.LENGTH_SHORT).show();
+                    chk = "chked";
+                }
+
+            }
+        });
 
         btnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
