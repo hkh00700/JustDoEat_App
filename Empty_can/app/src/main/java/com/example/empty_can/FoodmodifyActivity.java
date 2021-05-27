@@ -2,17 +2,13 @@ package com.example.empty_can;
 
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,6 +23,7 @@ import com.example.empty_can.ATask.AllergySearchlist;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
+
 import static com.example.empty_can.Common.CommonMethod.loginDTO;
 
 
@@ -148,7 +145,7 @@ public class FoodmodifyActivity extends AppCompatActivity {
                         allergyStr += resultlist.get(i);
                     }
                 }
-                Toast.makeText(FoodmodifyActivity.this, "선택했다!!" + allergyStr, Toast.LENGTH_SHORT).show();
+                Toast.makeText(FoodmodifyActivity.this, "선택알러지 : " + allergyStr, Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "onClick: " + allergyStr);
 
 

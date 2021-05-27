@@ -317,7 +317,6 @@ public class MapFragment extends Fragment implements MapView.CurrentLocationEven
 
     @Override
     public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem) {
-        Toast.makeText(getActivity(), "Clicked야야야 " + mapPOIItem.getItemName(), Toast.LENGTH_SHORT).show();
         Log.d(TAG, "onCalloutBalloonOfPOIItemTouched 맵뷰: " + mapView + "포인트" + mapPOIItem);
 
         RestMenuInfoDTO restMenuInfoDTO = (RestMenuInfoDTO) mapPOIItem.getUserObject();

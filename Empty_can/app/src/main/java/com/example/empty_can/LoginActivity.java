@@ -127,6 +127,8 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "로그인 되었습니다 !!!", Toast.LENGTH_SHORT).show();
                     Log.d("main:login", loginDTO.getId() + "님 로그인 되었습니다 !!!" + loginDTO.getName() + loginDTO.getNikname());
 
+                    u_id.setText("");  u_pw.setText("");
+
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
 
@@ -227,9 +229,14 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
 
+        u_id.setText("");  u_pw.setText("");
+    }
 
-        //네이버로그인
+    //네이버로그인
         private void initData() {
             naverLogin = OAuthLogin.getInstance();
 
